@@ -3,14 +3,14 @@
 :root {
   // this color pallet will also work for light theme
   --color-primary: #7c5cfc;
-  --color-primary-light: hwb(252 46% 0%);
+  --color-primary-light: #9175ff;
   --color-white: #fff;
   --color-black: #000;
   --color-base-light: #fff;
   --color-base-dark: #ecf2ff;
-  --color-base-darker: rgba(194, 213, 255, 0.4);
-  --color-grey: rgb(133, 134, 153);
-  --color-grey-light: rgba(84, 81, 97, 0.211);
+  --color-base-darker: #c2d5ff66;
+  --color-grey: #858699;
+  --color-grey-light: #54516136;
 
 
   // fonts
@@ -21,7 +21,7 @@
   --border-radius-btn: 1rem;
 
   // spacing
-  --space-xs: .8rem;
+  --space-xs: 1rem;
   --space-sm: 2rem;
   --space-md: 3rem;
   --space-lg: 5rem;
@@ -41,7 +41,7 @@ $bp-small: 37.5em; // 600px
 .dark-theme{
   --color-base-light: #2c2c38;
   --color-base-dark: #21212D;
-  --color-base-darker: rgba(44, 44, 56, 0.4);
+  --color-base-darker: #2c2c3866;
 }
 
 /* Box sizing rules */
