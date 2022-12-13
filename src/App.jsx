@@ -5,7 +5,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Board from "./components/Board/Board";
 
 function App() {
-	const [theme, setTheme] = useState("dark");
+	const [theme, setTheme] = useState("light");
 
 	useEffect(() => {
 		const changeTheme = () => {

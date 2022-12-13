@@ -2,10 +2,11 @@ import React from "react";
 import TaskBox from "../TaskBox/TaskBox";
 import TaskStatusBar from "../TaskStatusBar/TaskStatusBar";
 import classes from "./Board.module.scss";
+import ScrollContainer from "react-indiana-drag-scroll";
 
 function Board() {
 	return (
-		<div className={classes.container}>
+		<ScrollContainer className={classes.container + " scroll-container"} hideScrollbars={false}>
 			<div className={classes.track + " " + classes.taskContainer}>
 				<TaskStatusBar colorCode={"#d34234"} taskCount={6} statusName={"todo"} />
 				<ul className={classes.taskList} role={["list"]}>
@@ -36,7 +37,7 @@ function Board() {
 				</ul>
 			</div>
 			<div className={classes.track + " " + classes.addColumn}></div>
-		</div>
+		</ScrollContainer>
 	);
 }
 
