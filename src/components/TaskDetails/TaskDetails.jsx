@@ -1,5 +1,5 @@
 import React from "react";
-import classes from "./Task.module.scss";
+import classes from "./TaskDetails.module.scss";
 
 function Task() {
 	return <div>Task</div>;
