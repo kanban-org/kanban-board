@@ -1,18 +1,64 @@
 .container{
   // background
   background-color: var(--color-base-dark);
-
+  height: 100%;
   // display
   display: flex;
   column-gap: var(--space-sm);
   overflow-x: auto;
-
   padding: var(--space-sm);
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-track {
+    padding: 2px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background-color: var(--color-base-darker);
+
+    &:hover {
+      background-color: var(--color-grey);
+    }
+  }
 }
 
 .track{
-  background-color: var(--color-base-darker);
-  flex: 0 0 25%;
+  flex: 0 0 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.taskList{
+  overflow-y: scroll;
+  padding: var(--space-xs);
+
+  &::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-track {
+    padding: 2px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background-color: var(--color-base-darker);
+
+    &:hover{
+      background-color: var(--color-grey);
+    }
+  }
+
 }
 
 .title{
@@ -20,4 +66,12 @@
   text-transform: uppercase;
   font-size: 1.6rem;
   font-weight: 400;
+}
+
+// Add column
+.addColumn{
+  background-color: var(--color-base-darker);
+  border-radius: var(--border-radius);
+  margin-top: var(--space-lg);
+  flex-basis: 20%;
 }
