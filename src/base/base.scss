@@ -1,0 +1,77 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+:root {
+  // this color pallet will also work for light theme
+  --color-primary: #7c5cfc;
+  --color-primary-light: hsl(252, 99%, 73%);
+  --color-white: #fff;
+  --color-black: #000;
+  --color-base-light: #fff;
+  --color-base-dark: #ecf2ff;
+  --color-base-darker: #c4d7ff;
+  --color-grey: #7a7a7a;
+
+
+  // fonts
+  --font-primary: "Roboto", sans-serif;
+
+  // border radius
+  --border-radius: 2.5rem;
+  --border-radius-btn: 1rem;
+
+  // spacing
+  --space-sm: 1.5rem;
+  --space-md: 3rem;
+  --space-lg: 5rem;
+}
+
+//Responsive Breakpoints
+$bp-big-desktop: 87.5em; //1400
+$bp-largest: 75em; // 1200px / 16 = 75em
+$bp-large: 62.5em; // 1000px / 16 = 62.5em
+$bp-medium: 50em; // 800px
+$bp-small: 37.5em; // 600px
+
+// class for dark theme
+.dark-theme{
+  --color-base-light: #2C2C38;
+  --color-base-dark: #21212D;
+  --color-base-darker: #22222E;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+
+  @media only screen and (min-width: $bp-big-desktop) {
+    font-size: 75%;
+  }
+
+  @media only screen and (max-width: $bp-largest) {
+    font-size: 56.25%; //9px  ---> 1rem
+  }
+
+  @media only screen and (max-width: $bp-large) {
+    font-size: 50%; //8px  ---> 1rem
+  }
+}
+
+body {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 1.2;
+  background-color: var(--color-base-dark);
+  color: var(--color-light);
+}

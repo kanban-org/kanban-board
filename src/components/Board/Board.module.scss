@@ -1,0 +1,23 @@
+.container{
+  // background
+  background-color: var(--color-base-dark);
+
+  // display
+  display: flex;
+  column-gap: var(--space-sm);
+  overflow-x: auto;
+
+  padding: var(--space-sm);
+}
+
+.track{
+  background-color: var(--color-base-darker);
+  flex: 0 0 25%;
+}
+
+.title{
+  color: var(--color-grey);
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  font-weight: 400;
+}

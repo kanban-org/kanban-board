@@ -1,0 +1,6 @@
+.app{
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  grid-template-rows: 8rem auto;
+}
