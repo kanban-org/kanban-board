@@ -2,8 +2,8 @@
 
 :root {
   // this color pallet will also work for light theme
-  --color-primary: #7c5cfc;
-  --color-primary-light: #9175ff;
+  --color-primary: #635ec5;
+  --color-primary-light: #6c67c1;
   --color-white: #fff;
   --color-black: #2d2a37;;
   --color-base-light: #fff;
@@ -163,18 +163,23 @@ body {
 .btn {
   outline: none;
   border: none;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover{
     cursor: pointer;
   }
 
-  .btn-primary{
+  &-primary{
 
     background-color: var(--color-primary);
     color: var(--color-white);
-    padding: 1rem 2rem;
-    border-radius: 0.5rem;
-    transition: all 0.2s;
+    padding: .8rem 2rem;
+    border-radius: 5rem;
+    transition: background-color 0.2s ease-in-out;
+    font-size: 1.4rem;
   
     &:hover {
       background-color: var(--color-primary-light);

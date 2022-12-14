@@ -1,6 +1,6 @@
 <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
   <defs>
-    <symbol id="icon-dashboard" viewBox="0 0 24 24">
+    <symbol id="icon-dashboard" viewBox="0 0 20 20">
       <path d="M12.984 3h8.016v6h-8.016v-6zM12.984 21v-9.984h8.016v9.984h-8.016zM3 21v-6h8.016v6h-8.016zM3 12.984v-9.984h8.016v9.984h-8.016z"></path>
     </symbol>
     <symbol id="icon-light" viewBox="0 0 20 20">
@@ -8,6 +8,9 @@
     </symbol>
     <symbol id="icon-dark" viewBox="0 0 20 20">
       <path d="M11.68 18.32q-3.477 0-5.918-2.441t-2.441-5.879 2.441-5.879 5.918-2.441q2.266 0 4.141 1.094-1.914 1.094-3.027 3.027t-1.113 4.199 1.113 4.199 3.027 3.027q-1.875 1.094-4.141 1.094z"></path>
+    </symbol>
+    <symbol id="icon-menu" viewBox="0 0 20 20">
+      <path d="M10.001 7.8c-1.215 0-2.201 0.985-2.201 2.2s0.986 2.2 2.201 2.2c1.215 0 2.199-0.985 2.199-2.2s-0.984-2.2-2.199-2.2zM10.001 5.2c1.215 0 2.199-0.986 2.199-2.2s-0.984-2.2-2.199-2.2c-1.215 0-2.201 0.985-2.201 2.2s0.986 2.2 2.201 2.2zM10.001 14.8c-1.215 0-2.201 0.985-2.201 2.2s0.986 2.2 2.201 2.2c1.215 0 2.199-0.985 2.199-2.2s-0.984-2.2-2.199-2.2z"></path>
     </symbol>
   </defs>
 </svg>

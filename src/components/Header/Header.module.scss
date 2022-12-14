@@ -1,4 +1,10 @@
 .header{
   background-color: var(--color-base-light);
   border-bottom: .5px solid var(--color-grey-light);
+  padding: var(--space-sm);
+
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  grid-column-gap: var(--space-xs);
 }
