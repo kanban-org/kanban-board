@@ -3,27 +3,20 @@ import TaskBox from "../TaskBox/TaskBox";
 import TaskStatusBar from "../TaskStatusBar/TaskStatusBar";
 import classes from "./Board.module.scss";
 import ScrollContainer from "react-indiana-drag-scroll";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
 function Board() {
 	return (
 		<ScrollContainer className={classes.container + " scroll-container"} hideScrollbars={false}>
 			<div className={classes.track + " " + classes.taskContainer}>
 				<TaskStatusBar colorCode={"#d34234"} taskCount={6} statusName={"todo"} />
-				<DragDropContext>
-					<Droppable droppableId="characters">
-						{(provided) => (
-							<ul className={classes.taskList} role={["list"]}>
-								<TaskBox />
-								<TaskBox />
-								<TaskBox />
-								<TaskBox />
-								<TaskBox />
-								<TaskBox />
-							</ul>
-						)}
-					</Droppable>
-				</DragDropContext>
+				<ul className={classes.taskList} role={["list"]}>
+					<TaskBox />
+					<TaskBox />
+					<TaskBox />
+					<TaskBox />
+					<TaskBox />
+					<TaskBox />
+				</ul>
 			</div>
 			<div className={classes.track + " " + classes.taskContainer}>
 				<TaskStatusBar colorCode={"#d3d4"} taskCount={3} statusName={"doing"} />
@@ -43,7 +36,9 @@ function Board() {
 					<TaskBox />
 				</ul>
 			</div>
-			<div className={classes.track + " " + classes.addColumn}></div>
+			<div className={classes.track + " " + classes.addColumn}>
+				<button className={"btn " + classes.addColumnBtn}>+ Add Column</button>
+			</div>
 		</ScrollContainer>
 	);
 }

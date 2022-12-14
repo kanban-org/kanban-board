@@ -5,3 +5,19 @@
   text-transform: uppercase;
   letter-spacing: 1px;
 }
+
+.mb-xs{
+  margin-bottom: var(--space-xs);
+}
+.mb-sm{
+  margin-bottom: var(--space-sm);
+}
+
+.text{
+  font-size: 1.4rem;
+  color: var(--color-text);
+}
+
+.text-cap{
+  text-transform: capitalize;
+}

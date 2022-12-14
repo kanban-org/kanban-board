@@ -5,12 +5,13 @@
   --color-primary: #7c5cfc;
   --color-primary-light: #9175ff;
   --color-white: #fff;
-  --color-black: #000;
+  --color-black: #2d2a37;;
   --color-base-light: #fff;
   --color-base-dark: #ecf2ff;
   --color-base-darker: #c2d5ff66;
   --color-grey: #858699;
   --color-grey-light: #54516136;
+  --color-text: #2d2a37;
 
 
   // fonts
@@ -42,6 +43,7 @@ $bp-small: 37.5em; // 600px
   --color-base-light: #2c2c38;
   --color-base-dark: #21212D;
   --color-base-darker: #2c2c3866;
+  --color-text: #fff;
 }
 
 /* Box sizing rules */
@@ -89,6 +91,12 @@ select {
   font: inherit;
 }
 
+button{
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
 /* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
 @media (prefers-reduced-motion: reduce) {
   html:focus-within {
@@ -129,11 +137,47 @@ body {
   text-rendering: optimizeSpeed;
   line-height: 1.5;
   background-color: var(--color-base-dark);
-  color: var(--color-light);
+  color: var(--color-text);
 }
 
+// svg icon colors
+.svg {
+  width: 2.2rem;
+  height: 2.2rem;
+  margin-right: 1rem;
+  fill: var(--color-grey);
+}
 
+.svg-white {
+  fill: var(--color-white);
+}
+
+.svg-dark {
+  fill: var(--color-black);
+}
 
 #root{
   height: 100%;
+}
+
+.btn {
+  outline: none;
+  border: none;
+
+  &:hover{
+    cursor: pointer;
+  }
+
+  .btn-primary{
+
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 1rem 2rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+  
+    &:hover {
+      background-color: var(--color-primary-light);
+    }
+  }
 }

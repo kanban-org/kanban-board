@@ -74,4 +74,16 @@
   border-radius: var(--border-radius);
   margin-top: var(--space-lg);
   flex-basis: 20%;
+  justify-content: center;
+
+  &Btn{
+    color: var(--color-grey);
+    font-size: 1.8rem;
+    align-self: center;
+    transition: color 0.1s ease-in;
+
+    &:hover{
+      color: var(--color-primary);
+    }
+  }
 }
