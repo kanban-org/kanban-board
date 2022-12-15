@@ -1,0 +1,12 @@
+.modal{
+  width: 35rem;
+  height: 45rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background-color: var(--color-base-light);
+  z-index: 800;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-light);
+}
