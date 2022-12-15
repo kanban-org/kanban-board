@@ -18,9 +18,17 @@ function App() {
 		changeTheme();
 	}, [theme]);
 
+	const onClickMode = () => {
+		if (theme === "dark") {
+			setTheme("light");
+		} else {
+			setTheme("dark");
+		}
+	};
+
 	return (
 		<div className="app">
-			<Sidebar theme={theme} />
+			<Sidebar theme={theme} onClickMode={onClickMode} />
 			<Header />
 			<Board />
 		</div>

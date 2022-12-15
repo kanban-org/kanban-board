@@ -12,6 +12,7 @@
   --color-grey: #858699;
   --color-grey-light: #54516136;
   --color-text: #2d2a37;
+  --color-bg-menu: rgba(255, 255, 255, 0.85);
 
 
   // fonts
@@ -22,8 +23,9 @@
   --border-radius-btn: 1rem;
 
   // spacing
-  --space-xs: 1rem;
-  --space-sm: 2rem;
+  --space-xxs: 1rem;
+  --space-xs: 1.25rem;
+  --space-sm: 1.75rem;
   --space-md: 3rem;
   --space-lg: 5rem;
 
@@ -44,6 +46,7 @@ $bp-small: 37.5em; // 600px
   --color-base-dark: #21212D;
   --color-base-darker: #2c2c3866;
   --color-text: #fff;
+  --color-bg-menu: rgba(29, 30, 43, 0.498);
 }
 
 /* Box sizing rules */
@@ -145,6 +148,14 @@ body {
   width: 2.2rem;
   height: 2.2rem;
   fill: var(--color-grey);
+
+  &+span{
+    color: var(--color-grey);
+
+    &:hover{
+      color: var(--color-text);
+    }
+  }
 }
 
 .svg-white {
