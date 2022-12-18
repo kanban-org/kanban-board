@@ -23,11 +23,11 @@
   --border-radius-btn: 1rem;
 
   // spacing
-  --space-xxs: 1rem;
+  --space-xxs: .75rem;
   --space-xs: 1.25rem;
   --space-sm: 1.75rem;
-  --space-md: 3rem;
-  --space-lg: 5rem;
+  --space-md: 2.25rem;
+  --space-lg: 4rem;
 
   // shadow
   --shadow-light: rgb(0 0 0 / 10%) 0px 2px 4px;
@@ -193,6 +193,32 @@ body {
   
     &:hover {
       background-color: var(--color-primary-light);
+    }
+  }
+}
+
+// scrollbar
+.scrollbar{
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
+    padding-left: 1rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    padding: 2px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background-color: var(--color-primary-light);
+    transition: background-color .1s ease-in-out;
+
+    &:hover {
+      background-color: var(--color-primary);
     }
   }
 }
