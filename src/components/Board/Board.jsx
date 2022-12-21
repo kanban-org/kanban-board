@@ -1,45 +1,50 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import TaskBox from "../TaskBox/TaskBox";
 import TaskStatusBar from "../TaskStatusBar/TaskStatusBar";
 import classes from "./Board.module.scss";
 import ScrollContainer from "react-indiana-drag-scroll";
 
-function Board() {
+function Board({ boardData }) {
+	const [allColumns, setAllColumns] = useState([]);
+	const columns = boardData.columns;
+
+	useEffect(() => {
+		const allColumnNames = boardData.columns.map((column) => column.columnName);
+		setAllColumns(allColumnNames);
+	}, [boardData]);
+
 	return (
-		<ScrollContainer className={classes.container + " scroll-container"} hideScrollbars={false}>
-			<div className={classes.track + " " + classes.taskContainer}>
-				<TaskStatusBar colorCode={"#d34234"} taskCount={6} statusName={"todo"} />
-				<ul className={classes.taskList} role={["list"]}>
-					<TaskBox />
-					<TaskBox />
-					<TaskBox />
-					<TaskBox />
-					<TaskBox />
-					<TaskBox />
-				</ul>
-			</div>
-			<div className={classes.track + " " + classes.taskContainer}>
-				<TaskStatusBar colorCode={"#d3d4"} taskCount={3} statusName={"doing"} />
-				<ul className={classes.taskList} role={["list"]}>
-					<TaskBox />
-					<TaskBox />
-					<TaskBox />
-				</ul>
-			</div>
-			<div className={classes.track + " " + classes.taskContainer}>
-				<TaskStatusBar colorCode={"pink"} taskCount={5} statusName={"done"} />
-				<ul className={classes.taskList} role={["list"]}>
-					<TaskBox />
-					<TaskBox />
-					<TaskBox />
-					<TaskBox />
-					<TaskBox />
-				</ul>
-			</div>
-			<div className={classes.track + " " + classes.addColumn}>
-				<button className={"btn " + classes.addColumnBtn}>+ Add Column</button>
-			</div>
-		</ScrollContainer>
+		<>
+			<ScrollContainer
+				className={classes.container + " scrollbar scroll-container"}
+				hideScrollbars={false}>
+				{columns.map((column) => {
+					const totalTasks = column.tasks.length;
+					const columnName = column.columnName;
+					const colorCode = column.colorCode;
+					const tasks = column.tasks;
+					return (
+						<div className={classes.track + " " + classes.taskContainer} key={column.id}>
+							<TaskStatusBar colorCode={colorCode} taskCount={totalTasks} statusName={columnName} />
+							<ul className={classes.taskList + " scrollbar"} role={["list"]}>
+								{tasks.map((task) => (
+									<TaskBox
+										task={task}
+										key={task.id}
+										allColumnNames={allColumns}
+										currentColumn={columnName}
+									/>
+								))}
+							</ul>
+						</div>
+					);
+				})}
+
+				<div className={classes.track + " " + classes.addColumn}>
+					<button className={"btn " + classes.addColumnBtn}>+ Add Column</button>
+				</div>
+			</ScrollContainer>
+		</>
 	);
 }
 

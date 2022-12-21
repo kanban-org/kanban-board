@@ -8,25 +8,25 @@
   overflow-x: auto;
   padding: var(--space-sm);
 
-  &::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-    background-color: transparent;
-  }
-
-  &::-webkit-scrollbar-track {
-    padding: 2px;
-    background-color: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 12px;
-    background-color: var(--color-base-darker);
-
-    &:hover {
-      background-color: var(--color-grey);
-    }
-  }
+//   &::-webkit-scrollbar {
+//     width: 8px;
+//     height: 8px;
+//     background-color: transparent;
+//   }
+// 
+//   &::-webkit-scrollbar-track {
+//     padding: 2px;
+//     background-color: transparent;
+//   }
+// 
+//   &::-webkit-scrollbar-thumb {
+//     border-radius: 12px;
+//     background-color: var(--color-base-darker);
+// 
+//     &:hover {
+//       background-color: var(--color-grey);
+//     }
+//   }
 }
 
 .track{
@@ -39,25 +39,25 @@
   overflow-y: scroll;
   padding: var(--space-xs);
 
-  &::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-      background-color: transparent;
-  }
-
-  &::-webkit-scrollbar-track {
-    padding: 2px;
-    background-color: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 12px;
-    background-color: var(--color-base-darker);
-
-    &:hover{
-      background-color: var(--color-grey);
-    }
-  }
+//   &::-webkit-scrollbar {
+//       width: 8px;
+//       height: 8px;
+//       background-color: transparent;
+//   }
+// 
+//   &::-webkit-scrollbar-track {
+//     padding: 2px;
+//     background-color: transparent;
+//   }
+// 
+//   &::-webkit-scrollbar-thumb {
+//     border-radius: 12px;
+//     background-color: var(--color-base-darker);
+// 
+//     &:hover{
+//       background-color: var(--color-grey);
+//     }
+//   }
 
 }
 
