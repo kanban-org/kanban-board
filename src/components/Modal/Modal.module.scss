@@ -1,6 +1,7 @@
 .modal{
-  width: 35rem;
-  height: 45rem;
+  width: 37rem;
+  height: 50rem;
+  padding: var(--space-md) var(--space-sm);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -9,4 +10,22 @@
   z-index: 800;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-light);
+}
+
+.modalCloseBtn{
+  position: absolute;
+  top: -1.25rem;
+  right: -1.25rem;
+  height: 3rem;
+  width: 3rem;
+  background-color: var(--color-primary-light);
+  font-size: 1.6rem;
+  color: var(--color-white);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background .2s ease-in-out;
+
+  &:hover{
+    background-color: var(--color-primary);
+  }
 }
