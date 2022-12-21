@@ -143,6 +143,10 @@ body {
   color: var(--color-text);
 }
 
+#root {
+  height: 100%;
+}
+
 // svg icon colors
 .svg {
   width: 2.2rem;
@@ -166,10 +170,6 @@ body {
   fill: var(--color-black);
 }
 
-#root{
-  height: 100%;
-}
-
 .btn {
   outline: none;
   border: none;
@@ -183,7 +183,6 @@ body {
   }
 
   &-primary{
-
     background-color: var(--color-primary);
     color: var(--color-white);
     padding: .8rem 2rem;
@@ -215,10 +214,13 @@ body {
   &::-webkit-scrollbar-thumb {
     border-radius: 12px;
     background-color: var(--color-primary-light);
-    transition: background-color .1s ease-in-out;
 
     &:hover {
       background-color: var(--color-primary);
     }
   }
+}
+
+select{
+  pointer-events: none;
 }

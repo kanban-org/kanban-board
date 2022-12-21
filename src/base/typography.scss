@@ -33,6 +33,10 @@ h1,h2,h3,h4,h5,h6{
   letter-spacing: 1px;
 }
 
+.mb-xxs {
+  margin-bottom: var(--space-xxs);
+}
+
 .mb-xs{
   margin-bottom: var(--space-xs);
 }
