@@ -26,9 +26,9 @@ function TaskStatusBar({ colorCode, statusName, taskCount }) {
 	return (
 		<div className={classes.statusBar}>
 			<div className={classes.statusColorBox} style={{ backgroundColor: `${colorCode}` }}></div>
-			<h5 className="heading--5">
+			<h4 className="heading--4">
 				{statusName} <span>({taskCount})</span>
-			</h5>
+			</h4>
 			<button className="btn" onClick={openMenu}>
 				<svg className="svg">
 					<use href={icons + "#icon-horizontal-dots"}></use>
