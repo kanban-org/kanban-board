@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Overlay from "../Overlay/Overlay";
+import Overlay from "../UI/Overlay/Overlay";
 import DotMenu from "../DotMenu/DotMenu";
 import icons from "../../img/symbol-defs.svg";
 import classes from "./TaskStatusBar.module.scss";

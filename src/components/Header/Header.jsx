@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Overlay from "../Overlay/Overlay";
-import DotMenu from "../DotMenu/DotMenu";
+import Overlay from "../../components/UI/Overlay/Overlay";
+import DotMenu from "../../components/DotMenu/DotMenu";
 import classes from "./Header.module.scss";
 import icons from "../../img/symbol-defs.svg";
 
-function Header() {
+function Header(props) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const openMenu = (e) => {
@@ -26,7 +26,9 @@ function Header() {
 	return (
 		<div className={classes.header}>
 			<h2 className="heading--2">Platform launch</h2>
-			<button className="btn btn-primary">+Add new task</button>
+			<button className="btn btn-primary" onClick={props.addNewTaskAction}>
+				+Add new task
+			</button>
 			<button className="btn" onClick={openMenu}>
 				<svg className="svg">
 					<use href={icons + "#icon-menu"}></use>

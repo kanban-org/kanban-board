@@ -1,14 +1,18 @@
-import { useState, useEffect } from "react";
-import Header from "./components/Header/Header";
+import { useEffect, useContext } from "react";
+
+import Header from "./containers/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Board from "./components/Board/Board";
-import axios from "axios";
+import Overlay from "./components/UI/Overlay/Overlay";
+import Modal from "./components/UI/Modal/Modal";
+import AddTaskModal from "./components/Task/AddTask/AddTaskModal";
+
+import { globalContext } from "./context/globalContext";
+
 import "./App.scss";
 
 function App() {
-	const [theme, setTheme] = useState("dark");
-	const [data, setData] = useState([]);
-	const [currentBoard, setCurrentBoard] = useState(0);
+	const { theme, data, setData, currentBoard } = useContext(globalContext);
 
 	// set the theme
 	useEffect(() => {
@@ -41,23 +45,17 @@ function App() {
 		fetchData();
 	}, []);
 
-	const onClickMode = () => {
-		if (theme === "dark") {
-			setTheme("light");
-		} else {
-			setTheme("dark");
-		}
-	};
-
 	const addNewTask = () => {
 		console.log("Add a new task to the board!");
 	};
 
 	return (
 		<div className="app">
-			<Sidebar theme={theme} onClickMode={onClickMode} />
+			<Sidebar />
 			<Header addNewTaskAction={addNewTask} />
 			{data[currentBoard] && <Board boardData={data[currentBoard]} />}
+			{/* <Overlay />
+			<Modal>{<AddTaskModal />}</Modal> */}
 		</div>
 	);
 }

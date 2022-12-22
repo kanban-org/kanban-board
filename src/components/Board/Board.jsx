@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import TaskBox from "../TaskBox/TaskBox";
-import TaskStatusBar from "../TaskStatusBar/TaskStatusBar";
 import classes from "./Board.module.scss";
 import ScrollContainer from "react-indiana-drag-scroll";
+import TaskBox from "../Task/TaskBox/TaskBox";
+import TaskStatusBar from "../TaskStatusBar/TaskStatusBar";
 
 function Board({ boardData }) {
 	const [allColumns, setAllColumns] = useState([]);

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import TaskDetails from "../TaskDetails/TaskDetails";
-import Modal from "../Modal/Modal";
-import Overlay from "../Overlay/Overlay";
+import Modal from "../../UI/Modal/Modal";
+import Overlay from "../../UI/Overlay/Overlay";
 import ViewTaskModal from "../ViewTask/ViewTaskModal";
+import TaskDetails from "../TaskDetails/TaskDetails";
 import classes from "./TaskBox.module.scss";
 
 function TaskBox({ task, allColumnNames, currentColumn }) {
