@@ -46,17 +46,13 @@
   overflow-y: scroll;
 
   & div{
-    color: var(--color-text);
+    color: var(--color-text) !important;
     transition: all .25s ease-in;
+    background-color: inherit !important;
 
     &:hover{
-      color: var(--color-primary-light);
-      background-color: var(--color-base-dark);
-    }
-
-    & .is-selected{
-      background-color: inherit;
-      color: inherit;
+      color: var(--color-primary-light) !important;
+      background-color: var(--color-base-dark) !important;
     }
   }
 }
