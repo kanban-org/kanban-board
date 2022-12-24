@@ -7,58 +7,6 @@
   column-gap: var(--space-sm);
   overflow-x: auto;
   padding: var(--space-sm);
-
-//   &::-webkit-scrollbar {
-//     width: 8px;
-//     height: 8px;
-//     background-color: transparent;
-//   }
-// 
-//   &::-webkit-scrollbar-track {
-//     padding: 2px;
-//     background-color: transparent;
-//   }
-// 
-//   &::-webkit-scrollbar-thumb {
-//     border-radius: 12px;
-//     background-color: var(--color-base-darker);
-// 
-//     &:hover {
-//       background-color: var(--color-grey);
-//     }
-//   }
-}
-
-.track{
-  flex: 0 0 30%;
-  display: flex;
-  flex-direction: column;
-}
-
-.taskList{
-  overflow-y: scroll;
-  padding: var(--space-xs);
-
-//   &::-webkit-scrollbar {
-//       width: 8px;
-//       height: 8px;
-//       background-color: transparent;
-//   }
-// 
-//   &::-webkit-scrollbar-track {
-//     padding: 2px;
-//     background-color: transparent;
-//   }
-// 
-//   &::-webkit-scrollbar-thumb {
-//     border-radius: 12px;
-//     background-color: var(--color-base-darker);
-// 
-//     &:hover{
-//       background-color: var(--color-grey);
-//     }
-//   }
-
 }
 
 .title{
@@ -70,10 +18,12 @@
 
 // Add column
 .addColumn{
+  flex: 0 0 20%;
+  display: flex;
+  flex-direction: column;
   background-color: var(--color-base-darker);
   border-radius: var(--border-radius);
   margin-top: var(--space-lg);
-  flex-basis: 20%;
   justify-content: center;
 
   &Btn{

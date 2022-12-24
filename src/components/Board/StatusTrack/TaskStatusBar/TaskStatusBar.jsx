@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import Overlay from "../UI/Overlay/Overlay";
-import DotMenu from "../DotMenu/DotMenu";
-import icons from "../../img/symbol-defs.svg";
+import DotMenu from "../../../DotMenu/DotMenu";
+import Overlay from "../../../UI/Overlay/Overlay";
+import icons from "../../../../img/symbol-defs.svg";
+
 import classes from "./TaskStatusBar.module.scss";
 
 function TaskStatusBar({ colorCode, statusName, taskCount }) {

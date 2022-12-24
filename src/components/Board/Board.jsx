@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classes from "./Board.module.scss";
 import ScrollContainer from "react-indiana-drag-scroll";
-import TaskBox from "../Task/TaskBox/TaskBox";
-import TaskStatusBar from "../TaskStatusBar/TaskStatusBar";
+import Track from "./StatusTrack/Track/Track";
 
 function Board({ boardData }) {
 	const [allColumns, setAllColumns] = useState([]);
@@ -24,23 +23,18 @@ function Board({ boardData }) {
 					const colorCode = column.colorCode;
 					const tasks = column.tasks;
 					return (
-						<div className={classes.track + " " + classes.taskContainer} key={column.id}>
-							<TaskStatusBar colorCode={colorCode} taskCount={totalTasks} statusName={columnName} />
-							<ul className={classes.taskList + " scrollbar"} role={["list"]}>
-								{tasks.map((task) => (
-									<TaskBox
-										task={task}
-										key={task.id}
-										allColumnNames={allColumns}
-										currentColumn={columnName}
-									/>
-								))}
-							</ul>
-						</div>
+						<Track
+							totalTasks={totalTasks}
+							columnName={columnName}
+							colorCode={colorCode}
+							tasks={tasks}
+							allColumns={allColumns}
+							key={column.id}
+						/>
 					);
 				})}
 
-				<div className={classes.track + " " + classes.addColumn}>
+				<div className={classes.addColumn}>
 					<button className={"btn " + classes.addColumnBtn}>+ Add Column</button>
 				</div>
 			</ScrollContainer>
