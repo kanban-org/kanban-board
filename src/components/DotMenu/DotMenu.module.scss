@@ -32,6 +32,14 @@
 
     svg{
       margin-right: .5rem;
+
+      &+span {
+        color: var(--color-grey);
+    
+        &:hover {
+          color: var(--color-text);
+        }
+      }
     }
   }
 }
