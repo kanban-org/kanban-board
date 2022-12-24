@@ -5,7 +5,8 @@ import icons from "../../../../img/symbol-defs.svg";
 
 import classes from "./TaskStatusBar.module.scss";
 
-function TaskStatusBar({ colorCode, statusName, taskCount }) {
+function TaskStatusBar({ colorCode, statusName, taskCount, addShadowBottom }) {
+	console.log("Apply shadow:", addShadowBottom);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const openMenu = (e) => {
@@ -25,7 +26,7 @@ function TaskStatusBar({ colorCode, statusName, taskCount }) {
 	};
 
 	return (
-		<div className={classes.statusBar}>
+		<div className={classes.statusBar + " " + (addShadowBottom ? classes.shadowBottom : "")}>
 			<div className={classes.statusColorBox} style={{ backgroundColor: `${colorCode}` }}></div>
 			<h4 className="heading--4">
 				{statusName} <span>({taskCount})</span>
