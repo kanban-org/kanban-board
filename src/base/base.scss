@@ -8,9 +8,9 @@
   --color-black: #2d2a37;;
   --color-base-light: #fff;
   --color-base-dark: #ecf2ff;
-  --color-base-darker: #c2d5ff66;
+  --color-base-darker: #DCE6FF;
   --color-grey: #858699;
-  --color-grey-light: #54516136;
+  --color-grey-light: rgba(84, 81, 97, 0.212);
   --color-text: #2d2a37;
   --color-bg-menu: rgba(255, 255, 255, 0.85);
 
@@ -33,6 +33,16 @@
   --shadow-light: rgb(0 0 0 / 10%) 0px 2px 4px;
 }
 
+// class for dark theme
+:root.dark-theme {
+  --color-base-light: #2c2c38;
+  --color-base-dark: #21212D;
+  // --color-base-darker: #2d2d3966;
+  --color-base-darker: #262632;
+  --color-text: #fff;
+  --color-bg-menu: rgba(29, 30, 43, 0.498);
+}
+
 //Responsive Breakpoints
 $bp-big-desktop: 87.5em; //1400
 $bp-largest: 75em; // 1200px / 16 = 75em
@@ -40,14 +50,6 @@ $bp-large: 62.5em; // 1000px / 16 = 62.5em
 $bp-medium: 50em; // 800px
 $bp-small: 37.5em; // 600px
 
-// class for dark theme
-.dark-theme{
-  --color-base-light: #2c2c38;
-  --color-base-dark: #21212D;
-  --color-base-darker: #2c2c3866;
-  --color-text: #fff;
-  --color-bg-menu: rgba(29, 30, 43, 0.498);
-}
 
 /* Box sizing rules */
 *,
@@ -131,6 +133,7 @@ html {
   @media only screen and (max-width: $bp-large) {
     font-size: 50%; //8px  ---> 1rem
   }
+
 }
 
 body {
@@ -152,14 +155,6 @@ body {
   width: 2.2rem;
   height: 2.2rem;
   fill: var(--color-grey);
-
-  &+span{
-    color: var(--color-grey);
-
-    &:hover{
-      color: var(--color-text);
-    }
-  }
 }
 
 .svg-white {
@@ -168,6 +163,10 @@ body {
 
 .svg-dark {
   fill: var(--color-black);
+}
+
+.svg-primary{
+  fill: var(--color-primary);
 }
 
 .btn {
@@ -213,10 +212,10 @@ body {
 
   &::-webkit-scrollbar-thumb {
     border-radius: 12px;
-    background-color: var(--color-primary-light);
+    background-color: var(--color-base-darker);
 
     &:hover {
-      background-color: var(--color-primary);
+      background-color: var(--color-grey-light);
     }
   }
 }
