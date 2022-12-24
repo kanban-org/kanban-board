@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
 
-import classes from "./Sidebar.module.scss";
+import SideNav from "./Nav/SideNav";
+
+import icons from "../../img/symbol-defs.svg";
 import logo_dark from "../../img/Dark-Mode-Logo.png";
 import logo_light from "../../img/Light-Mode-Logo.png";
-import icons from "../../img/symbol-defs.svg";
 import { globalContext } from "../../context/globalContext";
+
+import classes from "./Sidebar.module.scss";
 
 function Sidebar() {
 	const { theme, onChangeTheme } = useContext(globalContext);
@@ -43,6 +46,9 @@ function Sidebar() {
 					kanban
 				</h1>
 			</div>
+
+			{/* Navigation */}
+			<SideNav />
 
 			{theme === "dark" ? darkMode : lightMode}
 		</div>

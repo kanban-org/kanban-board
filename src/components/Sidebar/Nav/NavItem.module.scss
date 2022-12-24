@@ -1,0 +1,49 @@
+.navItem{
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--space-xs);
+
+  svg{
+    width: 2rem;
+    height: 2rem;
+    margin-right: var(--space-xxs);
+  }
+
+  span{
+    font-size: 1.4rem;
+    color: var(--color-grey);
+    font-weight: 500;
+    text-transform: capitalize;
+    transition: color .2s ease-in-out;
+  }
+
+  &:hover{
+
+    span{
+      color: var(--color-text);
+    }
+
+    cursor: pointer;
+  }
+}
+
+.active {
+  background-color: var(--color-primary);
+  border-radius: 0 5rem 5rem 0;
+  padding: var(--space-xxs);
+
+  svg{
+    fill: var(--color-white);
+  }
+
+  span{
+    color: var(--color-white);
+  }
+
+    &:hover {
+  
+      span {
+        color: var(--color-white);
+      }
+    }
+}
