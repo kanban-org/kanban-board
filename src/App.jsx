@@ -5,7 +5,7 @@ import Sidebar from "./components/Sidebar/Sidebar";
 import Board from "./components/Board/Board";
 import Overlay from "./components/UI/Overlay/Overlay";
 import Modal from "./components/UI/Modal/Modal";
-import AddTaskModal from "./components/Task/AddTask/AddTaskModal";
+import AddTaskModal from "./components/Task/AddTaskForm/AddTaskForm";
 
 import { globalContext } from "./context/globalContext";
 import KanbanApi from "./APIs/KanbanApi";
@@ -57,14 +57,10 @@ function App() {
 		fetchData();
 	}, [currentBoardId]);
 
-	const addNewTask = () => {
-		console.log("Add a new task to the board!");
-	};
-
 	return (
 		<div className="app">
 			<Sidebar />
-			<Header addNewTaskAction={addNewTask} />
+			<Header />
 			{boardData && <Board boardData={boardData} />}
 			{/* <Overlay />
 			<Modal>{<AddTaskModal />}</Modal> */}
