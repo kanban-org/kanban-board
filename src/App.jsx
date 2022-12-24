@@ -1,6 +1,6 @@
 import { useEffect, useContext } from "react";
 
-import Header from "./containers/Header/Header";
+import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Board from "./components/Board/Board";
 import Overlay from "./components/UI/Overlay/Overlay";
@@ -8,11 +8,13 @@ import Modal from "./components/UI/Modal/Modal";
 import AddTaskModal from "./components/Task/AddTask/AddTaskModal";
 
 import { globalContext } from "./context/globalContext";
+import KanbanApi from "./APIs/KanbanApi";
 
 import "./App.scss";
 
 function App() {
-	const { theme, data, setData, currentBoard } = useContext(globalContext);
+	const { theme, allBoards, setAllBoards, boardData, setBoardData, currentBoardId } =
+		useContext(globalContext);
 
 	// set the theme
 	useEffect(() => {
@@ -30,13 +32,9 @@ function App() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch("https://639cb62c42e3ad69273a14c8.mockapi.io/api/v1/boards");
-				if (!response.ok) {
-					throw new Error("No data found");
-				}
-				const jsonData = await response.json();
-				console.log(jsonData);
-				setData(jsonData);
+				const response = await KanbanApi.get("/boards");
+				const data = response.data;
+				setAllBoards(data);
 			} catch (error) {
 				console.error(error);
 			}
@@ -44,6 +42,20 @@ function App() {
 
 		fetchData();
 	}, []);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const response = await KanbanApi.get(`/boards/${currentBoardId}/tasks`);
+				const data = response.data[0];
+				setBoardData(data);
+			} catch (error) {
+				console.error(error);
+			}
+		};
+
+		fetchData();
+	}, [currentBoardId]);
 
 	const addNewTask = () => {
 		console.log("Add a new task to the board!");
@@ -53,7 +65,7 @@ function App() {
 		<div className="app">
 			<Sidebar />
 			<Header addNewTaskAction={addNewTask} />
-			{data[currentBoard] && <Board boardData={data[currentBoard]} />}
+			{boardData && <Board boardData={boardData} />}
 			{/* <Overlay />
 			<Modal>{<AddTaskModal />}</Modal> */}
 		</div>
