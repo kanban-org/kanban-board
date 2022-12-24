@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Overlay from "../../components/UI/Overlay/Overlay";
 import DotMenu from "../../components/DotMenu/DotMenu";
 import classes from "./Header.module.scss";
 import icons from "../../img/symbol-defs.svg";
+import { globalContext } from "../../context/globalContext";
 
 function Header(props) {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const { getHeader } = useContext(globalContext);
 
 	const openMenu = (e) => {
 		if (isMenuOpen) {
@@ -25,7 +27,7 @@ function Header(props) {
 
 	return (
 		<div className={classes.header}>
-			<h2 className="heading--2">Platform launch</h2>
+			<h2 className="heading--2">{getHeader()}</h2>
 			<button className="btn btn-primary" onClick={props.addNewTaskAction}>
 				+Add new task
 			</button>
