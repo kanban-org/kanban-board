@@ -10,6 +10,9 @@
   z-index: 800;
   border-radius: var(--border-radius);
   box-shadow: var(--shadow-light);
+
+  display: flex;
+  flex-direction: column;
 }
 
 .modalCloseBtn{

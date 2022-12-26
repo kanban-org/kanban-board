@@ -42,7 +42,7 @@ function Header(props) {
 			<div className={classes.header}>
 				<h2 className="heading--2">{getHeader()}</h2>
 				<button className="btn btn-primary" onClick={() => setOpenAddTaskModal(true)}>
-					+Add new task
+					+ Add new task
 				</button>
 				<button className="btn" onClick={openMenu}>
 					<svg className="svg">

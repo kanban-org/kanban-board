@@ -13,7 +13,10 @@ function FormSelect() {
 	const options = [
 		{ value: 0, label: "Todo" },
 		{ value: 1, label: "Doing" },
-		{ value: 2, label: "Done" }
+		{ value: 2, label: "Done" },
+		{ value: 3, label: "Archived" },
+		{ value: 4, label: "Deleted" },
+		{ value: 5, label: "Blocked" }
 	];
 
 	const defaultOption = options[2];

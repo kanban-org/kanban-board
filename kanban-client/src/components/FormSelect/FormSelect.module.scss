@@ -1,5 +1,6 @@
 .dropdown{
   font-size: 1.2rem;
+  font-weight: 300;
 }
 
 .dropdownControl{
@@ -7,6 +8,7 @@
   background-color: var(--color-base-light);
   border: 1.5px solid var(--color-grey-light);
   border-radius: var(--border-radius);
+  padding: 0.5rem 0.75rem;
 }
 
 .arrowClosed{

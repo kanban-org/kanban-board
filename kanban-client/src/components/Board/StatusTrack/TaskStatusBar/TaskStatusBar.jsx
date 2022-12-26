@@ -6,7 +6,6 @@ import icons from "../../../../img/symbol-defs.svg";
 import classes from "./TaskStatusBar.module.scss";
 
 function TaskStatusBar({ colorCode, statusName, taskCount, addShadowBottom }) {
-	console.log("Apply shadow:", addShadowBottom);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const openMenu = (e) => {

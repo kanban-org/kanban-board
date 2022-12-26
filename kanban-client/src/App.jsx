@@ -3,9 +3,9 @@ import { useEffect, useContext } from "react";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Board from "./components/Board/Board";
-import Overlay from "./components/UI/Overlay/Overlay";
-import Modal from "./components/UI/Modal/Modal";
-import AddTaskModal from "./components/Task/AddTaskForm/AddTaskForm";
+// import Overlay from "./components/UI/Overlay/Overlay";
+// import Modal from "./components/UI/Modal/Modal";
+// import AddTaskModal from "./components/Task/AddTaskForm/AddTaskForm";
 
 import { globalContext } from "./context/globalContext";
 import KanbanApi from "./APIs/KanbanApi";
@@ -13,7 +13,7 @@ import KanbanApi from "./APIs/KanbanApi";
 import "./App.scss";
 
 function App() {
-	const { theme, allBoards, setAllBoards, boardData, setBoardData, currentBoardId } =
+	const { theme, setAllBoards, boardData, setBoardData, currentBoardId } =
 		useContext(globalContext);
 
 	// set the theme
@@ -41,7 +41,7 @@ function App() {
 		};
 
 		fetchData();
-	}, []);
+	}, [setAllBoards]);
 
 	useEffect(() => {
 		const fetchData = async () => {
@@ -55,7 +55,7 @@ function App() {
 		};
 
 		fetchData();
-	}, [currentBoardId]);
+	}, [currentBoardId, setBoardData]);
 
 	return (
 		<div className="app">
