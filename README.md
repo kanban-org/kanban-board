@@ -6,6 +6,9 @@
 ## Tech stacks used
 - React.js
 - SCSS
+- Express.js
+- PostgreSQL
+- Sequelize ORM
 
 ---
 Design inspiration - @frontendmentor
