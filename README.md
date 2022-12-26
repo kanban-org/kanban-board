@@ -1,6 +1,6 @@
 # Kanban - Get your tasks managed efficiently
 
-https://user-images.githubusercontent.com/64425886/209551035-c4f49271-0239-4f27-90bb-e479b9beeddd.mp4
+![Manage tasks efficiently](https://user-images.githubusercontent.com/64425886/209551448-b3fc036b-ed43-4fae-8753-7f301c21cbee.gif)
 
 ## Tech stacks used
 - React.js
