@@ -1,0 +1,12 @@
+.btnAdd{
+  display: flex;
+  align-items: center;
+
+  svg{
+    margin-right: var(--space-xxs);
+  }
+
+  span{
+    color: var(--color-primary);
+  }
+}
