@@ -1,0 +1,225 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+
+:root {
+  // this color pallet will also work for light theme
+  --color-primary: #635ec5;
+  --color-primary-light: #6c67c1;
+  --color-white: #fff;
+  --color-black: #2d2a37;;
+  --color-base-light: #fff;
+  --color-base-dark: #ecf2ff;
+  --color-base-darker: #DCE6FF;
+  --color-grey: #858699;
+  --color-grey-light: rgba(84, 81, 97, 0.212);
+  --color-text: #2d2a37;
+  --color-bg-menu: rgba(255, 255, 255, 0.85);
+
+
+  // fonts
+  --font-primary: "Roboto", sans-serif;
+
+  // border radius
+  --border-radius: .5rem;
+  --border-radius-btn: 1rem;
+
+  // spacing
+  --space-xxs: .75rem;
+  --space-xs: 1.25rem;
+  --space-sm: 1.75rem;
+  --space-md: 2.25rem;
+  --space-lg: 4rem;
+
+  // shadow
+  --shadow-light: rgb(0 0 0 / 10%) 0px 2px 4px;
+}
+
+// class for dark theme
+:root.dark-theme {
+  --color-base-light: #2c2c38;
+  --color-base-dark: #21212D;
+  // --color-base-darker: #2d2d3966;
+  --color-base-darker: #262632;
+  --color-text: #fff;
+  --color-bg-menu: rgba(29, 30, 43, 0.498);
+}
+
+//Responsive Breakpoints
+$bp-big-desktop: 87.5em; //1400
+$bp-largest: 75em; // 1200px / 16 = 75em
+$bp-large: 62.5em; // 1000px / 16 = 62.5em
+$bp-medium: 50em; // 800px
+$bp-small: 37.5em; // 600px
+
+
+/* Box sizing rules */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin */
+*,*::before,*::after {
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+}
+
+/* Set core root defaults */
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+
+/* A elements that don't have a class get default styles */
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+/* Make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* Inherit fonts for inputs and buttons */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+button{
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+/* Remove all animations, transitions and smooth scroll for people that prefer not to see them */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+
+  @media only screen and (min-width: $bp-big-desktop) {
+    font-size: 75%;
+  }
+
+  @media only screen and (max-width: $bp-largest) {
+    font-size: 56.25%; //9px  ---> 1rem
+  }
+
+  @media only screen and (max-width: $bp-large) {
+    font-size: 50%; //8px  ---> 1rem
+  }
+
+}
+
+body {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  background-color: var(--color-base-dark);
+  color: var(--color-text);
+}
+
+#root {
+  height: 100%;
+}
+
+// svg icon colors
+.svg {
+  width: 2.2rem;
+  height: 2.2rem;
+  fill: var(--color-grey);
+}
+
+.svg-white {
+  fill: var(--color-white);
+}
+
+.svg-dark {
+  fill: var(--color-black);
+}
+
+.svg-primary{
+  fill: var(--color-primary);
+}
+
+.btn {
+  outline: none;
+  border: none;
+  text-transform: capitalize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover{
+    cursor: pointer;
+  }
+
+  &-primary{
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: .8rem 2rem;
+    border-radius: 5rem;
+    transition: background-color 0.2s ease-in-out;
+    font-size: 1.4rem;
+  
+    &:hover {
+      background-color: var(--color-primary-light);
+    }
+  }
+}
+
+// scrollbar
+.scrollbar{
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: transparent;
+    padding-left: 1rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    padding: 2px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    background-color: var(--color-base-darker);
+
+    &:hover {
+      background-color: var(--color-grey-light);
+    }
+  }
+}
+
+select{
+  pointer-events: none;
+}

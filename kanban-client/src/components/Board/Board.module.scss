@@ -1,0 +1,39 @@
+.container{
+  // background
+  background-color: var(--color-base-dark);
+  height: 100%;
+  // display
+  display: flex;
+  column-gap: var(--space-sm);
+  overflow-x: auto;
+  padding: var(--space-sm);
+}
+
+.title{
+  color: var(--color-grey);
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  font-weight: 400;
+}
+
+// Add column
+.addColumn{
+  flex: 0 0 20%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-base-darker);
+  border-radius: var(--border-radius);
+  margin-top: var(--space-lg);
+  justify-content: center;
+
+  &Btn{
+    color: var(--color-grey);
+    font-size: 1.8rem;
+    align-self: center;
+    transition: color 0.1s ease-in;
+
+    &:hover{
+      color: var(--color-primary);
+    }
+  }
+}

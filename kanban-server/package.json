@@ -1,0 +1,36 @@
+{
+  "name": "kanban-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "clean": "rm -rf build && mkdir build",
+    "dev": "nodemon --exec babel-node ./src/server.js",
+    "start": "npm run build && node ./build/server.js",
+    "build-babel": "babel -d ./build ./src -s",
+    "build": "npm run clean && npm run build-babel"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "dotenv": "^12.0.3",
+    "express": "^4.17.2",
+    "express-validator": "^6.14.0",
+    "express-validators": "^1.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.1",
+    "sequelize": "^6.13.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.16.8",
+    "@babel/core": "^7.16.7",
+    "@babel/node": "^7.16.8",
+    "@babel/preset-env": "^7.16.8",
+    "sequelize-cli": "^6.4.0"
+  }
+}

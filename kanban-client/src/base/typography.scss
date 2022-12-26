@@ -1,0 +1,60 @@
+h1,h2,h3,h4,h5,h6{
+  text-transform: capitalize;
+}
+.heading--2{
+  font-size: 2rem;
+  color: var(--color-text);
+  font-weight: 700;
+
+}
+.heading--3{
+  font-size: 1.5rem;
+  color: var(--color-text);
+  font-weight: 500;
+}
+.heading--6{
+  font-size: 1.3rem;
+  color: var(--color-grey);
+  font-weight: 400;
+
+}
+
+.heading--5{
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.heading--4{
+  font-size: 1.3rem;
+  color: var(--color-grey);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mb-xxs {
+  margin-bottom: var(--space-xxs);
+}
+
+.mb-xs{
+  margin-bottom: var(--space-xs);
+}
+.mb-sm{
+  margin-bottom: var(--space-sm);
+}
+
+.text{
+  font-size: 1.4rem;
+  color: var(--color-text);
+}
+
+.text-sm{
+  font-size: 1.2rem;
+  color: var(--color-text);
+  font-weight: 400;
+}
+
+.text-cap{
+  text-transform: capitalize;
+}
