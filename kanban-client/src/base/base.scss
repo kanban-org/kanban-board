@@ -5,7 +5,8 @@
   --color-primary: #635ec5;
   --color-primary-light: #6c67c1;
   --color-white: #fff;
-  --color-black: #2d2a37;;
+  --color-black: #2d2a37;
+  ;
   --color-base-light: #fff;
   --color-base-dark: #ecf2ff;
   --color-base-darker: #DCE6FF;
@@ -59,7 +60,9 @@ $bp-small: 37.5em; // 600px
 }
 
 /* Remove default margin */
-*,*::before,*::after {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
 }
@@ -96,7 +99,7 @@ select {
   font: inherit;
 }
 
-button{
+button {
   outline: none;
   border: none;
   background-color: transparent;
@@ -165,7 +168,7 @@ body {
   fill: var(--color-black);
 }
 
-.svg-primary{
+.svg-primary {
   fill: var(--color-primary);
 }
 
@@ -177,26 +180,37 @@ body {
   align-items: center;
   justify-content: center;
 
-  &:hover{
+  &:hover {
     cursor: pointer;
   }
 
-  &-primary{
+  &-primary {
     background-color: var(--color-primary);
     color: var(--color-white);
     padding: .8rem 2rem;
     border-radius: 5rem;
     transition: background-color 0.2s ease-in-out;
     font-size: 1.4rem;
-  
+
     &:hover {
       background-color: var(--color-primary-light);
     }
   }
+
+  &-sm {
+    padding: .75rem 1rem;
+    font-size: 1.2rem;
+  }
+
+  &-lg {
+    width: 100%;
+  }
 }
 
 // scrollbar
-.scrollbar{
+.scrollbar {
+  -ms-transform: translate3d(0, 0, 0);
+  scrollbar-color: var(--color-grey-light) transparent;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -218,8 +232,4 @@ body {
       background-color: var(--color-grey-light);
     }
   }
-}
-
-select{
-  pointer-events: none;
 }

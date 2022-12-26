@@ -1,31 +1,40 @@
-h1,h2,h3,h4,h5,h6{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
   text-transform: capitalize;
 }
-.heading--2{
+
+.heading--2 {
   font-size: 2rem;
   color: var(--color-text);
   font-weight: 700;
 
 }
-.heading--3{
+
+.heading--3 {
   font-size: 1.5rem;
   color: var(--color-text);
   font-weight: 500;
 }
-.heading--6{
+
+.heading--6 {
   font-size: 1.3rem;
   color: var(--color-grey);
   font-weight: 400;
 
 }
 
-.heading--5{
+.heading--5 {
   font-size: 1.2rem;
   font-weight: 500;
   color: var(--color-text);
 }
 
-.heading--4{
+.heading--4 {
   font-size: 1.3rem;
   color: var(--color-grey);
   font-weight: 400;
@@ -37,24 +46,33 @@ h1,h2,h3,h4,h5,h6{
   margin-bottom: var(--space-xxs);
 }
 
-.mb-xs{
+.mb-xs {
   margin-bottom: var(--space-xs);
 }
-.mb-sm{
+
+.mb-sm {
   margin-bottom: var(--space-sm);
 }
 
-.text{
+.mb-md {
+  margin-bottom: var(--space-md);
+}
+
+.mb-lg {
+  margin-bottom: var(--space-lg);
+}
+
+.text {
   font-size: 1.4rem;
   color: var(--color-text);
 }
 
-.text-sm{
+.text-sm {
   font-size: 1.2rem;
   color: var(--color-text);
   font-weight: 400;
 }
 
-.text-cap{
+.text-cap {
   text-transform: capitalize;
 }
