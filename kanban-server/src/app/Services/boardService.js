@@ -18,6 +18,20 @@ export default class BoardService {
 
     const board = await this.boardRepository.addBoard(arg);
 
+    /*
+      on creating a new board, we will be creating 3 columns by default
+      1. To Do
+      2. In Progress
+      3. Done
+    */
+    const defaultTracks = await this.boardRepository.addDefaultTracksToBoard(board);
+
+    try {
+      await board.addTracks(defaultTracks);
+    } catch (err) {
+      throw new Exceptions.InternalServerErrorException('Error in adding default tracks to board');
+    }
+
     return board;
   }
 

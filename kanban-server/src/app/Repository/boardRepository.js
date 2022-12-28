@@ -1,4 +1,4 @@
-const { Board, sequelize } = require('../../models');
+const { Board, Track, sequelize } = require('../../models');
 
 export default class BoardRepository {
   async addBoard(boardName) {
@@ -88,5 +88,36 @@ export default class BoardRepository {
     } catch (err) {
       throw new Error(err);
     }
+  }
+
+  /**
+   * Method to add default tracks to new board
+   */
+  async addDefaultTracksToBoard(board) {
+    const defaultTracks = [
+      {
+        trackName: 'To Do',
+        boardId: board.id,
+        colorCode: '#FF0000',
+      },
+      {
+        trackName: 'In Progress',
+        boardId: board.id,
+        colorCode: '#HY7F00',
+      },
+      {
+        trackName: 'Done',
+        boardId: board.id,
+        colorCode: '#00FF00',
+      },
+    ];
+
+    const tracks = await Track.bulkCreate(defaultTracks);
+
+    if (!tracks) {
+      throw new Error('Error in creating default tracks');
+    }
+
+    return tracks;
   }
 }
