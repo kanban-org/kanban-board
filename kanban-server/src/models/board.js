@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       boardName: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,
       },
     },
     {
