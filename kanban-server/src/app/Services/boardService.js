@@ -24,7 +24,7 @@ export default class BoardService {
       2. In Progress
       3. Done
     */
-    const defaultTracks = await this.boardRepository.addDefaultTracksToBoard(board);
+    const defaultTracks = await this.boardRepository.addDefaultTracksToBoard(board.id);
 
     try {
       await board.addTracks(defaultTracks);

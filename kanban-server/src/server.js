@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/api', Routes.BoardApiRouter);
-// app.use('/api', Routes.PostApiRouter);
+app.use('/api', Routes.TrackApiRouter);
 
 app.get('/', (req, res) => {
   res.status(200).json('Hi Kanban!');

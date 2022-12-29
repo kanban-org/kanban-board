@@ -93,21 +93,21 @@ export default class BoardRepository {
   /**
    * Method to add default tracks to new board
    */
-  async addDefaultTracksToBoard(board) {
+  async addDefaultTracksToBoard(boardId) {
     const defaultTracks = [
       {
         trackName: 'To Do',
-        boardId: board.id,
+        boardId,
         colorCode: '#FF0000',
       },
       {
         trackName: 'In Progress',
-        boardId: board.id,
+        boardId,
         colorCode: '#HY7F00',
       },
       {
         trackName: 'Done',
-        boardId: board.id,
+        boardId,
         colorCode: '#00FF00',
       },
     ];

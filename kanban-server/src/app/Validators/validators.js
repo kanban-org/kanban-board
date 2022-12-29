@@ -1,38 +1,51 @@
-const { body, oneOf, validationResult } = require('express-validator')
+const { body, oneOf, validationResult } = require('express-validator');
 
 const registerValidationRules = () => {
-  return[
+  return [
     body('email').isEmail().withMessage('Email is not valid'),
-    body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters long'),
-    body('userName').isString()
-  ]
-}
+    body('password')
+      .isLength({ min: 6 })
+      .withMessage('Password must be at least 6 characters long'),
+    body('userName').isString(),
+  ];
+};
 // Check the input is a valid email/userName and password
 const loginValidationRules = () => {
-  return[
+  return [
     oneOf([
       body('userName').exists().withMessage('userName/email is required'),
       body('userName').exists().isEmail().withMessage('userName/email is not valid'),
     ]),
     body('password').isLength({ min: 6 }).exists().withMessage('password is required'),
-  ]
-}
+  ];
+};
+
+const trackValidationRules = () => {
+  return [
+    body('trackName')
+      .isString()
+      .exists()
+      .isLength({ min: 2, max: 25 })
+      .withMessage('trackName is required'),
+    body('boardId').isString().exists().withMessage('boardId is required'),
+    body('colorCode').optional().isString(),
+  ];
+};
 
 const validate = (req, res, next) => {
-  const errors = validationResult(req)
+  const errors = validationResult(req);
   if (errors.isEmpty()) {
-    return next()
+    return next();
   }
-  const extractedErrors = []
-  errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }))
+  const extractedErrors = [];
+  errors.array().map((err) => extractedErrors.push({ [err.param]: err.msg }));
 
   return res.status(422).json({
     errors: extractedErrors,
-  })
-}
+  });
+};
 
 module.exports = {
-  registerValidationRules,
-  loginValidationRules,
-  validate
-}
+  trackValidationRules,
+  validate,
+};

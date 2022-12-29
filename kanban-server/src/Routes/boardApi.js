@@ -21,7 +21,7 @@ BoardApiRouter.get('/board/:id', (req, res) => {
 });
 
 // Update Board
-BoardApiRouter.put('/board/update/:id', (req, res) => {
+BoardApiRouter.patch('/board/update/:id', (req, res) => {
   const boardController = new BoardController(res);
   boardController.updateBoardById(req);
 });
