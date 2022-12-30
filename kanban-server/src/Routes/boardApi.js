@@ -32,4 +32,10 @@ BoardApiRouter.delete('/board/delete/:id', (req, res) => {
   boardController.deleteBoard(req);
 });
 
+// Get all Tracks of a board
+BoardApiRouter.get('/board/getAllTracks/:boardId', (req, res) => {
+  const boardController = new BoardController(res);
+  boardController.getAllTracksOfBoard(req);
+});
+
 export default BoardApiRouter;

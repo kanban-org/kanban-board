@@ -106,4 +106,24 @@ export default class BoardController extends Controller {
       this.handleException(error);
     }
   }
+
+  /**
+   * Get all tracks of a board
+   * @param {string} request.params.boardId - The `boardId` in request params
+   * @returns {object} - The tracks object
+   */
+  async getAllTracksOfBoard(request) {
+    const { boardId } = request.params;
+    try {
+      const resTracks = await this.boardService.getAllTracksOfBoard(boardId);
+
+      if (!resTracks) {
+        throw new Exceptions.NotFoundException('Tracks not found');
+      }
+
+      this.sendResponse(resTracks);
+    } catch (error) {
+      this.handleException(error);
+    }
+  }
 }

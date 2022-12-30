@@ -120,4 +120,20 @@ export default class BoardRepository {
 
     return tracks;
   }
+
+  async getAllTracksOfBoard(boardId) {
+    const tracks = await Board.findAll({
+      where: {
+        id: boardId,
+      },
+      include: [
+        {
+          model: Track,
+          attributes: ['id', 'trackName', 'colorCode', 'createdAt'],
+        },
+      ],
+    });
+
+    return tracks;
+  }
 }

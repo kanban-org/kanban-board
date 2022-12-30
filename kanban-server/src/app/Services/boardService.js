@@ -79,4 +79,19 @@ export default class BoardService {
       message: 'Board deleted successfully',
     };
   }
+
+  /**
+   * This method is used to get all tracks of a board
+   */
+  async getAllTracksOfBoard(id) {
+    const board = await this.boardRepository.getBoardById(id);
+
+    if (!board) {
+      throw new Exceptions.NotFoundException('Board not found');
+    }
+
+    const tracks = await this.boardRepository.getAllTracksOfBoard(id);
+
+    return tracks;
+  }
 }

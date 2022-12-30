@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 
       // one-to-many relationship between board and tracks
       this.hasMany(models.Track, {
+        onDelete: 'cascade',
         foreignKey: 'boardId',
       });
     }
