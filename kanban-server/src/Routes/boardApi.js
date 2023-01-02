@@ -26,6 +26,12 @@ BoardApiRouter.patch('/board/update/:id', (req, res) => {
   boardController.updateBoardById(req);
 });
 
+// Get all tasks of all tracks of a board
+BoardApiRouter.get('/board/getAllTasks/:boardId', (req, res) => {
+  const boardController = new BoardController(res);
+  boardController.getAllTasksOfBoard(req);
+});
+
 // Delete Board
 BoardApiRouter.delete('/board/delete/:id', (req, res) => {
   const boardController = new BoardController(res);

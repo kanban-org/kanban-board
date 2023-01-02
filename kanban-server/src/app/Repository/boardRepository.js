@@ -1,4 +1,4 @@
-const { Board, Track, sequelize } = require('../../models');
+const { Board, Track, Task, sequelize } = require('../../models');
 
 export default class BoardRepository {
   async addBoard(boardName) {
@@ -135,5 +135,35 @@ export default class BoardRepository {
     });
 
     return tracks;
+  }
+
+  async getAllTasksOfBoard(boardId) {
+    const allResults = await Board.findAll({
+      where: {
+        id: boardId,
+      },
+      include: [
+        {
+          model: Track,
+          include: [
+            {
+              model: Task,
+              attributes: {
+                exclude: ['taskDesc', 'trackId'],
+              },
+            },
+          ],
+          attributes: {
+            exclude: ['boardId', 'updatedAt'],
+          },
+        },
+      ],
+    });
+
+    if (!allResults) {
+      throw new Error('Error in fetching tasks');
+    }
+
+    return allResults;
   }
 }

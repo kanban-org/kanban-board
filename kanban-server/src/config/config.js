@@ -8,6 +8,7 @@ module.exports = {
     port: process.env.DB_PORT,
     host: '0.0.0.0',
     dialect: process.env.DB_DIALECT,
+    logging: false,
   },
 
   production: {
@@ -19,5 +20,5 @@ module.exports = {
         rejectUnauthorized: false,
       },
     },
-  }
+  },
 };
