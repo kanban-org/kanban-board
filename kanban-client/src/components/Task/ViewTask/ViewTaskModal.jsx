@@ -1,6 +1,6 @@
 import React from "react";
-import Checkbox from "../../Checkbox/Checkbox";
-import FormSelect from "../../FormSelect/FormSelect";
+import Checkbox from "../../Forms/Checkbox/Checkbox";
+import FormSelect from "../../Forms/FormSelect/FormSelect";
 import classes from "./ViewTaskModal.module.scss";
 
 function ViewTaskModal({

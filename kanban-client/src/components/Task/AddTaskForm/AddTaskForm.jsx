@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import FormSelect from "../../FormSelect/FormSelect";
+import FormSelect from "../../Forms/FormSelect/FormSelect";
 import classes from "./AddTaskForm.module.scss";
+import formClasses from "../../Forms/Forms.module.scss";
 import icons from "../../../img/symbol-defs.svg";
 
 function AddTaskForm() {
@@ -23,43 +24,43 @@ function AddTaskForm() {
 		<>
 			<h3 className="heading--3 mb-sm">Add new task</h3>
 
-			<form className={classes.form}>
+			<form className={formClasses.form}>
 				{displayPage1 && (
 					<fieldset>
-						<div className={classes.form__group}>
-							<label htmlFor="title" className={classes.form__label}>
+						<div className={formClasses.form__group}>
+							<label htmlFor="title" className={formClasses.form__label}>
 								Title
 							</label>
 							<input
 								type="text"
 								id="title"
-								className={classes.form__input}
+								className={formClasses.form__input}
 								placeholder="e.g. Take coffee break"
 							/>
 						</div>
 
-						<div className={classes.form__group}>
-							<label htmlFor="description" className={classes.form__label}>
+						<div className={formClasses.form__group}>
+							<label htmlFor="description" className={formClasses.form__label}>
 								Description
 							</label>
 							<textarea
 								id="description"
-								className={classes.form__input + " scrollbar"}
+								className={formClasses.form__input + " scrollbar"}
 								maxLength="180"
 								placeholder="e.g. It's always good to take a break. This 15 mins break will recharge the batteries a little."
 							/>
 						</div>
 
-						<div className={classes.form__group + " " + classes.subtasks__container}>
-							<label htmlFor="subtask" className={classes.form__label}>
+						<div className={formClasses.form__group + " " + classes.subtasks__container}>
+							<label htmlFor="subtask" className={formClasses.form__label}>
 								Subtasks
 							</label>
-							<div className={classes.form__input__group + " scrollbar"}>
+							<div className={formClasses.form__input__group + " scrollbar"}>
 								<div className={classes.subtask__input}>
 									<input
 										type="text"
 										id="subtask"
-										className={classes.form__input}
+										className={formClasses.form__input}
 										placeholder="e.g. Make coffee"
 									/>
 									<button className="btn">
@@ -72,7 +73,7 @@ function AddTaskForm() {
 									<input
 										type="text"
 										id="subtask"
-										className={classes.form__input}
+										className={formClasses.form__input}
 										placeholder="e.g. Make coffee"
 									/>
 									<button className="btn">
@@ -85,7 +86,7 @@ function AddTaskForm() {
 									<input
 										type="text"
 										id="subtask"
-										className={classes.form__input}
+										className={formClasses.form__input}
 										placeholder="e.g. Make coffee"
 									/>
 									<button className="btn">
@@ -98,7 +99,7 @@ function AddTaskForm() {
 									<input
 										type="text"
 										id="subtask"
-										className={classes.form__input}
+										className={formClasses.form__input}
 										placeholder="e.g. Make coffee"
 									/>
 									<button className="btn">
@@ -116,8 +117,8 @@ function AddTaskForm() {
 
 				{displayPage2 && (
 					<fieldset>
-						<div className={classes.form__group + " mb-md"}>
-							<label htmlFor="status" className={classes.form__label}>
+						<div className={formClasses.form__group + " mb-md"}>
+							<label htmlFor="status" className={formClasses.form__label}>
 								Status
 							</label>
 							<FormSelect />

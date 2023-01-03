@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import classes from "./AddNewTrack.module.scss";
+import formClasses from "../../../Forms/Forms.module.scss";
 import { CirclePicker } from "react-color";
 
 function AddNewTrack() {
@@ -8,20 +9,20 @@ function AddNewTrack() {
 	return (
 		<>
 			<h3 className="heading--3 mb-sm">Add new track</h3>
-			<form className={classes.form}>
-				<div className={classes.form__group}>
-					<label htmlFor="trackName" className={classes.form__label}>
+			<form className={formClasses.form}>
+				<div className={formClasses.form__group}>
+					<label htmlFor="trackName" className={formClasses.form__label}>
 						Track Name
 					</label>
 					<input
 						type="text"
 						id="trackName"
-						className={classes.form__input}
+						className={formClasses.form__input}
 						placeholder="e.g. Pending"
 					/>
 				</div>
-				<div className={classes.form__group}>
-					<label htmlFor="trackColor" className={classes.form__label}>
+				<div className={formClasses.form__group}>
+					<label htmlFor="trackColor" className={formClasses.form__label}>
 						Choose color for new column
 					</label>
 					<CirclePicker
