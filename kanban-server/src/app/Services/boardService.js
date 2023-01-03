@@ -94,4 +94,23 @@ export default class BoardService {
 
     return tracks;
   }
+
+  /**
+   * Method to get all tasks of all tracks
+   */
+  async getAllTasksOfBoard(boardId) {
+    try {
+      const allRes = await this.boardRepository.getAllTasksOfBoard(boardId);
+
+      if (!allRes) {
+        throw new Exceptions.NotFoundException(
+          'Something went wrong in getting all tasks/tracks from board'
+        );
+      }
+
+      return allRes;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
 }

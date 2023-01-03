@@ -126,4 +126,23 @@ export default class BoardController extends Controller {
       this.handleException(error);
     }
   }
+
+  /**
+   * Get all tasks of a track
+   * @param {string} request.params.boardId - The `boardId` in request params
+   */
+  async getAllTasksOfBoard(request) {
+    const { boardId } = request.params;
+    try {
+      const resTrackTasks = await this.boardService.getAllTasksOfBoard(boardId);
+
+      if (!resTrackTasks) {
+        throw new Exceptions.NotFoundException('Tasks not found');
+      }
+
+      this.sendResponse(resTrackTasks);
+    } catch (error) {
+      this.handleException(error);
+    }
+  }
 }

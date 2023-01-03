@@ -1,4 +1,4 @@
-const { Track, sequelize } = require('../../models');
+const { Track, Board, Task, sequelize } = require('../../models');
 
 export default class TrackRepository {
   async createTrack(trackName, boardId, colorCode) {
@@ -10,6 +10,20 @@ export default class TrackRepository {
 
     if (!track) {
       throw new Error('Error in creating track');
+    }
+
+    return track;
+  }
+
+  async getTrackById(trackId) {
+    const track = await Track.findOne({
+      where: {
+        id: trackId,
+      },
+    });
+
+    if (!track) {
+      throw new Error('Error in fetching track');
     }
 
     return track;
@@ -30,12 +44,7 @@ export default class TrackRepository {
   }
 
   async updateTrackById(trackId, trackName, boardId, colorCode) {
-    const track = await Track.findOne({
-      where: {
-        id: trackId,
-        boardId: boardId,
-      },
-    });
+    const track = await this.getTrackById(trackId);
 
     if (!track) {
       throw new Error('Error in fetching track');

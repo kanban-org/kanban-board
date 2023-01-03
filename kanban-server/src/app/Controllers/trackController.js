@@ -95,5 +95,5 @@ export default class TrackController extends Controller {
     } catch (error) {
       this.handleException(error);
     }
-  } 
+  }
 }

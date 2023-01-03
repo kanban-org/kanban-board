@@ -1,35 +1,99 @@
 import * as Exceptions from '../Exceptions/Exceptions';
-
+import TaskRepository from '../Repository/taskRepository';
+import TrackRepository from '../Repository/trackRepository';
 
 export default class TaskService {
   constructor() {
-    // this.accountRepository = new AccountRepository();
+    this.taskRepository = new TaskRepository();
+    this.trackRepository = new TrackRepository();
   }
 
-  async addAccount(args) {
-    const { email, userName } = args;
-    console.log('args: ', args);
-    /*
-      Check if there is already an account with the same email or same username 
-    */
+  /**
+   * Method to create a task
+   */
+  async createTask(taskTitle, taskDesc, dueDate, trackId) {
+    try {
+      const track = await this.trackRepository.getTrackById(trackId);
 
-    const verifyUserName = await this.accountRepository.getUserByUserName(userName);
-    if (verifyUserName) {
-      throw new Exceptions.ConflictException('Username already exist');
+      if (!track) {
+        throw new Exceptions.NotFoundException('Track not found, cannot create task');
+      }
+
+      let task = await this.taskRepository.createTask(taskTitle, taskDesc, dueDate, track);
+      task.trackId = trackId;
+
+      return task;
+    } catch (error) {
+      throw new Error(error);
     }
+  }
 
-    const verifyEmail = await this.accountRepository.getUserByEmail(email);
-    if (verifyEmail) {
-      throw new Exceptions.ConflictException('Email already exist');
+  /**
+   * Method to get all tasks of a track
+   */
+  async getAllTasksOfTrack(trackId) {
+    try {
+      const track = await this.trackRepository.getTrackById(trackId);
+
+      if (!track) {
+        throw new Exceptions.NotFoundException('Track not found, cannot get tasks');
+      }
+
+      const tasks = await this.taskRepository.getAllTasksOfTrack(trackId);
+
+      return tasks;
+    } catch (error) {
+      throw new Error(error);
     }
-    /*
-      Hash the password before saving it to the database
-    */
-    const salt = await bycrypt.genSalt(10);
-    const hashedPassword = await bycrypt.hash(args.password, salt);
-    args.password = hashedPassword;
-    const resUser = await this.accountRepository.addUser(args);
+  }
 
-    return resUser;
+  /**
+   * Method to get task by id
+   */
+  async getTaskById(taskId) {
+    try {
+      const task = await this.taskRepository.getTaskById(taskId);
+
+      if (!task) {
+        throw new Exceptions.NotFoundException('Task not found');
+      }
+
+      return task;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  /**
+   * Method to update task
+   */
+  async updateTaskById(taskId, taskTitle, taskDesc, dueDate) {
+    try {
+      const task = await this.taskRepository.updateTask(taskId, taskTitle, taskDesc, dueDate);
+
+      if (!task) {
+        throw new Exceptions.NotFoundException('Task not found');
+      }
+
+      return task;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  /**
+   * Method to delete task
+   */
+  async deleteTaskById(taskId) {
+    try {
+      await this.taskRepository.deleteTask(taskId);
+
+      return {
+        success: true,
+        message: 'Task deleted successfully',
+      };
+    } catch (error) {
+      throw new Error(error);
+    }
   }
 }
