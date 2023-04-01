@@ -33,9 +33,9 @@ export const fetchTracks = () => async (dispatch) => {
     const newTracks = {};
 
     tracks.forEach((track) => {
-      newTracks[tracks.id] = track;
+      newTracks[track.id] = track;
     });
-    console.log(tracks);
+
     dispatch(tracksLoaded(newTracks));
   } catch (error) {
     dispatch(tracksLoadError(error));

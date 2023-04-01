@@ -10,7 +10,7 @@ import { useActions } from "./hooks/useActions";
 function App() {
   const { fetchBoards, fetchTracks } = useActions();
 
-  const { boardData, setBoardData, currentBoardId } = useContext(globalContext);
+  const { setBoardData, currentBoardId } = useContext(globalContext);
 
   useEffect(() => {
     fetchBoards();

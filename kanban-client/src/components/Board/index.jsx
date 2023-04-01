@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import classes from "./Board.module.scss";
 import ScrollContainer from "react-indiana-drag-scroll";
 import Track from "./StatusTrack/Track";
@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import { selectCurrentBoardId } from "../../state/reducers/selectors/board";
 import { selectTrackIdsByBoardId } from "../../state/reducers/selectors/track";
 
-function Board({ boardData }) {
+function Board() {
   const currentBoardId = useSelector((state) => selectCurrentBoardId(state));
 
   // get all tracks of the currentBoardId
