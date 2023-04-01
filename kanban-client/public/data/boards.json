@@ -1,0 +1,20 @@
+{
+  "boards": [
+    {
+      "id": "ui34fj",
+      "name": "Board 1"
+    },
+    {
+      "id": "ty34yj",
+      "name": "Board 2"
+    },
+    {
+      "id": "auackh",
+      "name": "Board 3"
+    },
+    {
+      "id": "3qiyd2",
+      "name": "Board 4"
+    }
+  ]
+}

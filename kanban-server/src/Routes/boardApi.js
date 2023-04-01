@@ -6,7 +6,7 @@ const BoardApiRouter = express.Router();
 BoardApiRouter.post('/board/create', (req, res) => {
   const boardController = new BoardController(res);
   boardController.createBoard(req);
-});
+}); 
 
 // Get all Boards
 BoardApiRouter.get('/board/getAll', (req, res) => {

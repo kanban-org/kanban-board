@@ -1,71 +1,46 @@
 import { useEffect, useContext } from "react";
-
-import Header from "./components/Header/Header";
-import Sidebar from "./components/Sidebar/Sidebar";
-import Board from "./components/Board/Board";
-// import Overlay from "./components/UI/Overlay/Overlay";
-// import Modal from "./components/UI/Modal/Modal";
-// import AddTaskModal from "./components/Task/AddTaskForm/AddTaskForm";
-
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
+import Board from "./components/Board";
 import { globalContext } from "./context/globalContext";
 import KanbanApi from "./APIs/KanbanApi";
-
 import "./App.scss";
+import { useActions } from "./hooks/useActions";
 
 function App() {
-	const { theme, setAllBoards, boardData, setBoardData, currentBoardId } =
-		useContext(globalContext);
+  const { fetchBoards, fetchTracks } = useActions();
 
-	// set the theme
-	useEffect(() => {
-		const changeTheme = () => {
-			if (theme === "dark") {
-				document.documentElement.className = "dark-theme";
-			} else {
-				document.documentElement.className = "";
-			}
-		};
-		changeTheme();
-	}, [theme]);
+  const { boardData, setBoardData, currentBoardId } = useContext(globalContext);
 
-	// fetch data from json file
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const response = await KanbanApi.get("/boards");
-				const data = response.data;
-				setAllBoards(data);
-			} catch (error) {
-				console.error(error);
-			}
-		};
+  useEffect(() => {
+    fetchBoards();
+    fetchTracks();
+  }, []);
 
-		fetchData();
-	}, [setAllBoards]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await KanbanApi.get(`/boards/${currentBoardId}/tasks`);
+        const data = response.data[0];
+        setBoardData(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const response = await KanbanApi.get(`/boards/${currentBoardId}/tasks`);
-				const data = response.data[0];
-				setBoardData(data);
-			} catch (error) {
-				console.error(error);
-			}
-		};
+    fetchData();
+  }, [currentBoardId, setBoardData]);
 
-		fetchData();
-	}, [currentBoardId, setBoardData]);
-
-	return (
-		<div className="app">
-			<Sidebar />
-			<Header />
-			{boardData && <Board boardData={boardData} />}
-			{/* <Overlay />
+  return (
+    <div className="app">
+      <Sidebar />
+      <Header />
+      <Board />
+      {/* {boardData && <Board boardData={boardData} />}
+      <Overlay />
 			<Modal>{<AddTaskModal />}</Modal> */}
-		</div>
-	);
+    </div>
+  );
 }
 
 export default App;

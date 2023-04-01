@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./TaskList.module.scss";
 
-import TaskBox from "../../../Task/TaskBox/TaskBox";
+import TaskBox from "../../../Task/TaskBox";
 
 function TaskList({ tasks, allColumns, columnName, onScrollHandler }) {
 	return (

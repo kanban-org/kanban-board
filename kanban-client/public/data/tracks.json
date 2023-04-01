@@ -1,0 +1,88 @@
+{
+  "tracks": [
+    {
+      "id": 1,
+      "name": "Todo",
+      "description": "Todo",
+      "boardId": "ui34fj",
+      "colorCode": "#000000"
+    },
+    {
+      "id": 2,
+      "name": "Doing",
+      "description": "Doing",
+      "boardId": "ui34fj",
+      "colorCode": "#000000"
+    },
+    {
+      "id": 3,
+      "name": "Done",
+      "description": "Done",
+      "boardId": "ui34fj",
+      "colorCode": "#000000"
+    },
+    {
+      "id": 4,
+      "name": "Todo",
+      "description": "Todo",
+      "boardId": "ty34yj",
+      "colorCode": "#000000"
+    },
+    {
+      "id": 5,
+      "name": "Doing",
+      "description": "Doing",
+      "boardId": "ty34yj",
+      "colorCode": "#000000"
+    },
+    {
+      "id": 6,
+      "name": "Done",
+      "description": "Done",
+      "boardId": "ty34yj",
+      "colorCode": "#000000"
+    },
+    {
+      "id": 7,
+      "name": "Todo",
+      "description": "Todo",
+      "boardId": "auackh",
+      "colorCode": "#000000"
+    },
+    {
+      "id": 8,
+      "name": "Doing",
+      "description": "Doing",
+      "boardId": "auackh",
+      "colorCode": "#000000"
+    },
+    {
+      "id": 9,
+      "name": "Done",
+      "description": "Done",
+      "boardId": "auackh",
+      "colorCode": "#000000"
+    },
+    {
+      "id": 10,
+      "name": "Todo",
+      "description": "Todo",
+      "boardId": "3qiyd2",
+      "colorCode": "#000000"
+    },
+    {
+      "id": 11,
+      "name": "Doing",
+      "description": "Doing",
+      "boardId": "3qiyd2",
+      "colorCode": "#000000"
+    },
+    {
+      "id": 12,
+      "name": "Done",
+      "description": "Done",
+      "boardId": "3qiyd2",
+      "colorCode": "#000000"
+    }
+  ]
+}

@@ -13,7 +13,11 @@
     "react-dom": "^18.2.0",
     "react-dropdown": "^1.11.0",
     "react-indiana-drag-scroll": "^2.2.0",
+    "react-redux": "^8.0.5",
     "react-scripts": "5.0.1",
+    "redux": "^4.2.1",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.2",
     "sass": "^1.57.1",
     "web-vitals": "^2.1.4"
   },
@@ -40,5 +44,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "prettier": "^2.8.7"
   }
 }

@@ -1,28 +1,38 @@
-import React, { useContext } from "react";
-import { globalContext } from "../../../context/globalContext";
+import { useSelector } from "react-redux";
 import icons from "../../../img/symbol-defs.svg";
+import {
+  selectBoardById,
+  selectCurrentBoardId,
+} from "../../../state/reducers/selectors/board";
 import classes from "./NavItem.module.scss";
+import { useActions } from "../../../hooks/useActions";
+import { useCallback } from "react";
 
-function NavItem({ boardName, id }) {
-	const { currentBoardId, setCurrentBoardId } = useContext(globalContext);
+function NavItem({ boardId }) {
+  const board = useSelector((state) => selectBoardById(state, boardId));
+  const currentBoardId = useSelector((state) => selectCurrentBoardId(state));
+  const { changeCurrentBoard } = useActions();
 
-	const onClickHandler = () => {
-		if (currentBoardId === id) {
-			return;
-		}
-		setCurrentBoardId(id);
-	};
+  const onClickHandler = useCallback(() => {
+    if (currentBoardId === boardId) {
+      return;
+    }
+    changeCurrentBoard(boardId);
+  }, [changeCurrentBoard, boardId, currentBoardId]);
 
-	return (
-		<li
-			className={`${classes.navItem} ${currentBoardId === id ? classes.active : ""}`}
-			onClick={onClickHandler}>
-			<svg className="svg">
-				<use href={icons + "#icon-trello"}></use>
-			</svg>
-			<span>{boardName}</span>
-		</li>
-	);
+  return (
+    <li
+      className={`${classes.navItem} ${
+        currentBoardId === boardId ? classes.active : ""
+      }`}
+      onClick={onClickHandler}
+    >
+      <svg className="svg">
+        <use href={icons + "#icon-trello"}></use>
+      </svg>
+      <span>{board.name}</span>
+    </li>
+  );
 }
 
 export default NavItem;
