@@ -28,29 +28,6 @@ export default class TrackService {
   }
 
   /**
-   * Method to get all tracks of a board
-   */
-  async getAllTracks(id) {
-    try {
-      const tracks = await this.trackRepository.getAllTracks(id);
-
-      if (!tracks) {
-        throw new Exceptions.NotFoundException('Tracks not found');
-      }
-
-      // remove the boardId from track and send as response
-      const tracksData = tracks.map((track) => {
-        const { boardId, ...trackData } = track.dataValues;
-        return trackData;
-      });
-
-      return tracksData;
-    } catch (error) {
-      throw new Error(error);
-    }
-  }
-
-  /**
    * Method to update a track by id
    */
   async updateTrackById(trackId, trackName, id, colorCode) {

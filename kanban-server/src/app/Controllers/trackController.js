@@ -31,25 +31,6 @@ export default class TrackController extends Controller {
   }
 
   /**
-   * Get all tracks
-   * @returns {object} - The tracks object
-   */
-  async getAllTracks(request) {
-    const { boardId } = request.params;
-    try {
-      const resTracks = await this.trackService.getAllTracks(boardId);
-
-      if (!resTracks) {
-        throw new Exceptions.NotFoundException('Tracks not found');
-      }
-
-      this.sendResponse(resTracks);
-    } catch (error) {
-      this.handleException(error);
-    }
-  }
-
-  /**
    * Update track by id
    * @param {string} request.params.id - The `id` in request params
    * @param {string} request.body.trackName - The `trackName` in request body

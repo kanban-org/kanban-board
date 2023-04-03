@@ -8,13 +8,12 @@ import "./App.scss";
 import { useActions } from "./hooks/useActions";
 
 function App() {
-  const { fetchBoards, fetchTracks } = useActions();
+  const { fetchBoards } = useActions();
 
   const { setBoardData, currentBoardId } = useContext(globalContext);
 
   useEffect(() => {
     fetchBoards();
-    fetchTracks();
   }, []);
 
   useEffect(() => {

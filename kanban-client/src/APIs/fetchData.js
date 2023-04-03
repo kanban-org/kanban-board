@@ -1,6 +1,8 @@
+import { baseURL } from "./baseUrl";
+
 const fetchJsonData = async (url) => {
   try {
-    const response = await fetch(url);
+    const response = await fetch(`${baseURL}/${url}`);
     if (!response) {
       throw new Error("Network error");
     }

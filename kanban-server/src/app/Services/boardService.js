@@ -84,17 +84,30 @@ export default class BoardService {
    * This method is used to get all tracks of a board
    */
   async getAllTracksOfBoard(id) {
-    const board = await this.boardRepository.getBoardById(id);
+    try {
+      const tracks = await this.boardRepository.getAllTracksOfBoard(id);
 
-    if (!board) {
-      throw new Exceptions.NotFoundException('Board not found');
+      if (!tracks) {
+        throw new Exceptions.NotFoundException('Tracks not found');
+      }
+
+      const newData = tracks[0].Tracks.map((track) =>
+        Object.assign(
+          {},
+          {
+            id: track.id,
+            trackName: track.trackName,
+            colorCode: track.colorCode,
+            createdAt: track.createdAt,
+          }
+        )
+      );
+
+      return newData;
+    } catch (error) {
+      throw new Error(error);
     }
-
-    const tracks = await this.boardRepository.getAllTracksOfBoard(id);
-
-    return tracks;
   }
-
   /**
    * Method to get all tasks of all tracks
    */

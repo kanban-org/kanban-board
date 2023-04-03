@@ -1,7 +1,7 @@
 import ACTION_TYPE from "../action-types";
 
 const initialState = {
-  currentBoardId: "ui34fj",
+  currentBoardId: null,
   entities: {},
   status: "idle",
   error: null,

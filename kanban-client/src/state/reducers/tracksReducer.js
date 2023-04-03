@@ -11,8 +11,8 @@ export default function tracksReducer(state = initialState, action) {
     case ACTION_TYPE.TRACKS_LOADED:
       return {
         ...state,
-        status: "idle",
         entities: action.payload,
+        status: "idle",
       };
 
     case ACTION_TYPE.TRACKS_LOADING:

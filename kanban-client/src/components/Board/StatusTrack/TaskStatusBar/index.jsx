@@ -17,10 +17,12 @@ function TaskStatusBar({ colorCode, statusName, taskCount, addShadowBottom }) {
   };
 
   const onDeleteBoard = () => {
+    //TODO
     console.log("Board deleted");
   };
 
   const onEditBoard = () => {
+    //TODO
     console.log("Edit board");
   };
 

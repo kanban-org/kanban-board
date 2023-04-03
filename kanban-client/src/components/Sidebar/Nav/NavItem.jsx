@@ -11,14 +11,15 @@ import { useCallback } from "react";
 function NavItem({ boardId }) {
   const board = useSelector((state) => selectBoardById(state, boardId));
   const currentBoardId = useSelector((state) => selectCurrentBoardId(state));
-  const { changeCurrentBoard } = useActions();
+  const { changeCurrentBoard, fetchTracksOfBoard } = useActions();
 
   const onClickHandler = useCallback(() => {
     if (currentBoardId === boardId) {
       return;
     }
     changeCurrentBoard(boardId);
-  }, [changeCurrentBoard, boardId, currentBoardId]);
+    fetchTracksOfBoard(currentBoardId);
+  }, [changeCurrentBoard, boardId, currentBoardId, fetchTracksOfBoard]);
 
   return (
     <li
@@ -30,7 +31,7 @@ function NavItem({ boardId }) {
       <svg className="svg">
         <use href={icons + "#icon-trello"}></use>
       </svg>
-      <span>{board.name}</span>
+      <span>{board.boardName}</span>
     </li>
   );
 }

@@ -29,20 +29,6 @@ export default class TrackRepository {
     return track;
   }
 
-  async getAllTracks(boardId) {
-    const tracks = await Track.findAll({
-      where: {
-        boardId: boardId,
-      },
-    });
-
-    if (!tracks) {
-      throw new Error('Error in getting tracks');
-    }
-
-    return tracks;
-  }
-
   async updateTrackById(trackId, trackName, boardId, colorCode) {
     const track = await this.getTrackById(trackId);
 

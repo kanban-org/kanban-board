@@ -11,22 +11,20 @@ function Track({ trackId }) {
   const { applyBoxShadow, onScrollHandler } = useScrollShadow(false);
 
   const track = useSelector((state) => selectTrackById(state, trackId));
+  const { trackName, colorCode } = track;
 
-  const { name : trackName, colorCode } = track;
-
-	// const tasks = useSelector((state) => selectTasksByTrack(state, trackId))
-
-	//! TODO: taskCount, 
+  // const tasks = useSelector((state) => selectTasksByTrack(state, trackId))
+  //! TODO: taskCount,
 
   return (
     <div className={classes.track}>
       <TaskStatusBar
-				colorCode={colorCode}
-				// taskCount={totalTasks}
-				statusName={trackName}
-				addShadowBottom={applyBoxShadow}
-			/>
-			{/* <TaskList
+        colorCode={colorCode}
+        // taskCount={totalTasks}
+        statusName={trackName}
+        addShadowBottom={applyBoxShadow}
+      />
+      {/* <TaskList
 				tasks={tasks}
 				allColumns={allColumns}
 				columnName={columnName}

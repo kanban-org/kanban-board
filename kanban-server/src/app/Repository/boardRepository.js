@@ -132,6 +132,7 @@ export default class BoardRepository {
           attributes: ['id', 'trackName', 'colorCode', 'createdAt'],
         },
       ],
+      attributes: [],
     });
 
     return tracks;

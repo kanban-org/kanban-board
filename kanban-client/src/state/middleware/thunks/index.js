@@ -3,6 +3,7 @@ import {
   boardsLoaded,
   boardsLoadError,
   boardsLoading,
+  changeCurrentBoard,
   tracksLoaded,
   tracksLoadError,
   tracksLoading,
@@ -11,28 +12,33 @@ import {
 export const fetchBoards = () => async (dispatch) => {
   dispatch(boardsLoading());
   try {
-    const { boards } = await fetchJsonData("/data/boards.json");
+    const { data } = await fetchJsonData("board/getAll");
 
     const newBoards = {};
 
-    boards.forEach((board) => {
+    data.forEach((board) => {
       newBoards[board.id] = board;
     });
 
+    const initalBoardId = data[0].id || "";
+
+    dispatch(changeCurrentBoard(initalBoardId));
     dispatch(boardsLoaded(newBoards));
+
+    dispatch(fetchTracksOfBoard(initalBoardId));
   } catch (error) {
     dispatch(boardsLoadError(error));
   }
 };
 
-export const fetchTracks = () => async (dispatch) => {
+export const fetchTracksOfBoard = (boardId) => async (dispatch) => {
   dispatch(tracksLoading());
   try {
-    const { tracks } = await fetchJsonData("/data/tracks.json");
+    const { data } = await fetchJsonData(`board/getAllTracks/${boardId}`);
 
     const newTracks = {};
 
-    tracks.forEach((track) => {
+    data.forEach((track) => {
       newTracks[track.id] = track;
     });
 

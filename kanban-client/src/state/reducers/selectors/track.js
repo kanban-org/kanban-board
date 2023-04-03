@@ -25,7 +25,5 @@ export const selectTrackById = (state, trackId) => {
 
 export const selectTrackIdsByBoardId = (state, boardId) => {
   const tracks = selectTracks(state);
-  return tracks
-    .filter((track) => track.boardId === boardId)
-    .map((track) => track.id);
+  return tracks.map((track) => track.id);
 };
