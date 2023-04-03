@@ -1,16 +1,19 @@
-import React, { useContext, useState } from "react";
+import { useState } from "react";
 import Overlay from "../UI/Overlay";
 import DotMenu from "../DotMenu";
 import classes from "./Header.module.scss";
 import icons from "../../img/symbol-defs.svg";
 import AddTaskForm from "../Task/AddTaskForm";
-import { globalContext } from "../../context/globalContext";
 import Modal from "../UI/Modal";
+import { useSelector } from "react-redux";
+import { selectCurrentBoardId } from "../../state/reducers/selectors/board";
+import { useActions } from "../../hooks/useActions";
 
 function Header(props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openAddTaskModal, setOpenAddTaskModal] = useState(false);
-  const { getHeader } = useContext(globalContext);
+  const currentBoardId = useSelector((state) => selectCurrentBoardId(state));
+  const { deleteBoardRequest, tracksDelete } = useActions();
 
   const openMenu = (e) => {
     if (isMenuOpen) {
@@ -21,7 +24,9 @@ function Header(props) {
   };
 
   const onDeleteBoard = () => {
-    console.log("Board deleted");
+    deleteBoardRequest(currentBoardId);
+    tracksDelete(currentBoardId);
+    setIsMenuOpen(!isMenuOpen);
   };
 
   const onEditBoard = () => {
@@ -40,7 +45,7 @@ function Header(props) {
   return (
     <>
       <div className={classes.header}>
-        <h2 className="heading--2">{getHeader()}</h2>
+        <h2 className="heading--2">{}</h2>
         <button
           className="btn btn-primary"
           onClick={() => setOpenAddTaskModal(true)}

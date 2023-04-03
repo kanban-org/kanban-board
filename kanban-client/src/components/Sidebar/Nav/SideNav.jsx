@@ -9,14 +9,18 @@ import classes from "./SideNav.module.scss";
 function SideNav() {
   const [openCreateBoardModal, setOpenCreateBoardModal] = useState(false);
 
+  const handleAddBoardModal = () => {
+    setOpenCreateBoardModal(!openCreateBoardModal);
+  };
+
   const createBoardModal = (
     <>
       <Overlay />
       <Modal
         styles={{ height: "max-content" }}
-        onCloseModal={() => setOpenCreateBoardModal(false)}
+        onCloseModal={handleAddBoardModal}
       >
-        <AddBoardForm />
+        <AddBoardForm handleModal={handleAddBoardModal} />
       </Modal>
     </>
   );
@@ -25,10 +29,7 @@ function SideNav() {
     <div>
       <h4 className="heading--4 mb-sm">All boards (8)</h4>
       <NavList />
-      <button
-        className={"btn " + classes.btnAdd}
-        onClick={() => setOpenCreateBoardModal(true)}
-      >
+      <button className={"btn " + classes.btnAdd} onClick={handleAddBoardModal}>
         <svg className="svg svg-primary">
           <use href={icons + "#icon-trello"}></use>
         </svg>

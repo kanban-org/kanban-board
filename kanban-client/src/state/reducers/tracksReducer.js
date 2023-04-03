@@ -28,6 +28,12 @@ export default function tracksReducer(state = initialState, action) {
         error: action.payload,
       };
 
+    case ACTION_TYPE.TRACKS_DELETE:
+      return {
+        ...state,
+        entities: {},
+      };
+
     default:
       return state;
   }

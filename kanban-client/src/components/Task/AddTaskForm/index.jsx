@@ -24,7 +24,7 @@ function AddTaskForm() {
     <>
       <h3 className="heading--3 mb-sm">Add new task</h3>
 
-      <form className={formClasses.form}>
+      <form className={formClasses.form} autoComplete="off">
         {displayPage1 && (
           <fieldset>
             <div className={formClasses.form__group}>

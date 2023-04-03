@@ -26,6 +26,16 @@ export const changeCurrentBoard = (boardId) => ({
   payload: boardId,
 });
 
+export const boardAdd = (board) => ({
+  type: ACTION_TYPE.BOARD_ADD,
+  payload: board,
+});
+
+export const boardDelete = (boardId) => ({
+  type: ACTION_TYPE.BOARD_DELETE,
+  payload: boardId,
+});
+
 /* Tracks action-creators */
 export const tracksLoading = () => ({
   type: ACTION_TYPE.TRACKS_LOADING,
@@ -39,4 +49,9 @@ export const tracksLoaded = (tracks) => ({
 export const tracksLoadError = (error) => ({
   type: ACTION_TYPE.TRACKS_LOAD_ERROR,
   payload: error,
+});
+
+export const tracksDelete = (boardId) => ({
+  type: ACTION_TYPE.TRACKS_DELETE,
+  payload: boardId,
 });
