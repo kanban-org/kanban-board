@@ -37,6 +37,18 @@ export default function boardsReducer(state = initialState, action) {
         entities: remainingEntities,
       };
 
+    case ACTION_TYPE.BOARD_EDIT: {
+      const data = action.payload;
+      return {
+        ...state,
+        status: "idle",
+        entities: {
+          ...state.entities,
+          [data.id]: data,
+        },
+      };
+    }
+
     case ACTION_TYPE.BOARDS_LOADING:
       return {
         ...state,

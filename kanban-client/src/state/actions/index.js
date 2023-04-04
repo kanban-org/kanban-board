@@ -36,6 +36,11 @@ export const boardDelete = (boardId) => ({
   payload: boardId,
 });
 
+export const boardEdit = (board) => ({
+  type: ACTION_TYPE.BOARD_EDIT,
+  payload: board,
+});
+
 /* Tracks action-creators */
 export const tracksLoading = () => ({
   type: ACTION_TYPE.TRACKS_LOADING,

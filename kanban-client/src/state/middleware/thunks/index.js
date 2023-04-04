@@ -1,6 +1,7 @@
 import {
   boardAdd,
   boardDelete,
+  boardEdit,
   boardsLoaded,
   boardsLoadError,
   boardsLoading,
@@ -9,7 +10,7 @@ import {
   tracksLoadError,
   tracksLoading,
 } from "../../actions";
-import { get, post, remove } from "../../../API";
+import { get, post, remove, update } from "../../../API";
 
 export const fetchBoards = () => async (dispatch, state) => {
   dispatch(boardsLoading());
@@ -71,6 +72,19 @@ export const deleteBoardRequest = (boardId) => async (dispatch, getState) => {
 
     const firstBoard = Object.keys(getState().boards.entities)[0];
     dispatch(changeCurrentBoard(firstBoard));
+    dispatch(fetchTracksOfBoard(firstBoard));
+  } catch (error) {
+    dispatch(boardsLoadError(error));
+  }
+};
+
+export const editBoardRequest = (boardData) => async (dispatch, getState) => {
+  try {
+    const currentBoardId = getState().boards.currentBoardId;
+
+    const { data } = await update(`board/update/${currentBoardId}`, boardData);
+
+    dispatch(boardEdit(data));
   } catch (error) {
     dispatch(boardsLoadError(error));
   }

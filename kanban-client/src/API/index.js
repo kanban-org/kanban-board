@@ -29,3 +29,7 @@ export const post = async (url, data) => {
 export const remove = async (url) => {
   return makeRequest("delete", url);
 };
+
+export const update = async (url, data) => {
+  return makeRequest("patch", url, data);
+};

@@ -8,19 +8,28 @@ import Modal from "../UI/Modal";
 import { useSelector } from "react-redux";
 import { selectCurrentBoardId } from "../../state/reducers/selectors/board";
 import { useActions } from "../../hooks/useActions";
+import withBoardForm from "../HOC/withBoardForm";
+import BoardForm from "../BoardForm";
 
 function Header(props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [openAddTaskModal, setOpenAddTaskModal] = useState(false);
-  const currentBoardId = useSelector((state) => selectCurrentBoardId(state));
-  const { deleteBoardRequest, tracksDelete } = useActions();
+  const [editBoard, setEditboard] = useState(false);
 
-  const openMenu = (e) => {
-    if (isMenuOpen) {
-      setIsMenuOpen(false);
-    } else {
-      setIsMenuOpen(true);
-    }
+  const currentBoardId = useSelector((state) => selectCurrentBoardId(state));
+  const { deleteBoardRequest, tracksDelete, editBoardRequest } = useActions();
+  const EditBoardForm = withBoardForm(BoardForm);
+
+  const handleMenuChange = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleAddTaskModal = () => {
+    setOpenAddTaskModal(!openAddTaskModal);
+  };
+
+  const handleEditBoardModal = () => {
+    setEditboard(!editBoard);
   };
 
   const onDeleteBoard = () => {
@@ -29,15 +38,30 @@ function Header(props) {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const onEditBoard = () => {
-    console.log("Edit board");
-  };
-
   const addTaskModal = (
     <>
       <Overlay />
-      <Modal onCloseModal={() => setOpenAddTaskModal(false)}>
+      <Modal onCloseModal={handleAddTaskModal}>
         <AddTaskForm />
+      </Modal>
+    </>
+  );
+
+  const editBoardModal = (
+    <>
+      <Overlay />
+      <Modal
+        styles={{ height: "max-content" }}
+        onCloseModal={handleEditBoardModal}
+      >
+        <EditBoardForm
+          handleModal={handleEditBoardModal}
+          intitialValues={{
+            heading: "Edit board",
+            buttonTitle: "Edit board",
+          }}
+          submitAction={editBoardRequest}
+        />
       </Modal>
     </>
   );
@@ -46,27 +70,25 @@ function Header(props) {
     <>
       <div className={classes.header}>
         <h2 className="heading--2">{}</h2>
-        <button
-          className="btn btn-primary"
-          onClick={() => setOpenAddTaskModal(true)}
-        >
+        <button className="btn btn-primary" onClick={handleAddTaskModal}>
           + Add new task
         </button>
-        <button className="btn" onClick={openMenu}>
+        <button className="btn" onClick={handleMenuChange}>
           <svg className="svg">
             <use href={icons + "#icon-menu"}></use>
           </svg>
         </button>
-        {isMenuOpen && <Overlay onClickAction={() => setIsMenuOpen(false)} />}
+        {isMenuOpen && <Overlay onClickAction={handleMenuChange} />}
         {isMenuOpen && (
           <DotMenu
             onDeleteAction={onDeleteBoard}
-            onEditAction={onEditBoard}
+            onEditAction={handleEditBoardModal}
             comoponentName={"board"}
+            onMenuChange={handleMenuChange}
           />
         )}
       </div>
-
+      {editBoard && editBoardModal}
       {openAddTaskModal && addTaskModal}
     </>
   );

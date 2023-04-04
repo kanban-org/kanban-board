@@ -6,6 +6,7 @@ const ACTION_TYPE = {
   CHANGE_CURRENT_BOARD: "boards/changeCurrentBoard",
   BOARD_ADD: "boards/boardAdd",
   BOARD_DELETE: "boards/boardDelete",
+  BOARD_EDIT: "boards/boardEdit",
   TRACKS_LOADING: "tracks/tracksLoading",
   TRACKS_LOADED: "tracks/tracksLoaded",
   TRACKS_LOAD_ERROR: "tracks/tracksLoadError",

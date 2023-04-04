@@ -10,14 +10,13 @@ import { selectCurrentBoardId } from "../../state/reducers/selectors/board";
 import { selectTrackIdsByBoardId } from "../../state/reducers/selectors/track";
 
 function Board() {
+  const [showAddColumn, setShowAddColumn] = useState(false);
   const currentBoardId = useSelector((state) => selectCurrentBoardId(state));
 
   // get all tracks of the currentBoardId
   const trackIds = useSelector((state) =>
     selectTrackIdsByBoardId(state, currentBoardId)
   );
-
-  const [showAddColumn, setShowAddColumn] = useState(false);
 
   const handleAddColumn = useCallback(() => {
     setShowAddColumn(!showAddColumn);

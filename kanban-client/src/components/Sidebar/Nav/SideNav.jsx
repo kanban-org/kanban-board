@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import icons from "../../../img/symbol-defs.svg";
-import AddBoardForm from "../../AddBoardForm";
 import Modal from "../../UI/Modal";
 import Overlay from "../../UI/Overlay";
 import NavList from "./NavList";
 import classes from "./SideNav.module.scss";
+import BoardForm from "../../BoardForm";
+import withBoardForm from "../../HOC/withBoardForm";
+import { useActions } from "../../../hooks/useActions";
 
 function SideNav() {
   const [openCreateBoardModal, setOpenCreateBoardModal] = useState(false);
+  const { addBoardRequest } = useActions();
 
   const handleAddBoardModal = () => {
     setOpenCreateBoardModal(!openCreateBoardModal);
   };
+
+  const AddBoardForm = withBoardForm(BoardForm);
 
   const createBoardModal = (
     <>
@@ -20,7 +25,14 @@ function SideNav() {
         styles={{ height: "max-content" }}
         onCloseModal={handleAddBoardModal}
       >
-        <AddBoardForm handleModal={handleAddBoardModal} />
+        <AddBoardForm
+          handleModal={handleAddBoardModal}
+          intitialValues={{
+            heading: "Add new board",
+            buttonTitle: "Create new board",
+          }}
+          submitAction={addBoardRequest}
+        />
       </Modal>
     </>
   );
