@@ -1,7 +1,7 @@
 import ACTION_TYPE from "../action-types";
 
 const initialState = {
-  theme: "light",
+  theme: "dark",
 };
 
 export default function displayReducer(state = initialState, action) {

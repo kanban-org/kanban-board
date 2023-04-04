@@ -1,4 +1,3 @@
-import { useCallback } from "react";
 import SideNav from "./Nav/SideNav";
 import icons from "../../img/symbol-defs.svg";
 import logo_dark from "../../img/Dark-Mode-Logo.png";
@@ -7,20 +6,23 @@ import { useActions } from "../../hooks/useActions";
 import classes from "./Sidebar.module.scss";
 import { useSelector } from "react-redux";
 import { selectDisplayTheme } from "../../state/reducers/selectors/display";
+import { useEffect } from "react";
 
 function Sidebar() {
   const { changeTheme } = useActions();
-  const { theme } = useSelector((state) => selectDisplayTheme(state));
+  const theme = useSelector((state) => selectDisplayTheme(state));
 
-  const handleDisplayChange = useCallback(() => {
+  useEffect(() => {
     if (theme === "dark") {
-      document.documentElement.className = "";
-      changeTheme("light");
-    } else {
       document.documentElement.className = "dark-theme";
-      changeTheme("dark");
+    } else {
+      document.documentElement.className = "";
     }
-  }, [theme, changeTheme]);
+  }, [theme]);
+
+  const handleDisplayChange = () => {
+    theme === "dark" ? changeTheme("light") : changeTheme("dark");
+  };
 
   const lightMode = (
     <button className={classes.toggleBtn} onClick={handleDisplayChange}>
