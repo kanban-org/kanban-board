@@ -36,10 +36,11 @@ export const fetchBoards = () => async (dispatch, state) => {
   }
 };
 
-export const fetchTracksOfBoard = (boardId) => async (dispatch) => {
+export const fetchTracksOfBoard = () => async (dispatch, getState) => {
   dispatch(tracksLoading());
   try {
-    const { data } = await get(`board/getAllTracks/${boardId}`);
+    const currentBoardId = getState().boards.currentBoardId;
+    const { data } = await get(`board/getAllTracks/${currentBoardId}`);
 
     const newTracks = {};
 

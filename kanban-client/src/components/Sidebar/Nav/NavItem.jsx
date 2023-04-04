@@ -18,7 +18,7 @@ function NavItem({ boardId }) {
       return;
     }
     changeCurrentBoard(boardId);
-    fetchTracksOfBoard(currentBoardId);
+    fetchTracksOfBoard();
   }, [changeCurrentBoard, boardId, currentBoardId, fetchTracksOfBoard]);
 
   return (
