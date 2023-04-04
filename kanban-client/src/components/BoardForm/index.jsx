@@ -1,20 +1,27 @@
 import { useState } from "react";
 import classes from "../Forms/Forms.module.scss";
+import ColorPicker from "../UI/ColorPicker";
 
 function BoardForm(props) {
-  const { intitialValues, handleModal } = props;
+  const { initialValues, handleBoardFormSubmit, showColorPicker } = props;
   const [input, setInput] = useState("");
+  const [color, setColor] = useState("#3f51b5");
+
+  const handleColorChange = (hexColor) => {
+    setColor(hexColor);
+  };
+
   const handleFormChange = (e) => {
     setInput(e.target.value);
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const data = { boardName: input };
-    handleModal(data);
+    const data = { input, color };
+    handleBoardFormSubmit(data);
   };
 
-  const { heading, buttonTitle } = intitialValues;
+  const { heading, buttonTitle } = initialValues;
 
   return (
     <>
@@ -37,6 +44,9 @@ function BoardForm(props) {
             onChange={handleFormChange}
           />
         </div>
+        {showColorPicker && (
+          <ColorPicker colorChange={handleColorChange} currentColor={color} />
+        )}
         <button className="btn btn-primary btn-sm">{buttonTitle}</button>
       </form>
     </>

@@ -1,4 +1,5 @@
 import {
+  addNewTrack,
   boardAdd,
   boardDelete,
   boardEdit,
@@ -52,8 +53,11 @@ export const fetchTracksOfBoard = (boardId) => async (dispatch) => {
   }
 };
 
-export const addBoardRequest = (boardData) => async (dispatch) => {
+export const addBoardRequest = (boardInfo) => async (dispatch) => {
   try {
+    const boardData = {
+      boardName: boardInfo.input,
+    };
     const { data } = await post("board/create", boardData);
     dispatch(boardAdd(data));
     const boardId = data.id;
@@ -78,14 +82,36 @@ export const deleteBoardRequest = (boardId) => async (dispatch, getState) => {
   }
 };
 
-export const editBoardRequest = (boardData) => async (dispatch, getState) => {
+export const editBoardRequest = (boardInfo) => async (dispatch, getState) => {
   try {
     const currentBoardId = getState().boards.currentBoardId;
+
+    const boardData = {
+      boardName: boardInfo.input,
+    };
 
     const { data } = await update(`board/update/${currentBoardId}`, boardData);
 
     dispatch(boardEdit(data));
   } catch (error) {
     dispatch(boardsLoadError(error));
+  }
+};
+
+export const addNewTrackRequest = (trackInfo) => async (dispatch, getState) => {
+  try {
+    const currentBoardId = getState().boards.currentBoardId;
+
+    const trackData = {
+      trackName: trackInfo.input,
+      boardId: currentBoardId,
+      colorCode: trackInfo.color,
+    };
+
+    const { data } = await post(`track/create`, trackData);
+
+    dispatch(addNewTrack(data));
+  } catch (error) {
+    dispatch(tracksLoadError(error));
   }
 };

@@ -34,6 +34,19 @@ export default function tracksReducer(state = initialState, action) {
         entities: {},
       };
 
+    case ACTION_TYPE.ADD_NEW_TRACK: {
+      const data = action.payload;
+
+      return {
+        ...state,
+        status: "idle",
+        entities: {
+          ...state.entities,
+          [data.id]: data,
+        },
+      };
+    }
+
     default:
       return state;
   }

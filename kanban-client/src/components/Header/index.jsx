@@ -56,7 +56,7 @@ function Header(props) {
       >
         <EditBoardForm
           handleModal={handleEditBoardModal}
-          intitialValues={{
+          initialValues={{
             heading: "Edit board",
             buttonTitle: "Edit board",
           }}

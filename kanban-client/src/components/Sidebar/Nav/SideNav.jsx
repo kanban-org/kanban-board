@@ -27,7 +27,7 @@ function SideNav() {
       >
         <AddBoardForm
           handleModal={handleAddBoardModal}
-          intitialValues={{
+          initialValues={{
             heading: "Add new board",
             buttonTitle: "Create new board",
           }}

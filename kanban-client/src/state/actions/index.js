@@ -60,3 +60,8 @@ export const tracksDelete = (boardId) => ({
   type: ACTION_TYPE.TRACKS_DELETE,
   payload: boardId,
 });
+
+export const addNewTrack = (track) => ({
+  type: ACTION_TYPE.ADD_NEW_TRACK,
+  payload: track,
+});

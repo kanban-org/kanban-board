@@ -4,29 +4,46 @@ import ScrollContainer from "react-indiana-drag-scroll";
 import Track from "./StatusTrack/Track";
 import Overlay from "../UI/Overlay";
 import Modal from "../UI/Modal";
-import AddNewTrack from "./StatusTrack/AddNewTrack";
+import ColorPicker from "../UI/ColorPicker";
+// import AddNewTrack from "./StatusTrack/AddNewTrack";
 import { useSelector } from "react-redux";
 import { selectCurrentBoardId } from "../../state/reducers/selectors/board";
 import { selectTrackIdsByBoardId } from "../../state/reducers/selectors/track";
+import withBoardForm from "../HOC/withBoardForm";
+import BoardForm from "../BoardForm";
+import { useActions } from "../../hooks/useActions";
 
 function Board() {
-  const [showAddColumn, setShowAddColumn] = useState(false);
+  const [addTrackModal, setAddTrackModal] = useState(false);
   const currentBoardId = useSelector((state) => selectCurrentBoardId(state));
-
+  const { addNewTrackRequest } = useActions();
   // get all tracks of the currentBoardId
   const trackIds = useSelector((state) =>
     selectTrackIdsByBoardId(state, currentBoardId)
   );
 
-  const handleAddColumn = useCallback(() => {
-    setShowAddColumn(!showAddColumn);
-  }, [setShowAddColumn, showAddColumn]);
+  const handleAddTrackModal = () => {
+    setAddTrackModal(!addTrackModal);
+  };
+
+  const AddNewTrack = withBoardForm(BoardForm);
 
   const addColumnFormModal = (
     <>
       <Overlay />
-      <Modal onCloseModal={handleAddColumn}>
-        <AddNewTrack />
+      <Modal
+        styles={{ height: "max-content" }}
+        onCloseModal={handleAddTrackModal}
+      >
+        <AddNewTrack
+          handleModal={handleAddTrackModal}
+          initialValues={{
+            heading: "Add New Track",
+            buttonTitle: "Create new track",
+          }}
+          showColorPicker={true}
+          submitAction={addNewTrackRequest}
+        />
       </Modal>
     </>
   );
@@ -44,14 +61,14 @@ function Board() {
         <div className={classes.addColumn}>
           <button
             className={"btn " + classes.addColumnBtn}
-            onClick={handleAddColumn}
+            onClick={handleAddTrackModal}
           >
             + Add Column
           </button>
         </div>
       </ScrollContainer>
 
-      {showAddColumn && addColumnFormModal}
+      {addTrackModal && addColumnFormModal}
     </>
   );
 }
