@@ -72,7 +72,7 @@ function TaskStatusBar({
         <h4 className="heading--4">
           {statusName} <span>{taskCount}</span>
         </h4>
-        <button className="btn" onClick={handleMenuChange}>
+        <button className="btn dots" onClick={handleMenuChange}>
           <svg className="svg">
             <use href={icons + "#icon-horizontal-dots"}></use>
           </svg>
