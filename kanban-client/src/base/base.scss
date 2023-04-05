@@ -173,11 +173,11 @@ body {
   &::before {
     content: "";
     position: absolute;
-    width: 2.1rem;
-    height: 2.1rem;
+    width: 2.4rem;
+    height: 2.4rem;
     background-color: var(--color-grey-light);
     opacity: 0;
-    border-radius: 10%;
+    border-radius: 20%;
     z-index: -1;
     transition: opacity 0.2s ease-in-out;
   }
@@ -187,9 +187,10 @@ body {
     z-index: -10;
   }
 
-  &.svg {
-    // change color of svg icon
+  // on hover fill svg with white
+  &:hover .svg {
     fill: var(--color-white);
+    transition: fill 0.2s ease-in-out;
   }
 }
 

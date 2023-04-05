@@ -1,4 +1,4 @@
-.statusBar{
+.statusBar {
   display: grid;
   grid-template-columns: auto auto 1fr;
   align-items: center;
@@ -9,18 +9,20 @@
   box-shadow: none;
   z-index: 1;
 
-  button{
+  button {
     justify-self: end;
   }
 }
 
-.shadowBottom{
+.shadowBottom {
   box-shadow: rgba(0, 0, 0, 0.5) 0px 15px 15px -15px;
 }
 
-.statusColorBox{
-  height: 1rem;
-  width: 1rem;
+.statusColorBox {
+  height: 1.3rem;
+  width: 1.3rem;
   border-radius: 50%;
-  margin-right: .5rem;
+  margin-right: 0.5rem;
+  border: 0.25rem solid;
+  background-color: transparent;
 }

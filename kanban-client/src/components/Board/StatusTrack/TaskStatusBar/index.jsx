@@ -67,7 +67,7 @@ function TaskStatusBar({
       >
         <div
           className={classes.statusColorBox}
-          style={{ backgroundColor: `${colorCode}` }}
+          style={{ borderColor: `${colorCode}` }}
         ></div>
         <h4 className="heading--4">
           {statusName} <span>{taskCount}</span>
