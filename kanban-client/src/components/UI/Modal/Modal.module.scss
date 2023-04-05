@@ -1,21 +1,32 @@
-.modal{
+.modal {
   width: 37rem;
   height: 50rem;
   padding: var(--space-md) var(--space-sm);
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   background-color: var(--color-base-light);
   z-index: 800;
   border-radius: var(--border-radius);
-  box-shadow: var(--shadow-light);
-
+  box-shadow: rgba(15, 15, 15, 0.25) 0px 16px 70px;
   display: flex;
   flex-direction: column;
+  animation: modalOpen 0.1s ease-in-out;
 }
 
-.modalCloseBtn{
+@keyframes modalOpen {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.modalCloseBtn {
   position: absolute;
   top: -1.25rem;
   right: -1.25rem;
@@ -26,9 +37,9 @@
   color: var(--color-white);
   border-radius: 50%;
   cursor: pointer;
-  transition: background .2s ease-in-out;
+  transition: background 0.2s ease-in-out;
 
-  &:hover{
+  &:hover {
     background-color: var(--color-primary);
   }
 }

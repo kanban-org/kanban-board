@@ -17,9 +17,6 @@ function App() {
       <Sidebar />
       <Header />
       <Board />
-      {/* {boardData && <Board boardData={boardData} />}
-      <Overlay />
-			<Modal>{<AddTaskModal />}</Modal> */}
     </div>
   );
 }
