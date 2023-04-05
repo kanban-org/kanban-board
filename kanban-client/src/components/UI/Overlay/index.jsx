@@ -1,4 +1,3 @@
-import React from "react";
 import classes from "./Overlay.module.scss";
 
 function Overlay({ onClickAction }) {

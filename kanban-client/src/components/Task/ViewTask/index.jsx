@@ -1,4 +1,3 @@
-import React from "react";
 import Checkbox from "../../Forms/Checkbox";
 import FormSelect from "../../Forms/FormSelect";
 import classes from "./ViewTaskModal.module.scss";

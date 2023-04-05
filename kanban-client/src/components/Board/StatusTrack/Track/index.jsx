@@ -1,4 +1,3 @@
-import React from "react";
 import classes from "./Track.module.scss";
 
 import TaskStatusBar from "../TaskStatusBar";

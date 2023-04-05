@@ -1,4 +1,3 @@
-import React from "react";
 import classes from "./TaskList.module.scss";
 
 import TaskBox from "../../../Task/TaskBox";

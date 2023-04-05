@@ -1,8 +1,8 @@
 import {
   addNewTrack,
-  boardAdd,
-  boardDelete,
-  boardEdit,
+  addBoard,
+  deleteBoard,
+  editBoard,
   boardsLoaded,
   boardsLoadError,
   boardsLoading,
@@ -62,7 +62,7 @@ export const addBoardRequest = (boardInfo) => async (dispatch) => {
       boardName: boardInfo.input,
     };
     const { data } = await post("board/create", boardData);
-    dispatch(boardAdd(data));
+    dispatch(addBoard(data));
     const boardId = data.id;
     dispatch(changeCurrentBoard(boardId));
     dispatch(fetchTracksOfBoard(boardId));
@@ -75,7 +75,7 @@ export const deleteBoardRequest = (boardId) => async (dispatch, getState) => {
   try {
     const { data } = await remove(`board/delete/${boardId}`);
 
-    dispatch(boardDelete(boardId));
+    dispatch(deleteBoard(boardId));
 
     const firstBoard = Object.keys(getState().boards.entities)[0];
     dispatch(changeCurrentBoard(firstBoard));
@@ -95,7 +95,7 @@ export const editBoardRequest = (boardInfo) => async (dispatch, getState) => {
 
     const { data } = await update(`board/update/${currentBoardId}`, boardData);
 
-    dispatch(boardEdit(data));
+    dispatch(editBoard(data));
   } catch (error) {
     dispatch(boardsLoadError(error));
   }

@@ -1,4 +1,4 @@
-import ACTION_TYPE from "../action-types";
+import { ACTION_TYPE } from "../action-types";
 
 const initialState = {
   entities: {},

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import icons from "../../../img/symbol-defs.svg";
 import Modal from "../../UI/Modal";
 import Overlay from "../../UI/Overlay";

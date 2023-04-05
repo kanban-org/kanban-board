@@ -1,4 +1,3 @@
-import React from "react";
 import classes from "./DotMenu.module.scss";
 import icons from "../../img/symbol-defs.svg";
 

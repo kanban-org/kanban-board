@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DotMenu from "../../../DotMenu";
 import Overlay from "../../../UI/Overlay";
 import icons from "../../../../img/symbol-defs.svg";
