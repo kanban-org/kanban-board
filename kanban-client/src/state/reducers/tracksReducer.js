@@ -34,6 +34,29 @@ export default function tracksReducer(state = initialState, action) {
         entities: {},
       };
 
+    case ACTION_TYPE.DELETE_TRACK:
+      const trackId = action.payload;
+      const { [trackId]: deletedTrack, ...remainingEntities } = state.entities;
+
+      return {
+        ...state,
+        status: "idle",
+        entities: remainingEntities,
+      };
+
+    case ACTION_TYPE.EDIT_TRACK: {
+      const data = action.payload;
+
+      return {
+        ...state,
+        status: "idle",
+        entities: {
+          ...state.entities,
+          [data.id]: data,
+        },
+      };
+    }
+
     case ACTION_TYPE.ADD_NEW_TRACK: {
       const data = action.payload;
 

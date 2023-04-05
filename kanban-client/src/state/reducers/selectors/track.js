@@ -23,7 +23,7 @@ export const selectTrackById = (state, trackId) => {
   return selectTrackEntities(state)[trackId];
 };
 
-export const selectTrackIdsByBoardId = (state, boardId) => {
-  const tracks = selectTracks(state);
-  return tracks.map((track) => track.id);
-};
+export const selectTrackIds = createSelector(
+  selectTrackEntities,
+  (entities) => Object.keys(entities) 
+)

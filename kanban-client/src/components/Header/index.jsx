@@ -8,8 +8,8 @@ import Modal from "../UI/Modal";
 import { useSelector } from "react-redux";
 import { selectCurrentBoardId } from "../../state/reducers/selectors/board";
 import { useActions } from "../../hooks/useActions";
-import withBoardForm from "../HOC/withBoardForm";
-import BoardForm from "../BoardForm";
+import withModalForm from "../HOC/withModalForm";
+import ModalForm from "../ModalForm";
 
 function Header(props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,7 +18,8 @@ function Header(props) {
 
   const currentBoardId = useSelector((state) => selectCurrentBoardId(state));
   const { deleteBoardRequest, tracksDelete, editBoardRequest } = useActions();
-  const EditBoardForm = withBoardForm(BoardForm);
+
+  const EditBoardForm = withModalForm(ModalForm);
 
   const handleMenuChange = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -35,7 +36,7 @@ function Header(props) {
   const onDeleteBoard = () => {
     deleteBoardRequest(currentBoardId);
     tracksDelete(currentBoardId);
-    setIsMenuOpen(!isMenuOpen);
+    handleMenuChange();
   };
 
   const addTaskModal = (
@@ -59,6 +60,7 @@ function Header(props) {
           initialValues={{
             heading: "Edit board",
             buttonTitle: "Edit board",
+            label: "Board Name",
           }}
           submitAction={editBoardRequest}
         />

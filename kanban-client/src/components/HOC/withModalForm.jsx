@@ -1,5 +1,5 @@
-const withBoardForm = (WrappedComponent) => {
-  return function BoardFormWrapper(props) {
+const withModalForm = (WrappedComponent) => {
+  return function ModalFormWrapper(props) {
     const { handleModal, initialValues, submitAction, ...rest } = props;
     function handleBoardFormSubmit(data) {
       handleModal();
@@ -9,7 +9,7 @@ const withBoardForm = (WrappedComponent) => {
       <>
         <WrappedComponent
           initialValues={initialValues}
-          handleBoardFormSubmit={handleBoardFormSubmit}
+          handleFormSubmit={handleBoardFormSubmit}
           {...rest}
         />
       </>
@@ -17,4 +17,4 @@ const withBoardForm = (WrappedComponent) => {
   };
 };
 
-export default withBoardForm;
+export default withModalForm;

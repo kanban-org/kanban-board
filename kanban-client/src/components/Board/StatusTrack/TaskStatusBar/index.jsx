@@ -4,55 +4,91 @@ import Overlay from "../../../UI/Overlay";
 import icons from "../../../../img/symbol-defs.svg";
 
 import classes from "./TaskStatusBar.module.scss";
+import { useActions } from "../../../../hooks/useActions";
+import Modal from "../../../UI/Modal";
+import withModalForm from "../../../HOC/withModalForm";
+import ModalForm from "../../../ModalForm";
 
-function TaskStatusBar({ colorCode, statusName, taskCount, addShadowBottom }) {
+function TaskStatusBar({
+  colorCode,
+  trackId,
+  statusName,
+  taskCount,
+  addShadowBottom,
+}) {
+  const [editTrack, setEditTrack] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { deleteTrackRequest, editTrackRequest } = useActions();
+  const EditTrackForm = withModalForm(ModalForm);
 
-  const openMenu = (e) => {
-    if (isMenuOpen) {
-      setIsMenuOpen(false);
-    } else {
-      setIsMenuOpen(true);
-    }
+  const handleMenuChange = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
-  const onDeleteBoard = () => {
-    //TODO
-    console.log("Board deleted");
+  const handleEditTrackModal = () => {
+    setEditTrack(!editTrack);
   };
 
-  const onEditBoard = () => {
-    //TODO
-    console.log("Edit board");
+  const onDeleteTrack = () => {
+    deleteTrackRequest(trackId);
+    handleMenuChange();
   };
+
+  const editTrackModal = (
+    <>
+      <Overlay />
+      <Modal
+        styles={{ height: "max-content" }}
+        onCloseModal={handleEditTrackModal}
+      >
+        <EditTrackForm
+          handleModal={handleEditTrackModal}
+          initialValues={{
+            heading: "Edit track",
+            buttonTitle: "Edit track",
+            label: "Track Name",
+          }}
+          showColorPicker={true}
+          submitAction={editTrackRequest}
+          trackId={trackId}
+        />
+      </Modal>
+    </>
+  );
 
   return (
-    <div
-      className={
-        classes.statusBar + " " + (addShadowBottom ? classes.shadowBottom : "")
-      }
-    >
+    <>
       <div
-        className={classes.statusColorBox}
-        style={{ backgroundColor: `${colorCode}` }}
-      ></div>
-      <h4 className="heading--4">
-        {statusName} <span>({taskCount})</span>
-      </h4>
-      <button className="btn" onClick={openMenu}>
-        <svg className="svg">
-          <use href={icons + "#icon-horizontal-dots"}></use>
-        </svg>
-      </button>
-      {isMenuOpen && <Overlay onClickAction={() => setIsMenuOpen(false)} />}
-      {isMenuOpen && (
-        <DotMenu
-          onDeleteAction={onDeleteBoard}
-          onEditAction={onEditBoard}
-          comoponentName={"column"}
-        />
-      )}
-    </div>
+        className={
+          classes.statusBar +
+          " " +
+          (addShadowBottom ? classes.shadowBottom : "")
+        }
+      >
+        <div
+          className={classes.statusColorBox}
+          style={{ backgroundColor: `${colorCode}` }}
+        ></div>
+        <h4 className="heading--4">
+          {statusName} <span>{taskCount}</span>
+        </h4>
+        <button className="btn" onClick={handleMenuChange}>
+          <svg className="svg">
+            <use href={icons + "#icon-horizontal-dots"}></use>
+          </svg>
+        </button>
+        {isMenuOpen && <Overlay onClickAction={handleMenuChange} />}
+        {isMenuOpen && (
+          <DotMenu
+            onDeleteAction={onDeleteTrack}
+            onEditAction={handleEditTrackModal}
+            comoponentName={"track"}
+            onMenuChange={handleMenuChange}
+          />
+        )}
+      </div>
+      {editTrack && editTrackModal}
+    </>
   );
 }
 

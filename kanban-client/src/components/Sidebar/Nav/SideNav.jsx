@@ -4,8 +4,8 @@ import Modal from "../../UI/Modal";
 import Overlay from "../../UI/Overlay";
 import NavList from "./NavList";
 import classes from "./SideNav.module.scss";
-import BoardForm from "../../BoardForm";
-import withBoardForm from "../../HOC/withBoardForm";
+import ModalForm from "../../ModalForm";
+import withModalForm from "../../HOC/withModalForm";
 import { useActions } from "../../../hooks/useActions";
 
 function SideNav() {
@@ -16,7 +16,7 @@ function SideNav() {
     setOpenCreateBoardModal(!openCreateBoardModal);
   };
 
-  const AddBoardForm = withBoardForm(BoardForm);
+  const AddBoardForm = withModalForm(ModalForm);
 
   const createBoardModal = (
     <>
@@ -30,6 +30,7 @@ function SideNav() {
           initialValues={{
             heading: "Add new board",
             buttonTitle: "Create new board",
+            label: "Board Name",
           }}
           submitAction={addBoardRequest}
         />

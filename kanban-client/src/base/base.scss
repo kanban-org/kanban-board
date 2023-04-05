@@ -6,25 +6,23 @@
   --color-primary-light: #6c67c1;
   --color-white: #fff;
   --color-black: #2d2a37;
-  ;
   --color-base-light: #fff;
   --color-base-dark: #ecf2ff;
-  --color-base-darker: #DCE6FF;
+  --color-base-darker: #dce6ff;
   --color-grey: #858699;
   --color-grey-light: rgba(84, 81, 97, 0.212);
   --color-text: #2d2a37;
   --color-bg-menu: rgba(255, 255, 255, 0.85);
 
-
   // fonts
   --font-primary: "Roboto", sans-serif;
 
   // border radius
-  --border-radius: .5rem;
+  --border-radius: 0.5rem;
   --border-radius-btn: 1rem;
 
   // spacing
-  --space-xxs: .75rem;
+  --space-xxs: 0.75rem;
   --space-xs: 1.25rem;
   --space-sm: 1.75rem;
   --space-md: 2.25rem;
@@ -37,7 +35,7 @@
 // class for dark theme
 :root.dark-theme {
   --color-base-light: #2c2c38;
-  --color-base-dark: #21212D;
+  --color-base-dark: #21212d;
   // --color-base-darker: #2d2d3966;
   --color-base-darker: #262632;
   --color-text: #fff;
@@ -50,7 +48,6 @@ $bp-largest: 75em; // 1200px / 16 = 75em
 $bp-large: 62.5em; // 1000px / 16 = 62.5em
 $bp-medium: 50em; // 800px
 $bp-small: 37.5em; // 600px
-
 
 /* Box sizing rules */
 *,
@@ -68,8 +65,8 @@ $bp-small: 37.5em; // 600px
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
-ul[role='list'],
-ol[role='list'] {
+ul[role="list"],
+ol[role="list"] {
   list-style: none;
 }
 
@@ -77,7 +74,6 @@ ol[role='list'] {
 html:focus-within {
   scroll-behavior: smooth;
 }
-
 
 /* A elements that don't have a class get default styles */
 a:not([class]) {
@@ -136,7 +132,6 @@ html {
   @media only screen and (max-width: $bp-large) {
     font-size: 50%; //8px  ---> 1rem
   }
-
 }
 
 body {
@@ -155,8 +150,8 @@ body {
 
 // svg icon colors
 .svg {
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 1.8rem;
+  height: 1.8rem;
   fill: var(--color-grey);
 }
 
@@ -187,10 +182,10 @@ body {
   &-primary {
     background-color: var(--color-primary);
     color: var(--color-white);
-    padding: .8rem 2rem;
+    padding: 0.5rem 1rem;
     border-radius: 5rem;
     transition: background-color 0.2s ease-in-out;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 
     &:hover {
       background-color: var(--color-primary-light);
@@ -198,8 +193,8 @@ body {
   }
 
   &-sm {
-    padding: .75rem 1rem;
-    font-size: 1.2rem;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
   }
 
   &-lg {

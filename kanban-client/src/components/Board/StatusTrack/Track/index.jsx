@@ -20,6 +20,7 @@ function Track({ trackId }) {
     <div className={classes.track}>
       <TaskStatusBar
         colorCode={colorCode}
+        trackId={trackId}
         // taskCount={totalTasks}
         statusName={trackName}
         addShadowBottom={applyBoxShadow}

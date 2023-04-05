@@ -7,6 +7,8 @@ import {
   boardsLoadError,
   boardsLoading,
   changeCurrentBoard,
+  deleteTrack,
+  editTrack,
   tracksLoaded,
   tracksLoadError,
   tracksLoading,
@@ -112,6 +114,37 @@ export const addNewTrackRequest = (trackInfo) => async (dispatch, getState) => {
     const { data } = await post(`track/create`, trackData);
 
     dispatch(addNewTrack(data));
+  } catch (error) {
+    dispatch(tracksLoadError(error));
+  }
+};
+
+export const deleteTrackRequest = (trackId) => async (dispatch) => {
+  try {
+    const { data } = await remove(`track/delete/${trackId}`);
+
+    if (data.success === true) {
+      dispatch(deleteTrack(trackId));
+    }
+  } catch (error) {
+    dispatch(tracksLoadError(error));
+  }
+};
+
+export const editTrackRequest = (trackInfo) => async (dispatch, getState) => {
+  try {
+    const currentBoardId = getState().boards.currentBoardId;
+    const { trackId } = trackInfo;
+
+    const trackData = {
+      trackName: trackInfo.input,
+      boardId: currentBoardId,
+      colorCode: trackInfo.color,
+    };
+
+    const { data } = await update(`track/update/${trackId}`, trackData);
+
+    dispatch(editTrack(data));
   } catch (error) {
     dispatch(tracksLoadError(error));
   }

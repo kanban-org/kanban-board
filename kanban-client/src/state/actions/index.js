@@ -65,3 +65,13 @@ export const addNewTrack = (track) => ({
   type: ACTION_TYPE.ADD_NEW_TRACK,
   payload: track,
 });
+
+export const deleteTrack = (trackId) => ({
+  type: ACTION_TYPE.DELETE_TRACK,
+  payload: trackId,
+});
+
+export const editTrack = (track) => ({
+  type: ACTION_TYPE.EDIT_TRACK,
+  payload: track,
+});

@@ -16,7 +16,7 @@ function DotMenu({
   return (
     <div className={classes.menu}>
       <ul role={["list"]} className={classes.menuList}>
-        <li>
+        <li key="deleteButton">
           <button className="btn" onClick={onDeleteAction}>
             <svg className="svg">
               <use href={icons + "#icon-delete"}></use>
@@ -25,7 +25,7 @@ function DotMenu({
           </button>
         </li>
 
-        <li>
+        <li key="editButton">
           <button className="btn" onClick={handleEditChange}>
             <svg className="svg">
               <use href={icons + "#icon-edit"}></use>

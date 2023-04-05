@@ -12,6 +12,8 @@ const ACTION_TYPE = {
   TRACKS_LOAD_ERROR: "tracks/tracksLoadError",
   TRACKS_DELETE: "tracks/tracksDelete",
   ADD_NEW_TRACK: "tracks/addNewTrack",
+  DELETE_TRACK: "tracks/deleteTrack",
+  EDIT_TRACK: "tracks/editTrack",
 };
 
 export default ACTION_TYPE;
