@@ -4,10 +4,13 @@ import Overlay from "../../UI/Overlay";
 import ViewTaskModal from "../ViewTask";
 import TaskDetails from "../TaskDetails";
 import classes from "./TaskBox.module.scss";
+import { useSelector } from "react-redux";
+import { selectTaskById } from "../../../state/reducers/selectors/task";
 
-function TaskBox({ task, currentTrack }) {
+function TaskBox({ taskId, currentTrack }) {
   const [viewTask, setViewTask] = useState(false);
-
+  const task = useSelector((state) => selectTaskById(state, taskId));
+  // console.log(task);
   // const subtasks = task.subtasks;
 
   // let comepletedSubtasks = 0;

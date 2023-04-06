@@ -1,6 +1,7 @@
 import { createSelector } from "reselect";
 
 const selectTaskEntities = (state) => state.tasks.entities;
+const selectTaskOrder = (state) => state.tasks.order;
 
 export const selectTasks = createSelector(
   selectTaskEntities,
@@ -17,10 +18,7 @@ export const selectTaskIds = createSelector(selectTaskEntities, (entities) =>
 );
 
 export const selectTaskIdsOfTrack = (state, trackId) => {
-  const tasks = selectTasks(state);
-  return tasks
-    .filter((task) => task.trackId === trackId)
-    .map((task) => task.id);
+  return selectTaskOrder(state)[trackId] || [];
 };
 
 export const selectTasksOfTrack = (state, trackId) => {

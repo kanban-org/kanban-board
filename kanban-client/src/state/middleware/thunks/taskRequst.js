@@ -6,10 +6,11 @@ import {
   tasksLoading,
 } from "../../actions/tasksAction";
 
-export const fetchTasksOfTrack = (trackId) => async (dispatch) => {
+export const fetchTasksOfBoard = () => async (dispatch, getState) => {
   dispatch(tasksLoading());
   try {
-    const { data } = await get(`task/getAll/${trackId}`);
+    const currentBoardId = getState().boards.currentBoardId;
+    const { data } = await get(`board/getAllTasks/${currentBoardId}`);
 
     const newTasks = {};
 

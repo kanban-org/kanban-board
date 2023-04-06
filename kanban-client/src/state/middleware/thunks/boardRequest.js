@@ -8,6 +8,7 @@ import {
   deleteBoard,
   editBoard,
 } from "../../actions";
+import { fetchTasksOfBoard } from "./taskRequst";
 import { fetchTracksOfBoard } from "./trackRequest";
 
 export const fetchBoards = () => async (dispatch, state) => {
@@ -26,8 +27,8 @@ export const fetchBoards = () => async (dispatch, state) => {
     const initalBoardId = data[0].id || "";
 
     dispatch(changeCurrentBoard(initalBoardId));
-
     dispatch(fetchTracksOfBoard(initalBoardId));
+    dispatch(fetchTasksOfBoard());
   } catch (error) {
     dispatch(boardsLoadError(error));
   }

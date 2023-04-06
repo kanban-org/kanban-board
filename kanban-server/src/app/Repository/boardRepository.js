@@ -139,32 +139,20 @@ export default class BoardRepository {
   }
 
   async getAllTasksOfBoard(boardId) {
-    const allResults = await Board.findAll({
-      where: {
-        id: boardId,
-      },
+    const allTasks = await Task.findAll({
       include: [
         {
           model: Track,
-          include: [
-            {
-              model: Task,
-              attributes: {
-                exclude: ['taskDesc', 'trackId'],
-              },
-            },
-          ],
-          attributes: {
-            exclude: ['boardId', 'updatedAt'],
-          },
+          where: { boardId: boardId },
+          attributes: [],
         },
       ],
     });
 
-    if (!allResults) {
+    if (!allTasks) {
       throw new Error('Error in fetching tasks');
     }
 
-    return allResults;
+    return allTasks;
   }
 }
