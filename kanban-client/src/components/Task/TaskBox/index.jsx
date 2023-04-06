@@ -5,17 +5,17 @@ import ViewTaskModal from "../ViewTask";
 import TaskDetails from "../TaskDetails";
 import classes from "./TaskBox.module.scss";
 
-function TaskBox({ task, allColumnNames, currentColumn }) {
+function TaskBox({ task, currentTrack }) {
   const [viewTask, setViewTask] = useState(false);
 
-  const subtasks = task.subtasks;
+  // const subtasks = task.subtasks;
 
-  let comepletedSubtasks = 0;
-  const totalSubtasks = subtasks.length;
+  // let comepletedSubtasks = 0;
+  // const totalSubtasks = subtasks.length;
 
-  subtasks.forEach((subtask) => {
-    if (subtask.completed === true) comepletedSubtasks++;
-  });
+  // subtasks.forEach((subtask) => {
+  //   if (subtask.completed === true) comepletedSubtasks++;
+  // });
 
   const onViewTask = () => {
     setViewTask(true);
@@ -27,10 +27,10 @@ function TaskBox({ task, allColumnNames, currentColumn }) {
       <Modal onCloseModal={() => setViewTask(false)}>
         <ViewTaskModal
           {...task}
-          totalSubtasks={totalSubtasks}
-          comepletedSubtasks={comepletedSubtasks}
-          allColumnNames={allColumnNames}
-          currentColumn={currentColumn}
+          // totalSubtasks={totalSubtasks}
+          // comepletedSubtasks={comepletedSubtasks}
+          // allColumnNames={allColumnNames}
+          // currentColumn={currentColumn}
         />
       </Modal>
     </>
@@ -45,9 +45,9 @@ function TaskBox({ task, allColumnNames, currentColumn }) {
       >
         <TaskDetails
           id={task.id}
-          title={task.title}
-          totalSubtasks={totalSubtasks}
-          comepletedSubtasks={comepletedSubtasks}
+          title={task.taskTitle}
+          // totalSubtasks={totalSubtasks}
+          // comepletedSubtasks={comepletedSubtasks}
         />
       </li>
 

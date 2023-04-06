@@ -18,9 +18,6 @@ export default class TaskRepository {
       where: {
         trackId: trackId,
       },
-      attributes: {
-        exclude: ['trackId'],
-      },
     });
 
     if (!tasks) {

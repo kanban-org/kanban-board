@@ -45,9 +45,9 @@ function Board() {
 
   return (
     <>
-      <ScrollContainer
-        className={classes.container + " scrollbar scroll-container"}
-        hideScrollbars={false}
+      <div
+        className={classes.container + " no-back-gesture"}
+        style={{ touchAction: "pan-y" }}
       >
         {trackIds.map((trackId) => {
           return <Track trackId={trackId} key={trackId} />;
@@ -61,7 +61,12 @@ function Board() {
             + Add Track
           </button>
         </div>
-      </ScrollContainer>
+      </div>
+      {/* <ScrollContainer
+        className={classes.container + " scrollbar scroll-container"}
+        hideScrollbars={false}
+      >
+      </ScrollContainer> */}
 
       {addTrackModal && addTrackFormModal}
     </>

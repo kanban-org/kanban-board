@@ -1,15 +1,23 @@
 import classes from "./TaskList.module.scss";
 
 import TaskBox from "../../../Task/TaskBox";
+import { useSelector } from "react-redux";
+import { selectTasksOfTrack } from "../../../../state/reducers/selectors/task";
 
-function TaskList({ tasks, allColumns, columnName, onScrollHandler }) {
-	return (
-		<ul className={classes.taskList + " scrollbar"} role={["list"]} onScroll={onScrollHandler}>
-			{tasks.map((task) => (
-				<TaskBox task={task} key={task.id} allColumnNames={allColumns} currentColumn={columnName} />
-			))}
-		</ul>
-	);
+function TaskList({ trackId, trackName, onScrollHandler }) {
+  const tasks = useSelector((state) => selectTasksOfTrack(state, trackId));
+
+  return (
+    <ul
+      className={classes.taskList + " scrollbar"}
+      role={["list"]}
+      onScroll={onScrollHandler}
+    >
+      {tasks.map((task) => (
+        <TaskBox task={task} key={task.id} currentTrack={trackName} />
+      ))}
+    </ul>
+  );
 }
 
 export default TaskList;

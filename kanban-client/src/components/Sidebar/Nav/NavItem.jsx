@@ -11,7 +11,7 @@ import { useCallback } from "react";
 function NavItem({ boardId }) {
   const board = useSelector((state) => selectBoardById(state, boardId));
   const currentBoardId = useSelector((state) => selectCurrentBoardId(state));
-  const { changeCurrentBoard, fetchTracksOfBoard } = useActions();
+  const { changeCurrentBoard, fetchTracksOfBoard, removeTasks } = useActions();
 
   const onClickHandler = useCallback(() => {
     if (currentBoardId === boardId) {
@@ -19,7 +19,14 @@ function NavItem({ boardId }) {
     }
     changeCurrentBoard(boardId);
     fetchTracksOfBoard();
-  }, [changeCurrentBoard, boardId, currentBoardId, fetchTracksOfBoard]);
+    removeTasks();
+  }, [
+    changeCurrentBoard,
+    boardId,
+    currentBoardId,
+    fetchTracksOfBoard,
+    removeTasks,
+  ]);
 
   return (
     <li

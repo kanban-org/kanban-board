@@ -1,31 +1,39 @@
-import { useEffect, useRef, useState } from "react";
+import { useFormik } from "formik";
 import classes from "../Forms/Forms.module.scss";
 import ColorPicker from "../UI/ColorPicker";
 import { toCamelCase } from "../../utils";
 
 function ModalForm(props) {
-  const { initialValues, handleFormSubmit, showColorPicker, ...rest } = props;
-  const [input, setInput] = useState("");
-  const [color, setColor] = useState("#3f51b5");
+  const {
+    initialValues,
+    handleFormSubmit,
+    showColorPicker,
+    taskForm,
+    ...rest
+  } = props;
 
-  const inputRef = useRef(null);
-
-  useEffect(() => {
-    inputRef.current.focus();
-  }, []);
+  const formik = useFormik({
+    initialValues: {
+      boardName: "",
+      trackName: "",
+      taskTitle: "",
+      taskDescription: "",
+      color: "#3f51b5",
+    },
+    validate: (values) => {
+      const errors = {};
+      if (taskForm && values.taskTitle.trim() === "") {
+        errors.taskTitle = "Task title is required";
+      }
+      return errors;
+    },
+    onSubmit: (values) => {
+      handleFormSubmit({ ...values, ...rest });
+    },
+  });
 
   const handleColorChange = (hexColor) => {
-    setColor(hexColor);
-  };
-
-  const handleInputChange = (e) => {
-    setInput(e.target.value);
-  };
-
-  const onFormSubmit = (e) => {
-    e.preventDefault();
-    const data = { input, color, ...rest };
-    handleFormSubmit(data);
+    formik.setFieldValue("color", hexColor);
   };
 
   const { heading, buttonTitle, label } = initialValues;
@@ -33,7 +41,11 @@ function ModalForm(props) {
   return (
     <>
       <h3 className="heading--3 mb-sm">{heading}</h3>
-      <form className={classes.form} autoComplete="off" onSubmit={onFormSubmit}>
+      <form
+        className={classes.form}
+        autoComplete="off"
+        onSubmit={formik.handleSubmit}
+      >
         <div className={classes.form__group}>
           <label htmlFor={toCamelCase(label)} className={classes.form__label}>
             {label}
@@ -43,15 +55,44 @@ function ModalForm(props) {
             id={toCamelCase(label)}
             className={classes.form__input}
             placeholder="e.g. Platform launch"
-            value={input}
-            ref={inputRef}
-            onChange={handleInputChange}
+            name={toCamelCase(label)}
+            value={formik.values[`${toCamelCase(label)}`]}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
           />
+          {formik.touched[`${toCamelCase(label)}`] &&
+          formik.errors[`${toCamelCase(label)}`] ? (
+            <div className={classes.error}>
+              {formik.errors[`${toCamelCase(label)}`]}
+            </div>
+          ) : null}
         </div>
-        {showColorPicker && (
-          <ColorPicker colorChange={handleColorChange} currentColor={color} />
+        {taskForm && (
+          <div className={classes.form__group}>
+            <label htmlFor="taskDescription" className={classes.form__label}>
+              Description
+            </label>
+            <textarea
+              id="taskDescription"
+              className={classes.form__input + " scrollbar"}
+              maxLength="180"
+              placeholder="e.g. It's always good to take a break. This 15 mins break will recharge the batteries a little."
+              name="taskDescription"
+              value={formik.values.taskDescription}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+          </div>
         )}
-        <button className="btn btn-primary">{buttonTitle}</button>
+        {showColorPicker && (
+          <ColorPicker
+            colorChange={handleColorChange}
+            currentColor={formik.values.color}
+          />
+        )}
+        <button type="submit" className="btn btn-primary">
+          {buttonTitle}
+        </button>
       </form>
     </>
   );

@@ -1,25 +1,24 @@
-.navItem{
+.navItem {
   display: flex;
   align-items: center;
   margin-bottom: var(--space-xs);
 
-  svg{
+  svg {
     width: 2rem;
     height: 2rem;
     margin-right: var(--space-xxs);
   }
 
-  span{
+  span {
     font-size: 1.4rem;
     color: var(--color-grey);
     font-weight: 400;
     text-transform: capitalize;
-    transition: color .2s ease-in-out;
+    transition: color 0.2s ease-in-out;
   }
 
-  &:hover{
-
-    span{
+  &:hover {
+    span {
       color: var(--color-text);
     }
 
@@ -30,20 +29,19 @@
 .active {
   background-color: var(--color-primary);
   border-radius: 0 5rem 5rem 0;
-  padding: var(--space-xxs);
+  padding: 0.5rem;
 
-  svg{
+  svg {
     fill: var(--color-white);
   }
 
-  span{
+  span {
     color: var(--color-white);
   }
 
-    &:hover {
-  
-      span {
-        color: var(--color-white);
-      }
+  &:hover {
+    span {
+      color: var(--color-white);
     }
+  }
 }

@@ -3,23 +3,26 @@ import DotMenu from "../../../DotMenu";
 import Overlay from "../../../UI/Overlay";
 import icons from "../../../../img/symbol-defs.svg";
 
-import classes from "./TaskStatusBar.module.scss";
+import classes from "./TrackStatusBar.module.scss";
 import { useActions } from "../../../../hooks/useActions";
 import Modal from "../../../UI/Modal";
 import withModalForm from "../../../HOC/withModalForm";
 import ModalForm from "../../../ModalForm";
 
-function TaskStatusBar({
+function TrackStatusBar({
   colorCode,
   trackId,
-  statusName,
+  trackName,
   taskCount,
   addShadowBottom,
 }) {
   const [editTrack, setEditTrack] = useState(false);
+  const [addTask, setAddTask] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { deleteTrackRequest, editTrackRequest } = useActions();
+  const { deleteTrackRequest, editTrackRequest, addNewTaskRequest } =
+    useActions();
   const EditTrackForm = withModalForm(ModalForm);
+  const AddTaskForm = withModalForm(ModalForm);
 
   const handleMenuChange = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -27,6 +30,10 @@ function TaskStatusBar({
 
   const handleEditTrackModal = () => {
     setEditTrack(!editTrack);
+  };
+
+  const handleAddTaskModal = () => {
+    setAddTask(!addTask);
   };
 
   const onDeleteTrack = () => {
@@ -56,6 +63,28 @@ function TaskStatusBar({
     </>
   );
 
+  const addTaskModal = (
+    <>
+      <Overlay />
+      <Modal
+        styles={{ height: "max-content" }}
+        onCloseModal={handleAddTaskModal}
+      >
+        <AddTaskForm
+          handleModal={handleAddTaskModal}
+          initialValues={{
+            heading: "Add New Task",
+            label: "Task Title",
+            buttonTitle: "Create Task",
+          }}
+          submitAction={addNewTaskRequest}
+          taskForm={true}
+          trackId={trackId}
+        />
+      </Modal>
+    </>
+  );
+
   return (
     <>
       <div
@@ -69,10 +98,21 @@ function TaskStatusBar({
           className={classes.statusColorBox}
           style={{ borderColor: `${colorCode}` }}
         ></div>
-        <h4 className="heading--4">
-          {statusName} <span>{taskCount}</span>
+        <h4 className="heading--5 margin-left-0_5">
+          {trackName} <span>{taskCount}</span>
         </h4>
-        <button className="btn dots" onClick={handleMenuChange}>
+        <button
+          className="btn btn-overlay margin-right-0_5"
+          onClick={handleAddTaskModal}
+        >
+          <svg
+            className="svg"
+            style={{ paddingTop: "0.2rem", paddingLeft: "0.2rem" }}
+          >
+            <use href={icons + "#icon-plus"}></use>
+          </svg>
+        </button>
+        <button className="btn btn-overlay" onClick={handleMenuChange}>
           <svg className="svg">
             <use href={icons + "#icon-horizontal-dots"}></use>
           </svg>
@@ -87,9 +127,10 @@ function TaskStatusBar({
           />
         )}
       </div>
+      {addTask && addTaskModal}
       {editTrack && editTrackModal}
     </>
   );
 }
 
-export default TaskStatusBar;
+export default TrackStatusBar;

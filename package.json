@@ -33,6 +33,7 @@
   "homepage": "https://github.com/gargi91/kanban-board#readme",
   "dependencies": {
     "concurrently": "^7.6.0",
+    "formik": "^2.2.9",
     "prettier": "^2.8.1",
     "reselect": "^4.1.7",
     "wait-on": "^7.0.1"
