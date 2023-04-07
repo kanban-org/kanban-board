@@ -24,4 +24,16 @@ const addNewtask = (task) => ({
   payload: task,
 });
 
-export { tasksLoaded, tasksLoading, tasksLoadError, removeTasks, addNewtask };
+const moveTask = ({ source, destination }) => ({
+  type: ACTION_TYPE.MOVE_TASK,
+  payload: { source, destination },
+});
+
+export {
+  tasksLoaded,
+  tasksLoading,
+  tasksLoadError,
+  removeTasks,
+  addNewtask,
+  moveTask,
+};

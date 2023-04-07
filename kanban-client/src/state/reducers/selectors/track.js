@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-const selectTrackEntities = (state) => state.tracks.entities;
+export const selectTrackEntities = (state) => state.tracks.entities;
 
 // {
 //   1 : {
@@ -23,7 +23,6 @@ export const selectTrackById = (state, trackId) => {
   return selectTrackEntities(state)[trackId];
 };
 
-export const selectTrackIds = createSelector(
-  selectTrackEntities,
-  (entities) => Object.keys(entities) 
-)
+export const selectTrackIds = createSelector(selectTrackEntities, (entities) =>
+  Object.keys(entities)
+);

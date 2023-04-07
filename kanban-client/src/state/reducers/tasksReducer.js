@@ -82,6 +82,62 @@ export default function tasksReducer(state = initialState, action) {
         order: {},
       };
     }
+    case ACTION_TYPE.MOVE_TASK: {
+      const { source, destination } = action.payload;
+
+      // If the source and destination are the same, do nothing
+      if (
+        !source ||
+        !destination ||
+        !source.droppableId ||
+        !destination.droppableId ||
+        (source.droppableId === destination.droppableId &&
+          source.index === destination.index)
+      ) {
+        return state;
+      }
+
+      // Get the track ID from the source and destination
+      const sourceTrackId = source.droppableId;
+      const destinationTrackId = destination.droppableId;
+
+      // Get the task ID from the source
+      const sourceTaskId = state.order[sourceTrackId][source.index];
+
+      // Get the task from the entities
+      const task = state.entities[sourceTaskId];
+
+      // Create a new task object with the updated track ID
+      const updatedTask = {
+        ...task,
+        trackId: destinationTrackId,
+      };
+
+      // Remove the task from the source track's order
+      const sourceTrackOrder = state.order[sourceTrackId];
+      sourceTrackOrder.splice(source.index, 1);
+
+      let destinationTrackOrder = state.order[destinationTrackId];
+
+      if (!destinationTrackOrder) {
+        state.order[destinationTrackId] = [];
+        destinationTrackOrder = state.order[destinationTrackId];
+      }
+      destinationTrackOrder.splice(destination.index, 0, sourceTaskId);
+
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          [sourceTaskId]: updatedTask,
+        },
+        order: {
+          ...state.order,
+          [sourceTrackId]: sourceTrackOrder,
+          [destinationTrackId]: destinationTrackOrder,
+        },
+      };
+    }
 
     default:
       return state;
