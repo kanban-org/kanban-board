@@ -1,4 +1,26 @@
 .taskList {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   overflow-y: scroll;
   padding: var(--space-xs);
+  position: relative;
+}
+
+.taskList::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--color-base-light);
+  opacity: 0.5;
+  border-radius: 0.8rem;
+  z-index: 1;
+  display: none;
+}
+
+.draggedOver::before {
+  display: block;
 }

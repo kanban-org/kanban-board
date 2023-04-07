@@ -4,6 +4,8 @@ import TaskList from "../TaskList";
 import { useScrollShadow } from "../../../../hooks/useScrollShadow";
 import { useSelector } from "react-redux";
 import { selectTrackById } from "../../../../state/reducers/selectors/track";
+import { Droppable } from "react-beautiful-dnd";
+import { memo } from "react";
 
 function Track({ trackId }) {
   const { applyBoxShadow, onScrollHandler } = useScrollShadow(false);
@@ -23,14 +25,23 @@ function Track({ trackId }) {
         trackName={trackName}
         addShadowBottom={applyBoxShadow}
       />
-      <TaskList
-        trackId={trackId}
-        // allColumns={allColumns}
-        trackName={trackName}
-        onScrollHandler={onScrollHandler}
-      />
+      <Droppable
+        droppableId={trackId}
+        ignoreContainerClipping={true}
+        direction="vertical"
+      >
+        {(provided, snapshot) => (
+          <TaskList
+            trackId={trackId}
+            trackName={trackName}
+            onScrollHandler={onScrollHandler}
+            provided={provided}
+            snapshot={snapshot}
+          />
+        )}
+      </Droppable>
     </div>
   );
 }
 
-export default Track;
+export default memo(Track);

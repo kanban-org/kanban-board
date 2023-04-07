@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import Modal from "../../UI/Modal";
 import Overlay from "../../UI/Overlay";
 import ViewTaskModal from "../ViewTask";
@@ -6,8 +6,9 @@ import TaskDetails from "../TaskDetails";
 import classes from "./TaskBox.module.scss";
 import { useSelector } from "react-redux";
 import { selectTaskById } from "../../../state/reducers/selectors/task";
+import { Draggable } from "react-beautiful-dnd";
 
-function TaskBox({ taskId, currentTrack }) {
+function TaskBox({ taskId, currentTrack, index }) {
   const [viewTask, setViewTask] = useState(false);
   const task = useSelector((state) => selectTaskById(state, taskId));
   // console.log(task);
@@ -41,22 +42,29 @@ function TaskBox({ taskId, currentTrack }) {
 
   return (
     <>
-      <li
-        className={classes.taskBox}
-        key={task.id}
-        onClick={() => onViewTask()}
-      >
-        <TaskDetails
-          id={task.id}
-          title={task.taskTitle}
-          // totalSubtasks={totalSubtasks}
-          // comepletedSubtasks={comepletedSubtasks}
-        />
-      </li>
+      <Draggable draggableId={taskId} index={index}>
+        {(provided) => (
+          <div
+            className={classes.taskBox}
+            key={task.id}
+            // onClick={() => onViewTask()}
+            {...provided.draggableProps}
+            {...provided.dragHandleProps}
+            ref={provided.innerRef}
+          >
+            <TaskDetails
+              id={taskId}
+              title={task.taskTitle}
+              // totalSubtasks={totalSubtasks}
+              // comepletedSubtasks={comepletedSubtasks}
+            />
+          </div>
+        )}
+      </Draggable>
 
       {viewTask && taskDetailModal}
     </>
   );
 }
 
-export default TaskBox;
+export default memo(TaskBox);
