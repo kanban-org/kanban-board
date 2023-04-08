@@ -4,11 +4,9 @@ import Overlay from "../../UI/Overlay";
 import ViewTaskModal from "../ViewTask";
 import TaskDetails from "../TaskDetails";
 import classes from "./TaskBox.module.scss";
-import { useSelector } from "react-redux";
-import { selectTaskById } from "../../../state/reducers/selectors/task";
 import { Draggable } from "react-beautiful-dnd";
 
-function TaskBox({ task, taskId, currentTrack, index }) {
+function TaskBox({ task, taskId, currentTrack, index, isDraggingOver }) {
   const [viewTask, setViewTask] = useState(false);
   // const task = useSelector((state) => selectTaskById(state, taskId));
   // console.log(task);
@@ -45,7 +43,11 @@ function TaskBox({ task, taskId, currentTrack, index }) {
       <Draggable draggableId={taskId} index={index}>
         {(provided) => (
           <div
-            className={classes.taskBox}
+            className={
+              classes.taskBox +
+              " " +
+              (isDraggingOver ? classes.taskDragging : "")
+            }
             key={task.id}
             // onClick={() => onViewTask()}
             {...provided.draggableProps}

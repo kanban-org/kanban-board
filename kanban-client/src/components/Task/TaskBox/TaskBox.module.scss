@@ -1,7 +1,7 @@
 .taskBox{
   background-color: var(--color-base-light);
   width: 100%;
-  border-radius: var(--border-radius);
+  border-radius: var(--border-radius-sm);
   padding: var(--space-sm) var(--space-xs);
   box-shadow: var(--shadow-light);
 
@@ -13,4 +13,8 @@
     cursor: pointer;
     background-color: var(--color-base-darker);
   }
+}
+
+.taskDragging {
+  box-shadow: var(--shadow-light);
 }

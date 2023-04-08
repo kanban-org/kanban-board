@@ -1,4 +1,3 @@
-import { useState } from "react";
 import icons from "../../../img/symbol-defs.svg";
 import Modal from "../../UI/Modal";
 import Overlay from "../../UI/Overlay";
@@ -11,11 +10,12 @@ import { useSelector } from "react-redux";
 import { selectBoardCount } from "../../../state/reducers/selectors/board";
 
 function SideNav() {
-  const [openCreateBoardModal, setOpenCreateBoardModal] = useState(false);
-  const { addBoardRequest } = useActions();
+  const { addBoardRequest, toggleCreateBoardModal } = useActions();
+  const boardModal = useSelector((state) => state.boards.createBoardModal);
+  const boardCount = useSelector((state) => selectBoardCount(state));
 
   const handleAddBoardModal = () => {
-    setOpenCreateBoardModal(!openCreateBoardModal);
+    toggleCreateBoardModal();
   };
 
   const AddBoardForm = withModalForm(ModalForm);
@@ -40,8 +40,6 @@ function SideNav() {
     </>
   );
 
-  const boardCount = useSelector((state) => selectBoardCount(state));
-
   return (
     <div>
       <h4 className="heading--4 mb-sm">All boards ({boardCount})</h4>
@@ -53,7 +51,7 @@ function SideNav() {
         <span className="heading--3">+ Create board</span>
       </button>
 
-      {openCreateBoardModal && createBoardModal}
+      {boardModal && createBoardModal}
     </div>
   );
 }

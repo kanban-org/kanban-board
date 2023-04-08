@@ -5,6 +5,7 @@ const initialState = {
   entities: {},
   status: "idle",
   error: null,
+  createBoardModal: false,
 };
 
 export default function boardsReducer(state = initialState, action) {
@@ -66,6 +67,12 @@ export default function boardsReducer(state = initialState, action) {
       return {
         ...state,
         currentBoardId: action.payload,
+      };
+
+    case ACTION_TYPE.TOGGLE_CREATE_BOARD_MODAL:
+      return {
+        ...state,
+        createBoardModal: !state.createBoardModal,
       };
 
     default:

@@ -17,6 +17,8 @@ export const selectCurrentBoardId = (state) => {
   return state.boards.currentBoardId;
 };
 
-export const selectBoardCount = (state) => {
-  return selectBoards(state).length;
-}
+export const selectBoardCount = createSelector(
+  selectBoards,
+  // output selector
+  (boards) => boards.length
+);

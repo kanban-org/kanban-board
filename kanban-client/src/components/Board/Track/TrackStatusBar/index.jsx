@@ -100,7 +100,7 @@ function TrackStatusBar({ colorCode, trackId, trackName, addShadowBottom }) {
           style={{ borderColor: `${colorCode}` }}
         ></div>
         <h4 className="heading--5 margin-left-0_5">
-          {trackName} <span>{taskCount}</span>
+          <span style={{ color: "#fff" }}>{trackName}</span> {taskCount}
         </h4>
         <button
           className="btn btn-overlay margin-right-0_5"

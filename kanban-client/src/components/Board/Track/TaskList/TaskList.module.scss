@@ -16,7 +16,7 @@
   bottom: 0;
   background-color: var(--color-base-light);
   opacity: 0.5;
-  border-radius: 0.8rem;
+  border-radius: var(--border-radius-sm);
   z-index: 1;
   display: none;
 }

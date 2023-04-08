@@ -1,11 +1,11 @@
-import React from "react";
-import "./NoDataSvg.css";
+import { memo } from "react";
+import "./EmptyBoard.module.scss";
 
-function NoDataSvg() {
+const NoDataSvg = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      id="freepik_stories-no-data" 
+      id="freepik_stories-no-data"
       className="no-data-svg animated"
       version="1.1"
       viewBox="0 0 750 500"
@@ -2017,6 +2017,6 @@ function NoDataSvg() {
       </defs>
     </svg>
   );
-}
+};
 
-export default NoDataSvg;
+export default memo(NoDataSvg);

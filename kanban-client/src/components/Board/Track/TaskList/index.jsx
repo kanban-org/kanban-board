@@ -1,10 +1,7 @@
 import classes from "./TaskList.module.scss";
 import TaskBox from "../../../Task/TaskBox";
 import { useSelector } from "react-redux";
-import {
-  selectTaskIdsOfTrack,
-  selectTasksOfTrack,
-} from "../../../../state/reducers/selectors/task";
+import { selectTasksOfTrack } from "../../../../state/reducers/selectors/task";
 import { memo } from "react";
 
 const TaskList = ({
@@ -34,6 +31,7 @@ const TaskList = ({
           taskId={task.id}
           currentTrack={trackName}
           index={index}
+          isDraggingOver={snapshot.isDraggingOver}
         />
       ))}
       {provided.placeholder}

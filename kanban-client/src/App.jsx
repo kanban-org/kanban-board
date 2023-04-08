@@ -6,11 +6,10 @@ import "./App.scss";
 import { useActions } from "./hooks/useActions";
 
 function App() {
-  const { fetchBoards, fetchTasksOfBoard } = useActions();
+  const { fetchBoards } = useActions();
 
   useEffect(() => {
     fetchBoards();
-    // fetchTasksOfBoard();
   }, []);
 
   return (

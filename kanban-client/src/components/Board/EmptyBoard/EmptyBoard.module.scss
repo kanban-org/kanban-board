@@ -14,7 +14,7 @@ svg#freepik_stories-no-data.animated #freepik--Fly--inject-7 {
   animation-delay: 0s;
 }
 
-.no-data-svg{
+.no-data-svg {
   height: 50rem;
   width: 50rem;
 }
@@ -45,4 +45,16 @@ svg#freepik_stories-no-data.animated #freepik--Fly--inject-7 {
 }
 .animator-hidden {
   display: none;
+}
+
+.noBoardsContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.noBoards {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
