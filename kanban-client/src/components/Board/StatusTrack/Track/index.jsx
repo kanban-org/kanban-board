@@ -21,7 +21,6 @@ function Track({ trackId }) {
       <TrackStatusBar
         colorCode={colorCode}
         trackId={trackId}
-        // taskCount={totalTasks}
         trackName={trackName}
         addShadowBottom={applyBoxShadow}
       />

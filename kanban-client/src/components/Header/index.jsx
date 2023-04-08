@@ -5,7 +5,10 @@ import classes from "./Header.module.scss";
 import icons from "../../img/symbol-defs.svg";
 import Modal from "../UI/Modal";
 import { useSelector } from "react-redux";
-import { selectCurrentBoardId } from "../../state/reducers/selectors/board";
+import {
+  selectBoardById,
+  selectCurrentBoardId,
+} from "../../state/reducers/selectors/board";
 import { useActions } from "../../hooks/useActions";
 import withModalForm from "../HOC/withModalForm";
 import ModalForm from "../ModalForm";
@@ -15,6 +18,7 @@ function Header(props) {
   const [editBoard, setEditboard] = useState(false);
 
   const currentBoardId = useSelector((state) => selectCurrentBoardId(state));
+  const board = useSelector((state) => selectBoardById(state, currentBoardId));
   const { deleteBoardRequest, tracksDelete, editBoardRequest } = useActions();
 
   const EditBoardForm = withModalForm(ModalForm);
@@ -56,7 +60,7 @@ function Header(props) {
   return (
     <>
       <div className={classes.header}>
-        <h2 className="heading--2">{}</h2>
+        <h2 className="heading--2">{board?.boardName}</h2>
         <button className="btn" onClick={handleMenuChange}>
           <svg className="svg">
             <use href={icons + "#icon-menu"}></use>

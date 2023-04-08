@@ -30,3 +30,8 @@ export const selectTasksOfTrack = createSelector(
   // output selector
   (entities, taskIds) => taskIds.map((taskId) => entities[taskId])
 );
+
+export const selectTasksCountOfTrack = createSelector(
+  selectTaskIdsOfTrack,
+  (taskIds) => taskIds.length
+);

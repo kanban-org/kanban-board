@@ -8,19 +8,20 @@ import { useActions } from "../../../../hooks/useActions";
 import Modal from "../../../UI/Modal";
 import withModalForm from "../../../HOC/withModalForm";
 import ModalForm from "../../../ModalForm";
+import { useSelector } from "react-redux";
+import { selectTasksCountOfTrack } from "../../../../state/reducers/selectors/task";
 
-function TrackStatusBar({
-  colorCode,
-  trackId,
-  trackName,
-  taskCount,
-  addShadowBottom,
-}) {
+function TrackStatusBar({ colorCode, trackId, trackName, addShadowBottom }) {
   const [editTrack, setEditTrack] = useState(false);
   const [addTask, setAddTask] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { deleteTrackRequest, editTrackRequest, addNewTaskRequest } =
     useActions();
+
+  const taskCount = useSelector((state) =>
+    selectTasksCountOfTrack(state, trackId)
+  );
+
   const EditTrackForm = withModalForm(ModalForm);
   const AddTaskForm = withModalForm(ModalForm);
 
