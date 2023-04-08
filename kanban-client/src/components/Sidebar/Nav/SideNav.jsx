@@ -7,6 +7,8 @@ import classes from "./SideNav.module.scss";
 import ModalForm from "../../ModalForm";
 import withModalForm from "../../HOC/withModalForm";
 import { useActions } from "../../../hooks/useActions";
+import { useSelector } from "react-redux";
+import { selectBoardCount } from "../../../state/reducers/selectors/board";
 
 function SideNav() {
   const [openCreateBoardModal, setOpenCreateBoardModal] = useState(false);
@@ -38,9 +40,11 @@ function SideNav() {
     </>
   );
 
+  const boardCount = useSelector((state) => selectBoardCount(state));
+
   return (
     <div>
-      <h4 className="heading--4 mb-sm">All boards (8)</h4>
+      <h4 className="heading--4 mb-sm">All boards ({boardCount})</h4>
       <NavList />
       <button className={"btn " + classes.btnAdd} onClick={handleAddBoardModal}>
         <svg className="svg svg-primary">

@@ -16,3 +16,7 @@ export const selectBoardById = (state, boardId) => {
 export const selectCurrentBoardId = (state) => {
   return state.boards.currentBoardId;
 };
+
+export const selectBoardCount = (state) => {
+  return selectBoards(state).length;
+}

@@ -1,22 +1,23 @@
 import { memo, useCallback, useState } from "react";
 import classes from "./Board.module.scss";
-import ScrollContainer from "react-indiana-drag-scroll";
 import { DragDropContext } from "react-beautiful-dnd";
 import Track from "./StatusTrack/Track";
 import Overlay from "../UI/Overlay";
 import Modal from "../UI/Modal";
 import { useSelector } from "react-redux";
 import { selectTrackIds } from "../../state/reducers/selectors/track";
+import { selectBoardCount } from "../../state/reducers/selectors/board";
 import withModalForm from "../HOC/withModalForm";
 import ModalForm from "../ModalForm";
 import { useActions } from "../../hooks/useActions";
+import NoDataSvg from "./NoDataSvg";
 
 function Board() {
   const [addTrackModal, setAddTrackModal] = useState(false);
   const { addNewTrackRequest, moveTask } = useActions();
   // get all tracks of the currentBoardId
   const trackIds = useSelector(selectTrackIds);
-
+  const boardCount = useSelector(selectBoardCount);
   const handleAddTrackModal = useCallback(() => {
     setAddTrackModal(!addTrackModal);
   }, [setAddTrackModal, addTrackModal]);
@@ -61,10 +62,27 @@ function Board() {
     </>
   );
 
+  const noBoardsMessage = (
+    <div className={classes.noBoardsContainer}>
+      <NoDataSvg />
+      <div className={classes.noBoards}>
+        <h3 className="heading--1">No boards found!</h3>
+        <h5 className="heading--5">
+          Create a board to start adding tracks and tasks to it.
+        </h5>
+      </div>
+    </div>
+  ); 
+
+  if (boardCount === 0) return noBoardsMessage;
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>
-        <div className={classes.container + " no-back-gesture"}>
+        <div
+          className={
+            classes.container + " no-back-gesture scrollbar scroll-container"
+          }
+        >
           {trackIds.map((trackId) => {
             return <Track trackId={trackId} key={trackId} />;
           })}
@@ -79,11 +97,6 @@ function Board() {
           </div>
         </div>
       </DragDropContext>
-      {/* <ScrollContainer
-        className={classes.container + " scrollbar scroll-container"}
-        hideScrollbars={false}
-      >
-      </ScrollContainer> */}
 
       {addTrackModal && addTrackFormModal}
     </>
