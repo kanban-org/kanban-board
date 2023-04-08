@@ -83,12 +83,10 @@ export default function tasksReducer(state = initialState, action) {
       };
     }
     case ACTION_TYPE.MOVE_TASK: {
-      const { source, destination } = action.payload;
+      const { source, destination, draggableId } = action.payload;
 
       // If the source and destination are the same, do nothing
       if (
-        !source ||
-        !destination ||
         !source.droppableId ||
         !destination.droppableId ||
         (source.droppableId === destination.droppableId &&
@@ -102,10 +100,10 @@ export default function tasksReducer(state = initialState, action) {
       const destinationTrackId = destination.droppableId;
 
       // Get the task ID from the source
-      const sourceTaskId = state.order[sourceTrackId][source.index];
+      const sourceTaskId = draggableId;
 
       // Get the task from the entities
-      const task = state.entities[sourceTaskId];
+      const task = state.entities[draggableId];
 
       // Create a new task object with the updated track ID
       const updatedTask = {

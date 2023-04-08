@@ -1,7 +1,10 @@
 import classes from "./TaskList.module.scss";
 import TaskBox from "../../../Task/TaskBox";
 import { useSelector } from "react-redux";
-import { selectTaskIdsOfTrack } from "../../../../state/reducers/selectors/task";
+import {
+  selectTaskIdsOfTrack,
+  selectTasksOfTrack,
+} from "../../../../state/reducers/selectors/task";
 import { memo } from "react";
 
 const TaskList = ({
@@ -11,7 +14,7 @@ const TaskList = ({
   provided,
   snapshot,
 }) => {
-  const taskIds = useSelector((state) => selectTaskIdsOfTrack(state, trackId));
+  const tasks = useSelector((state) => selectTasksOfTrack(state, trackId));
 
   return (
     <div
@@ -20,15 +23,15 @@ const TaskList = ({
         " scrollbar" +
         (snapshot.isDraggingOver ? ` ${classes.draggedOver}` : "")
       }
-      role={["list"]}
       onScroll={onScrollHandler}
       {...provided.droppableProps}
       ref={provided.innerRef}
     >
-      {taskIds.map((taskId, index) => (
+      {tasks.map((task, index) => (
         <TaskBox
-          key={taskId}
-          taskId={taskId}
+          task={task}
+          key={task.id}
+          taskId={task.id}
           currentTrack={trackName}
           index={index}
         />

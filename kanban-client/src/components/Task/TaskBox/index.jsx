@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import Modal from "../../UI/Modal";
 import Overlay from "../../UI/Overlay";
 import ViewTaskModal from "../ViewTask";
@@ -8,9 +8,9 @@ import { useSelector } from "react-redux";
 import { selectTaskById } from "../../../state/reducers/selectors/task";
 import { Draggable } from "react-beautiful-dnd";
 
-function TaskBox({ taskId, currentTrack, index }) {
+function TaskBox({ task, taskId, currentTrack, index }) {
   const [viewTask, setViewTask] = useState(false);
-  const task = useSelector((state) => selectTaskById(state, taskId));
+  // const task = useSelector((state) => selectTaskById(state, taskId));
   // console.log(task);
   // const subtasks = task.subtasks;
 
@@ -21,9 +21,9 @@ function TaskBox({ taskId, currentTrack, index }) {
   //   if (subtask.completed === true) comepletedSubtasks++;
   // });
 
-  const onViewTask = () => {
+  const onViewTask = useCallback(() => {
     setViewTask(true);
-  };
+  }, [setViewTask]);
 
   const taskDetailModal = (
     <>
@@ -53,7 +53,7 @@ function TaskBox({ taskId, currentTrack, index }) {
             ref={provided.innerRef}
           >
             <TaskDetails
-              id={taskId}
+              id={task.id}
               title={task.taskTitle}
               // totalSubtasks={totalSubtasks}
               // comepletedSubtasks={comepletedSubtasks}

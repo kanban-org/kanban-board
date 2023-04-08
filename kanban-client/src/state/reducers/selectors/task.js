@@ -23,7 +23,10 @@ export const selectTaskIdsOfTrack = createSelector(
   (order, trackId) => order[trackId] || []
 );
 
-export const selectTasksOfTrack = (state, trackId) => {
-  const tasks = selectTasks(state);
-  return tasks.filter((task) => task.trackId === trackId);
-};
+export const selectTasksOfTrack = createSelector(
+  // input selectors
+  selectTaskEntities,
+  selectTaskIdsOfTrack,
+  // output selector
+  (entities, taskIds) => taskIds.map((taskId) => entities[taskId])
+);

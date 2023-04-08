@@ -24,9 +24,9 @@ const addNewtask = (task) => ({
   payload: task,
 });
 
-const moveTask = ({ source, destination }) => ({
+const moveTask = ({ source, destination, draggableId }) => ({
   type: ACTION_TYPE.MOVE_TASK,
-  payload: { source, destination },
+  payload: { source, destination, draggableId },
 });
 
 export {
