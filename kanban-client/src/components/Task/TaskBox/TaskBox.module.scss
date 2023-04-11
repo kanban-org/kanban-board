@@ -1,17 +1,27 @@
-.taskBox{
+.taskBox {
+  display: flex;
+  flex-direction: column;
   background-color: var(--color-base-light);
   width: 100%;
   border-radius: var(--border-radius-sm);
-  padding: var(--space-sm) var(--space-xs);
+  padding: var(--space-xs) var(--space-xs);
   box-shadow: var(--shadow-light);
 
-  &:not(:last-of-type){
+  &:not(:last-of-type) {
     margin-bottom: var(--space-xs);
   }
 
-  &:hover{
+  &:hover {
     cursor: pointer;
     background-color: var(--color-base-darker);
+  }
+}
+
+.priority {
+  z-index: 100;
+  &:hover {
+    // fill svg color
+    color: var(--color-primary);
   }
 }
 

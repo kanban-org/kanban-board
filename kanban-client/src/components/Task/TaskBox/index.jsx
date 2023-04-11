@@ -5,6 +5,7 @@ import ViewTaskModal from "../ViewTask";
 import TaskDetails from "../TaskDetails";
 import classes from "./TaskBox.module.scss";
 import { Draggable } from "react-beautiful-dnd";
+import icons from "../../../img/symbol-defs.svg";
 
 function TaskBox({ task, taskId, currentTrack, index, isDraggingOver }) {
   const [viewTask, setViewTask] = useState(false);
@@ -60,6 +61,18 @@ function TaskBox({ task, taskId, currentTrack, index, isDraggingOver }) {
               // totalSubtasks={totalSubtasks}
               // comepletedSubtasks={comepletedSubtasks}
             />
+            <div
+              className={classes.priority + " margin-top-0_5 margin-left-0_5"}
+            >
+              <button className="btn btn-overlay">
+                <svg
+                  className="svg"
+                  style={{ paddingTop: "0.2rem", paddingLeft: "0.2rem" }}
+                >
+                  <use href={icons + "#icon-low-priority"}></use>
+                </svg>
+              </button>
+            </div>
           </div>
         )}
       </Draggable>
