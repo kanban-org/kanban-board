@@ -14,7 +14,7 @@ import EmptyBoard from "./EmptyBoard";
 
 function Board() {
   const [addTrackModal, setAddTrackModal] = useState(false);
-  const { addNewTrackRequest, moveTask, moveTaskRequest } = useActions();
+  const { addNewTrackRequest, moveTaskRequest } = useActions();
   // get all tracks of the currentBoardId
   const trackIds = useSelector(selectTrackIds);
   const boardCount = useSelector(selectBoardCount);

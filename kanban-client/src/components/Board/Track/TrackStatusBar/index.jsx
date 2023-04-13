@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import DotMenu from "../../../DotMenu";
 import Overlay from "../../../UI/Overlay";
 import icons from "../../../../img/symbol-defs.svg";
@@ -25,22 +25,22 @@ function TrackStatusBar({ colorCode, trackId, trackName, addShadowBottom }) {
   const EditTrackForm = withModalForm(ModalForm);
   const AddTaskForm = withModalForm(ModalForm);
 
-  const handleMenuChange = () => {
+  const handleMenuChange = useCallback(() => {
     setIsMenuOpen(!isMenuOpen);
-  };
+  }, [isMenuOpen]);
 
-  const handleEditTrackModal = () => {
+  const handleEditTrackModal = useCallback(() => {
     setEditTrack(!editTrack);
-  };
+  }, [editTrack]);
 
-  const handleAddTaskModal = () => {
+  const handleAddTaskModal = useCallback(() => {
     setAddTask(!addTask);
-  };
+  }, [addTask]);
 
-  const onDeleteTrack = () => {
+  const onDeleteTrack = useCallback(() => {
     deleteTrackRequest(trackId);
     handleMenuChange();
-  };
+  }, [deleteTrackRequest, trackId, handleMenuChange]);
 
   const editTrackModal = (
     <>

@@ -28,7 +28,6 @@ const TaskList = ({
         <TaskBox
           task={task}
           key={task.id}
-          taskId={task.id}
           currentTrack={trackName}
           index={index}
           isDraggingOver={snapshot.isDraggingOver}

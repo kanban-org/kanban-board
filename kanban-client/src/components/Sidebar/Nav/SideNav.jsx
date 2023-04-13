@@ -8,15 +8,16 @@ import withModalForm from "../../HOC/withModalForm";
 import { useActions } from "../../../hooks/useActions";
 import { useSelector } from "react-redux";
 import { selectBoardCount } from "../../../state/reducers/selectors/board";
+import { useCallback } from "react";
 
 function SideNav() {
   const { addBoardRequest, toggleCreateBoardModal } = useActions();
   const boardModal = useSelector((state) => state.boards.createBoardModal);
   const boardCount = useSelector((state) => selectBoardCount(state));
 
-  const handleAddBoardModal = () => {
+  const handleAddBoardModal = useCallback(() => {
     toggleCreateBoardModal();
-  };
+  }, [toggleCreateBoardModal]);
 
   const AddBoardForm = withModalForm(ModalForm);
 

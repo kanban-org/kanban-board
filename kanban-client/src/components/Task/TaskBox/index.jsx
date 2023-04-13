@@ -7,7 +7,7 @@ import classes from "./TaskBox.module.scss";
 import { Draggable } from "react-beautiful-dnd";
 import icons from "../../../img/symbol-defs.svg";
 
-function TaskBox({ task, taskId, currentTrack, index, isDraggingOver }) {
+function TaskBox({ task, currentTrack, index, isDraggingOver }) {
   const [viewTask, setViewTask] = useState(false);
   // const task = useSelector((state) => selectTaskById(state, taskId));
   // console.log(task);
@@ -41,7 +41,7 @@ function TaskBox({ task, taskId, currentTrack, index, isDraggingOver }) {
 
   return (
     <>
-      <Draggable draggableId={taskId} index={index}>
+      <Draggable draggableId={task.id} index={index}>
         {(provided) => (
           <div
             className={

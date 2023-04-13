@@ -6,7 +6,7 @@ import { useActions } from "../../hooks/useActions";
 import classes from "./Sidebar.module.scss";
 import { useSelector } from "react-redux";
 import { selectDisplayTheme } from "../../state/reducers/selectors/display";
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 
 function Sidebar() {
   const { changeTheme } = useActions();
@@ -20,9 +20,9 @@ function Sidebar() {
     }
   }, [theme]);
 
-  const handleDisplayChange = () => {
+  const handleDisplayChange = useCallback(() => {
     theme === "dark" ? changeTheme("light") : changeTheme("dark");
-  };
+  }, [theme, changeTheme]);
 
   const lightMode = (
     <button className={classes.toggleBtn} onClick={handleDisplayChange}>
