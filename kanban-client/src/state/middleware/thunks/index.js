@@ -1,3 +1,3 @@
 export * from "./boardRequest";
 export * from "./trackRequest";
-export * from "./taskRequst";
+export * from "./taskRequest";

@@ -14,9 +14,8 @@ export default class TaskController extends Controller {
    * @returns {Object} - Task object
    */
   async createTask(request) {
-    const { taskTitle, taskDesc, dueDate, trackId } = request.body;
     try {
-      const resTask = await this.taskService.createTask(taskTitle, taskDesc, dueDate, trackId);
+      const resTask = await this.taskService.createTask(request.body);
 
       if (!resTask) {
         throw new Exceptions.NotFoundException('Task not created');
@@ -101,6 +100,25 @@ export default class TaskController extends Controller {
 
       if (!resTask) {
         throw new Exceptions.NotFoundException('Task not found');
+      }
+
+      this.sendResponse(resTask);
+    } catch (error) {
+      this.handleException(error);
+    }
+  }
+
+  /**
+   * Move Task
+   * @param {Object} requestBody - {`taskId`, `trackId`, `prevTaskId`, `nextTaskId`}
+   * @return {Object} - Task object
+   */
+  async moveTask(request) {
+    try {
+      const resTask = await this.taskService.moveTask(request.body);
+
+      if (!resTask) {
+        throw new Exceptions.NotFoundException('Task not moved');
       }
 
       this.sendResponse(resTask);

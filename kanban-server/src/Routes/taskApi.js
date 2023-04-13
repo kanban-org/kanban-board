@@ -32,4 +32,10 @@ TaskApiRouter.delete('/task/delete/:taskId', (req, res) => {
   taskController.deleteTaskById(req);
 });
 
+// move task
+TaskApiRouter.post('/task/moveTask', (req, res) => {
+  const taskController = new TaskController(res);
+  taskController.moveTask(req);
+});
+
 export default TaskApiRouter;

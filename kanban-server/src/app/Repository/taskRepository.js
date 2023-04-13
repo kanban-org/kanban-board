@@ -1,11 +1,14 @@
 const { Task, sequelize } = require('../../models');
 
 export default class TaskRepository {
-  async createTask(taskTitle, taskDesc, dueDate, track) {
+  async createTask(data) {
+    const { taskTitle, taskDesc, dueDate, track, rank } = data;
+    console.log(taskDesc);
     const task = await Task.create({
       taskTitle,
       taskDesc,
       dueDate,
+      rank,
     });
 
     await track.addTask(task);
@@ -41,12 +44,22 @@ export default class TaskRepository {
     return task;
   }
 
-  async updateTask(taskId, taskTitle, taskDesc, dueDate) {
+  async updateTask(data) {
+    const { taskId, taskTitle, taskDesc, dueDate, trackId, newRank } = data;
     const task = await this.getTaskById(taskId);
 
     task.taskTitle = taskTitle || task.taskTitle;
     task.taskDesc = taskDesc || task.taskDesc;
     task.dueDate = dueDate || task.dueDate;
+    task.rank = newRank || task.rank;
+
+    try {
+      if (trackId) {
+        await task.setTrack(trackId);
+      }
+    } catch (error) {
+      throw new Error(error);
+    }
 
     const updatedTask = await task.save();
 
@@ -76,5 +89,39 @@ export default class TaskRepository {
     } catch (error) {
       throw new Error(error);
     }
+  }
+
+  async getLastTaskOfTrack(trackId) {
+    const lastTask = await Task.findOne({
+      where: {
+        trackId: trackId,
+      },
+      order: [['rank', 'DESC']],
+    });
+    return lastTask;
+  }
+
+  async getNeighbourTasks(task, trackId) {
+    const prevTask = await Task.findOne({
+      where: {
+        trackId: trackId,
+        rank: {
+          [Op.lt]: task.rank,
+        },
+      },
+      order: [['rank', 'DESC']],
+    });
+
+    const nextTask = await Task.findOne({
+      where: {
+        trackId: trackId,
+        rank: {
+          [Op.gt]: task.rank,
+        },
+      },
+      order: [['rank', 'ASC']],
+    });
+
+    return [prevTask, nextTask];
   }
 }

@@ -1,46 +1,36 @@
 import { ACTION_TYPE } from "../action-types";
 
 /* Tracks action-creators */
-const tracksLoading = () => ({
+export const tracksLoading = () => ({
   type: ACTION_TYPE.TRACKS_LOADING,
 });
 
-const tracksLoaded = (tracks) => ({
+export const tracksLoaded = (tracks) => ({
   type: ACTION_TYPE.TRACKS_LOADED,
   payload: tracks,
 });
 
-const tracksLoadError = (error) => ({
+export const tracksLoadError = (error) => ({
   type: ACTION_TYPE.TRACKS_LOAD_ERROR,
   payload: error,
 });
 
-const tracksDelete = (boardId) => ({
+export const tracksDelete = (boardId) => ({
   type: ACTION_TYPE.TRACKS_DELETE,
   payload: boardId,
 });
 
-const addNewTrack = (track) => ({
+export const addNewTrack = (track) => ({
   type: ACTION_TYPE.ADD_NEW_TRACK,
   payload: track,
 });
 
-const deleteTrack = (trackId) => ({
+export const deleteTrack = (trackId) => ({
   type: ACTION_TYPE.DELETE_TRACK,
   payload: trackId,
 });
 
-const editTrack = (track) => ({
+export const editTrack = (track) => ({
   type: ACTION_TYPE.EDIT_TRACK,
   payload: track,
 });
-
-export {
-  tracksLoading,
-  tracksLoaded,
-  tracksLoadError,
-  tracksDelete,
-  addNewTrack,
-  deleteTrack,
-  editTrack,
-};

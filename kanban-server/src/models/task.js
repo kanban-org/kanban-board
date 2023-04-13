@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 
       // many-to-one relationship between task and track
       this.belongsTo(models.Track, {
+        onDelete: 'cascade',
         foreignKey: 'trackId',
       });
 
@@ -34,6 +35,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       taskDesc: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      rank: {
         type: DataTypes.STRING,
         allowNull: false,
       },

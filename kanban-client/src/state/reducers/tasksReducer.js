@@ -1,3 +1,4 @@
+import { addTaskInTrackOrder } from "../../utils";
 import { ACTION_TYPE } from "../action-types";
 
 const initialState = {
@@ -32,17 +33,26 @@ export default function tasksReducer(state = initialState, action) {
     case ACTION_TYPE.TASKS_LOADED: {
       const tasks = action.payload;
 
-      // Create an empty order object to start with
-      const order = {};
+      // Create a Map to store the track order
+      const order = new Map();
 
       // Loop through all the loaded tasks
+      // Loop through all the loaded tasks
       Object.values(tasks).forEach((task) => {
-        // Check if the task's track ID exists in the order object
         const trackId = task.trackId;
-        const trackOrder = order[trackId] || [];
 
-        // Add the task ID to the track's order
-        order[trackId] = [...trackOrder, task.id];
+        // If the track doesn't have any tasks yet, create a new array with the current task
+        if (!order.has(trackId)) {
+          order.set(trackId, [task.id]);
+          return;
+        }
+
+        // Otherwise, find the index where the new task should be inserted based on its lexorank using binary search
+        const trackOrder = order.get(trackId);
+        const insertIndex = addTaskInTrackOrder(trackOrder, task, tasks);
+
+        // Insert the new task at the correct index
+        trackOrder.splice(insertIndex, 0, task.id);
       });
 
       return {
@@ -51,9 +61,10 @@ export default function tasksReducer(state = initialState, action) {
           ...state.entities,
           ...tasks,
         },
-        order,
+        order: Object.fromEntries(order),
       };
     }
+
     case ACTION_TYPE.ADD_NEW_TASK: {
       const task = action.payload;
       // Check if the track already exists in the order object

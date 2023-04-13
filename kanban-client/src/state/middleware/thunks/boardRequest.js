@@ -8,7 +8,7 @@ import {
   deleteBoard,
   editBoard,
 } from "../../actions";
-import { fetchTasksOfBoard } from "./taskRequst";
+import { fetchTasksOfBoard } from "./taskRequest";
 import { fetchTracksOfBoard } from "./trackRequest";
 
 export const fetchBoards = () => async (dispatch, state) => {

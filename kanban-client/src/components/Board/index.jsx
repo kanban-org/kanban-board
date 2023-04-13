@@ -14,7 +14,7 @@ import EmptyBoard from "./EmptyBoard";
 
 function Board() {
   const [addTrackModal, setAddTrackModal] = useState(false);
-  const { addNewTrackRequest, moveTask } = useActions();
+  const { addNewTrackRequest, moveTask, moveTaskRequest } = useActions();
   // get all tracks of the currentBoardId
   const trackIds = useSelector(selectTrackIds);
   const boardCount = useSelector(selectBoardCount);
@@ -24,12 +24,12 @@ function Board() {
     setAddTrackModal(!addTrackModal);
   }, [setAddTrackModal, addTrackModal]);
 
-  const onDragEnd = useCallback(
-    (result) => {
-      const { source, destination, draggableId } = result;
-      if (!destination || !source) return;
-      moveTask({ source, destination, draggableId });
-      /* 
+  const onDragEnd = useCallback((result) => {
+    const { source, destination, draggableId } = result;
+    if (!destination || !source) return;
+    // moveTask({ source, destination, draggableId });
+    moveTaskRequest({ source, destination, draggableId });
+    /* 
       we want the array from the order object, corresponding to the source.droppableId
       and remove the draggableId from that array
       also we want to add the draggableId to the destination.droppableId array
@@ -37,9 +37,7 @@ function Board() {
       we can do this by creating an action creator that takes in the source and destination params
       action creator: moveTask (type: MOVE_TASK, payload: { source, destination })
     */
-    },
-    [moveTask]
-  );
+  }, []);
 
   const AddNewTrack = withModalForm(ModalForm);
 
