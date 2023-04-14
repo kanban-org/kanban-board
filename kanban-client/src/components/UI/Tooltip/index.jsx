@@ -1,8 +1,6 @@
 import { useState } from "react";
-import classes from "./Tooltip.module.scss";
 
 const Tooltip = (props) => {
-  console.log(props.direction);
   let timeout;
   const [active, setActive] = useState(false);
 
@@ -19,13 +17,13 @@ const Tooltip = (props) => {
 
   return (
     <div
-      className={classes.tooltipWrapper}
+      className="tooltipWrapper"
       onMouseEnter={showTip}
       onMouseLeave={hideTip}
     >
       {props.children}
       {active && (
-        <div className={classes.tooltip + ` ${props.direction || "top"}`}>
+        <div className={`tooltip ${props.direction || "top"}`}>
           {/* Content */}
           {props.content}
         </div>

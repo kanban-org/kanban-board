@@ -6,6 +6,7 @@ import TaskDetails from "../TaskDetails";
 import classes from "./TaskBox.module.scss";
 import { Draggable } from "react-beautiful-dnd";
 import icons from "../../../img/symbol-defs.svg";
+import Tooltip from "../../UI/Tooltip";
 
 function TaskBox({ task, currentTrack, index, isDraggingOver }) {
   const [viewTask, setViewTask] = useState(false);
@@ -64,14 +65,16 @@ function TaskBox({ task, currentTrack, index, isDraggingOver }) {
             <div
               className={classes.priority + " margin-top-0_5 margin-left-0_5"}
             >
-              <button className="btn btn-overlay">
-                <svg
-                  className="svg"
-                  style={{ paddingTop: "0.2rem", paddingLeft: "0.2rem" }}
-                >
-                  <use href={icons + "#icon-low-priority"}></use>
-                </svg>
-              </button>
+              <Tooltip content="Change task priority" direction="bottom">
+                <button className="btn btn-overlay">
+                  <svg
+                    className="svg"
+                    style={{ paddingTop: "0.2rem", paddingLeft: "0.2rem" }}
+                  >
+                    <use href={icons + "#icon-low-priority"}></use>
+                  </svg>
+                </button>
+              </Tooltip>
             </div>
           </div>
         )}

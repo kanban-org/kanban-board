@@ -26,7 +26,7 @@ function Sidebar() {
   }, [theme, changeTheme]);
 
   const lightMode = (
-    <Tooltip content="Change Theme" direction="top">
+    <Tooltip content="Change Theme" direction="right">
       <button className={classes.toggleBtn} onClick={handleDisplayChange}>
         <span>Dark</span>
         <svg className="svg svg-dark">
@@ -37,7 +37,7 @@ function Sidebar() {
   );
 
   const darkMode = (
-    <Tooltip content="Change Theme" direction="top">
+    <Tooltip content="Change Theme" direction="right">
       <button className={classes.toggleBtn} onClick={handleDisplayChange}>
         <span>Light</span>
         <svg className="svg svg-white">

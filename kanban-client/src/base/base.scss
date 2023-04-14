@@ -13,6 +13,7 @@
   --color-grey-light: rgba(84, 81, 97, 0.212);
   --color-text: #2d2a37;
   --color-bg-menu: rgba(255, 255, 255, 0.85);
+  --tooltip-margin: 1rem;
 
   // fonts
   --font-primary: "Inter UI", "SF Pro Display", -apple-system,
@@ -389,5 +390,84 @@ body {
 
   &-top-auto {
     margin-top: auto;
+  }
+}
+
+/* Wrapping */
+.tooltipWrapper {
+  position: relative;
+}
+
+/* Absolute positioning */
+.tooltip {
+  position: absolute;
+  border-radius: 0.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.6rem;
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1;
+  z-index: 100;
+  white-space: nowrap;
+  backdrop-filter: blur(10px) saturate(190%) contrast(70%) brightness(80%);
+  background-color: var(--color-bg-menu);
+  border: 1px solid rgba(82, 82, 111, 0.44);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 24px;
+
+  &::before {
+    content: " ";
+    left: 50%;
+    border: solid transparent;
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &.top {
+    top: calc(var(--tooltip-margin) * -1);
+
+    &::before {
+      border-top-color: var(--color-bg-menu);
+      top: 100%;
+    }
+  }
+
+  &.right {
+    left: calc(100% + var(--tooltip-margin));
+    top: 50%;
+    transform: translateX(0) translateY(-50%);
+
+    &::before {
+      left: calc(var(--tooltip-arrow-size) * -1);
+      top: 50%;
+      transform: translateX(0) translateY(-50%);
+      border-right-color: var(--color-bg-menu);
+    }
+  }
+
+  &.bottom {
+    bottom: calc(var(--tooltip-margin) * -1);
+
+    &::before {
+      bottom: 100%;
+      border-bottom-color: var(--color-bg-menu);
+    }
+  }
+
+  &.left {
+    left: auto;
+    right: calc(100% + var(--tooltip-margin));
+    top: 50%;
+    transform: translateX(0) translateY(-50%);
+
+    &::before {
+      left: auto;
+      right: calc(var(--tooltip-arrow-size) * -2);
+      top: 50%;
+      transform: translateX(0) translateY(-50%);
+      border-left-color: var(--color-bg-menu);
+    }
   }
 }
