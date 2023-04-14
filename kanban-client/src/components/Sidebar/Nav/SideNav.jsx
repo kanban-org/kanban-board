@@ -9,6 +9,7 @@ import { useActions } from "../../../hooks/useActions";
 import { useSelector } from "react-redux";
 import { selectBoardCount } from "../../../state/reducers/selectors/board";
 import { useCallback } from "react";
+import Tooltip from "../../UI/Tooltip";
 
 function SideNav() {
   const { addBoardRequest, toggleCreateBoardModal } = useActions();

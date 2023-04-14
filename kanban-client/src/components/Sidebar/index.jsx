@@ -7,6 +7,7 @@ import classes from "./Sidebar.module.scss";
 import { useSelector } from "react-redux";
 import { selectDisplayTheme } from "../../state/reducers/selectors/display";
 import { useCallback, useEffect } from "react";
+import Tooltip from "../UI/Tooltip";
 
 function Sidebar() {
   const { changeTheme } = useActions();
@@ -25,21 +26,25 @@ function Sidebar() {
   }, [theme, changeTheme]);
 
   const lightMode = (
-    <button className={classes.toggleBtn} onClick={handleDisplayChange}>
-      <span>Dark</span>
-      <svg className="svg svg-dark">
-        <use href={icons + "#icon-dark"}></use>
-      </svg>
-    </button>
+    <Tooltip content="Change Theme" direction="top">
+      <button className={classes.toggleBtn} onClick={handleDisplayChange}>
+        <span>Dark</span>
+        <svg className="svg svg-dark">
+          <use href={icons + "#icon-dark"}></use>
+        </svg>
+      </button>
+    </Tooltip>
   );
 
   const darkMode = (
-    <button className={classes.toggleBtn} onClick={handleDisplayChange}>
-      <span>Light</span>
-      <svg className="svg svg-white">
-        <use href={icons + "#icon-light"}></use>
-      </svg>
-    </button>
+    <Tooltip content="Change Theme" direction="top">
+      <button className={classes.toggleBtn} onClick={handleDisplayChange}>
+        <span>Light</span>
+        <svg className="svg svg-white">
+          <use href={icons + "#icon-light"}></use>
+        </svg>
+      </button>
+    </Tooltip>
   );
 
   return (

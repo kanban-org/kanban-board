@@ -10,6 +10,7 @@ import withModalForm from "../../../HOC/withModalForm";
 import ModalForm from "../../../ModalForm";
 import { useSelector } from "react-redux";
 import { selectTasksCountOfTrack } from "../../../../state/reducers/selectors/task";
+import Tooltip from "../../../UI/Tooltip";
 
 function TrackStatusBar({ colorCode, trackId, trackName, addShadowBottom }) {
   const [editTrack, setEditTrack] = useState(false);
@@ -103,17 +104,19 @@ function TrackStatusBar({ colorCode, trackId, trackName, addShadowBottom }) {
           <span style={{ color: "var(--color-text)" }}>{trackName}</span>{" "}
           {taskCount}
         </h4>
-        <button
-          className="btn btn-overlay margin-right-0_5"
-          onClick={handleAddTaskModal}
-        >
-          <svg
-            className="svg"
-            style={{ paddingTop: "0.2rem", paddingLeft: "0.2rem" }}
+        <Tooltip content="Add New Task" delay="0" direction="left">
+          <button
+            className="btn btn-overlay margin-right-0_5"
+            onClick={handleAddTaskModal}
           >
-            <use href={icons + "#icon-plus"}></use>
-          </svg>
-        </button>
+            <svg
+              className="svg"
+              style={{ paddingTop: "0.2rem", paddingLeft: "0.2rem" }}
+            >
+              <use href={icons + "#icon-plus"}></use>
+            </svg>
+          </button>
+        </Tooltip>
         <button className="btn btn-overlay" onClick={handleMenuChange}>
           <svg className="svg">
             <use href={icons + "#icon-horizontal-dots"}></use>
