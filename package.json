@@ -36,6 +36,7 @@
     "formik": "^2.2.9",
     "prettier": "^2.8.1",
     "react-beautiful-dnd": "^13.1.1",
+    "react-resizable": "^3.0.5",
     "reselect": "^4.1.7",
     "wait-on": "^7.0.1"
   }

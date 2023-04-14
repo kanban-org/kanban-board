@@ -11,7 +11,7 @@ import {
 import { fetchTasksOfBoard } from "./taskRequest";
 import { fetchTracksOfBoard } from "./trackRequest";
 
-export const fetchBoards = () => async (dispatch, state) => {
+export const fetchBoards = () => async (dispatch) => {
   dispatch(boardsLoading());
   try {
     const { data } = await get("board/getAll");
@@ -26,8 +26,11 @@ export const fetchBoards = () => async (dispatch, state) => {
 
     const initalBoardId = data[0].id || "";
 
-    dispatch(changeCurrentBoard(initalBoardId));
-    dispatch(fetchTracksOfBoard(initalBoardId));
+    const currentBoardId =
+      JSON.parse(localStorage.getItem("currentBoardId")) || initalBoardId;
+
+    dispatch(changeCurrentBoard(currentBoardId));
+    dispatch(fetchTracksOfBoard(currentBoardId));
     dispatch(fetchTasksOfBoard());
   } catch (error) {
     dispatch(boardsLoadError(error));
