@@ -1,6 +1,5 @@
 'use strict';
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.addColumn('Tasks', 'rank', {
@@ -12,4 +11,3 @@ module.exports = {
     await queryInterface.removeColumn('Tasks', 'rank');
   },
 };
-̀
