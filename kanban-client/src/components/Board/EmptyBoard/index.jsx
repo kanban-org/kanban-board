@@ -1,4 +1,4 @@
-import NoDataSvg from "./NoDataSvg.jsx";
+import NoDataSvg from "../../UI/NoDataSvg/NoDataSvg.jsx";
 import classes from "./EmptyBoard.module.scss";
 import { memo } from "react";
 

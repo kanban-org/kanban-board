@@ -1,5 +1,5 @@
 import { memo } from "react";
-import "./EmptyBoard.module.scss";
+import "./NoDataSvg.scss";
 
 const NoDataSvg = () => {
   return (
