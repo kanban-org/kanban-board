@@ -1,7 +1,8 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
 import express from 'express';
 import Routes from './Routes/routes';
 import Error from './app/Exceptions/Error';
+import { corsConfig } from './config/corsConfig';
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -20,6 +21,8 @@ app.use((req, res, next) => {
   );
   next();
 });
+
+app.set('trust proxy', 1);
 
 // Routes
 app.use('/api', Routes.BoardApiRouter);
