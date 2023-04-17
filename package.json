@@ -11,7 +11,7 @@
     "client:dev": "npm run start --workspace=kanban-client",
     "server:dev": "npm run dev --workspace=kanban-server",
     "build:client": "npm run build --workspace=kanban-client",
-    "build:server": "npm run buid --workspace=kanban-server",
+    "build:server": "npm run build --workspace=kanban-server",
     "start": "concurrently 'npm:server:dev' 'npm:client:dev'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
