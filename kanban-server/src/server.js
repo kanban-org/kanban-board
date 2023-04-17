@@ -1,4 +1,4 @@
-import dotenv from 'dotenv';
+require('dotenv').config();
 import express from 'express';
 import Routes from './Routes/routes';
 import Error from './app/Exceptions/Error';
