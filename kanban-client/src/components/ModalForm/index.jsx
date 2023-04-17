@@ -3,6 +3,7 @@ import classes from "../Forms/Forms.module.scss";
 import ColorPicker from "../UI/ColorPicker";
 import { toCamelCase } from "../../utils";
 import { FORM_CONSTANTS } from "../../utils/constants";
+import { validateFieldsOfForm } from "../../validate";
 
 function ModalForm(props) {
   const { handleFormSubmit, showColorPicker, taskForm, formId, ...rest } =
@@ -10,22 +11,7 @@ function ModalForm(props) {
 
   const formik = useFormik({
     initialValues: FORM_CONSTANTS[formId],
-    validate: (values) => {
-      const errors = {};
-      if (taskForm) {
-        if (!values?.taskTitle?.trim()) {
-          errors.taskTitle = "Task title is required";
-        }
-      } else {
-        if (!values?.boardName?.trim()) {
-          errors.boardName = "Board name is required";
-        }
-        if (!values?.trackName?.trim()) {
-          errors.trackName = "Track name is required";
-        }
-      }
-      return errors;
-    },
+    validate: (values) => () => validateFieldsOfForm(values, formId),
     onSubmit: (values) => {
       handleFormSubmit({ ...values, ...rest });
     },
