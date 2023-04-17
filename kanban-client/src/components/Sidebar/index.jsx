@@ -26,25 +26,21 @@ function Sidebar() {
   }, [theme, changeTheme]);
 
   const lightMode = (
-    <Tooltip content="Change Theme" direction="right">
-      <button className={classes.toggleBtn} onClick={handleDisplayChange}>
-        <span>Dark</span>
-        <svg className="svg svg-dark">
-          <use href={icons + "#icon-dark"}></use>
-        </svg>
-      </button>
-    </Tooltip>
+    <button className={classes.toggleBtn} onClick={handleDisplayChange}>
+      <span>Dark</span>
+      <svg className="svg svg-dark">
+        <use href={icons + "#icon-dark"}></use>
+      </svg>
+    </button>
   );
 
   const darkMode = (
-    <Tooltip content="Change Theme" direction="right">
-      <button className={classes.toggleBtn} onClick={handleDisplayChange}>
-        <span>Light</span>
-        <svg className="svg svg-white">
-          <use href={icons + "#icon-light"}></use>
-        </svg>
-      </button>
-    </Tooltip>
+    <button className={classes.toggleBtn} onClick={handleDisplayChange}>
+      <span>Light</span>
+      <svg className="svg svg-white">
+        <use href={icons + "#icon-light"}></use>
+      </svg>
+    </button>
   );
 
   return (

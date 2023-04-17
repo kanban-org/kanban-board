@@ -65,7 +65,7 @@ function TaskBox({ task, currentTrack, index, isDraggingOver }) {
             <div
               className={classes.priority + " margin-top-0_5 margin-left-0_5"}
             >
-              <Tooltip content="Change task priority" direction="bottom">
+              <Tooltip content="Set priority" direction="right">
                 <button className="btn btn-overlay">
                   <svg
                     className="svg"
