@@ -50,13 +50,9 @@ function Board() {
       >
         <AddNewTrack
           handleModal={handleAddTrackModal}
-          initialValues={{
-            heading: "Add New Track",
-            buttonTitle: "Create new track",
-            label: "Track Name",
-          }}
           showColorPicker
           submitAction={addNewTrackRequest}
+          formId="addTrack"
         />
       </Modal>
     </>

@@ -10,6 +10,8 @@
   "scripts": {
     "client:dev": "npm run start --workspace=kanban-client",
     "server:dev": "npm run dev --workspace=kanban-server",
+    "build:client": "npm run build --workspace=kanban-client",
+    "build:server": "npm run buid --workspace=kanban-server",
     "start": "concurrently 'npm:server:dev' 'npm:client:dev'",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -33,10 +35,7 @@
   "homepage": "https://github.com/gargi91/kanban-board#readme",
   "dependencies": {
     "concurrently": "^7.6.0",
-    "formik": "^2.2.9",
     "prettier": "^2.8.1",
-    "react-beautiful-dnd": "^13.1.1",
-    "react-resizable": "^3.0.5",
     "reselect": "^4.1.7",
     "wait-on": "^7.0.1"
   }

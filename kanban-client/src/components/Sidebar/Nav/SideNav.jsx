@@ -31,12 +31,8 @@ function SideNav() {
       >
         <AddBoardForm
           handleModal={handleAddBoardModal}
-          initialValues={{
-            heading: "Add new board",
-            buttonTitle: "Create new board",
-            label: "Board Name",
-          }}
           submitAction={addBoardRequest}
+          formId="addBoard"
         />
       </Modal>
     </>

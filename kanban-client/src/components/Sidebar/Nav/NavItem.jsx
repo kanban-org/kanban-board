@@ -7,7 +7,6 @@ import {
 import classes from "./NavItem.module.scss";
 import { useActions } from "../../../hooks/useActions";
 import { useCallback } from "react";
-import Tooltip from "../../UI/Tooltip";
 
 function NavItem({ boardId }) {
   const board = useSelector((state) => selectBoardById(state, boardId));
@@ -37,19 +36,17 @@ function NavItem({ boardId }) {
   ]);
 
   return (
-    <Tooltip content={`${board.boardName}`} direction="right">
-      <li
-        className={`${classes.navItem} ${
-          currentBoardId === boardId ? classes.active : ""
-        }`}
-        onClick={onClickHandler}
-      >
-        <svg className="svg">
-          <use href={icons + "#icon-trello"}></use>
-        </svg>
-        <span>{board.boardName}</span>
-      </li>
-    </Tooltip>
+    <li
+      className={`${classes.navItem} ${
+        currentBoardId === boardId ? classes.active : ""
+      }`}
+      onClick={onClickHandler}
+    >
+      <svg className="svg">
+        <use href={icons + "#icon-trello"}></use>
+      </svg>
+      <span>{board.boardName}</span>
+    </li>
   );
 }
 

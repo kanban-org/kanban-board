@@ -46,12 +46,8 @@ function Header(props) {
       >
         <EditBoardForm
           handleModal={handleEditBoardModal}
-          initialValues={{
-            heading: "Edit board",
-            buttonTitle: "Edit board",
-            label: "Board Name",
-          }}
           submitAction={editBoardRequest}
+          formId="editBoard"
         />
       </Modal>
     </>

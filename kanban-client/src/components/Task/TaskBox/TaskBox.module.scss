@@ -18,9 +18,9 @@
 }
 
 .priority {
+  display: flex;
   z-index: 100;
   &:hover {
-    // fill svg color
     color: var(--color-primary);
   }
 }

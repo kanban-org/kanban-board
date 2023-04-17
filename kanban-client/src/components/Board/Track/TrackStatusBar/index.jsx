@@ -52,14 +52,10 @@ function TrackStatusBar({ colorCode, trackId, trackName, addShadowBottom }) {
       >
         <EditTrackForm
           handleModal={handleEditTrackModal}
-          initialValues={{
-            heading: "Edit track",
-            buttonTitle: "Edit track",
-            label: "Track Name",
-          }}
           showColorPicker={true}
           submitAction={editTrackRequest}
           trackId={trackId}
+          formId="editTrack"
         />
       </Modal>
     </>
@@ -74,14 +70,10 @@ function TrackStatusBar({ colorCode, trackId, trackName, addShadowBottom }) {
       >
         <AddTaskForm
           handleModal={handleAddTaskModal}
-          initialValues={{
-            heading: "Add New Task",
-            label: "Task Title",
-            buttonTitle: "Create Task",
-          }}
           submitAction={addNewTaskRequest}
           taskForm={true}
           trackId={trackId}
+          formId="addTask"
         />
       </Modal>
     </>

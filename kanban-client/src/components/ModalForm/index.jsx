@@ -2,28 +2,27 @@ import { useFormik } from "formik";
 import classes from "../Forms/Forms.module.scss";
 import ColorPicker from "../UI/ColorPicker";
 import { toCamelCase } from "../../utils";
+import { FORM_CONSTANTS } from "../../utils/constants";
 
 function ModalForm(props) {
-  const {
-    initialValues,
-    handleFormSubmit,
-    showColorPicker,
-    taskForm,
-    ...rest
-  } = props;
+  const { handleFormSubmit, showColorPicker, taskForm, formId, ...rest } =
+    props;
 
   const formik = useFormik({
-    initialValues: {
-      boardName: "",
-      trackName: "",
-      taskTitle: "",
-      taskDescription: "",
-      color: "#3f51b5",
-    },
+    initialValues: FORM_CONSTANTS[formId],
     validate: (values) => {
       const errors = {};
-      if (taskForm && values.taskTitle.trim() === "") {
-        errors.taskTitle = "Task title is required";
+      if (taskForm) {
+        if (!values?.taskTitle?.trim()) {
+          errors.taskTitle = "Task title is required";
+        }
+      } else {
+        if (!values?.boardName?.trim()) {
+          errors.boardName = "Board name is required";
+        }
+        if (!values?.trackName?.trim()) {
+          errors.trackName = "Track name is required";
+        }
       }
       return errors;
     },
@@ -36,7 +35,7 @@ function ModalForm(props) {
     formik.setFieldValue("color", hexColor);
   };
 
-  const { heading, buttonTitle, label } = initialValues;
+  const { heading, buttonTitle, label } = FORM_CONSTANTS[formId];
 
   return (
     <>
