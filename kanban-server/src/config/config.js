@@ -12,12 +12,12 @@ module.exports = {
   },
 
   production: {
-    dialect: 'postgres',
-    dialectOptions: {
-      ssl: {
-        require: true,
-        rejectUnauthorized: false,
-      },
-    },
+    username: process.env.DB_PROD_USERNAME,
+    password: process.env.DB_PROD_PASSWORD,
+    database: process.env.DB_PROD_DATABASE,
+    port: process.env.DB_PROD_PORT,
+    host: '0.0.0.0',
+    dialect: process.env.DB_PROD_DIALECT,
+    logging: false,
   },
 };
