@@ -11,7 +11,9 @@ function ModalForm(props) {
 
   const formik = useFormik({
     initialValues: FORM_CONSTANTS[formId],
-    validate: (values) => () => validateFieldsOfForm(values, formId),
+    validate: (values) => {
+      return validateFieldsOfForm(values, formId);
+    },
     onSubmit: (values) => {
       handleFormSubmit({ ...values, ...rest });
     },
