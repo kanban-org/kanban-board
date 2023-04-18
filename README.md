@@ -10,5 +10,3 @@
 - PostgreSQL
 - Sequelize ORM
 
----
-Design inspiration - @frontendmentor
