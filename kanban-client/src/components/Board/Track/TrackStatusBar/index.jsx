@@ -45,11 +45,8 @@ function TrackStatusBar({ colorCode, trackId, trackName, addShadowBottom }) {
 
   const editTrackModal = (
     <>
-      <Overlay />
-      <Modal
-        styles={{ height: "max-content" }}
-        onCloseModal={handleEditTrackModal}
-      >
+      <Overlay onClick={handleEditTrackModal} />
+      <Modal onCloseModal={handleEditTrackModal}>
         <EditTrackForm
           handleModal={handleEditTrackModal}
           showColorPicker={true}
@@ -63,11 +60,8 @@ function TrackStatusBar({ colorCode, trackId, trackName, addShadowBottom }) {
 
   const addTaskModal = (
     <>
-      <Overlay />
-      <Modal
-        styles={{ height: "max-content" }}
-        onCloseModal={handleAddTaskModal}
-      >
+      <Overlay onClick={handleAddTaskModal} />
+      <Modal onCloseModal={handleAddTaskModal}>
         <AddTaskForm
           handleModal={handleAddTaskModal}
           submitAction={addNewTaskRequest}

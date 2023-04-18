@@ -39,11 +39,8 @@ function Header(props) {
 
   const editBoardModal = (
     <>
-      <Overlay />
-      <Modal
-        styles={{ height: "max-content" }}
-        onCloseModal={handleEditBoardModal}
-      >
+      <Overlay onClick={handleEditBoardModal} />
+      <Modal onCloseModal={handleEditBoardModal}>
         <EditBoardForm
           handleModal={handleEditBoardModal}
           submitAction={editBoardRequest}

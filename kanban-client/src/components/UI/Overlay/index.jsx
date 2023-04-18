@@ -1,7 +1,7 @@
 import classes from "./Overlay.module.scss";
 
-function Overlay({ onClickAction }) {
-	return <div className={classes.overlay} onClick={onClickAction}></div>;
+function Overlay({ onClick }) {
+  return <div className={classes.overlay} onClick={onClick}></div>;
 }
 
 export default Overlay;

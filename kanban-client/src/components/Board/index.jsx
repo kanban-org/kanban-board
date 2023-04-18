@@ -43,11 +43,8 @@ function Board() {
 
   const addTrackFormModal = (
     <>
-      <Overlay />
-      <Modal
-        styles={{ height: "max-content" }}
-        onCloseModal={handleAddTrackModal}
-      >
+      <Overlay onClick={handleAddTrackModal} />
+      <Modal onCloseModal={handleAddTrackModal}>
         <AddNewTrack
           handleModal={handleAddTrackModal}
           showColorPicker

@@ -23,11 +23,8 @@ function SideNav() {
 
   const createBoardModal = (
     <>
-      <Overlay />
-      <Modal
-        styles={{ height: "max-content" }}
-        onCloseModal={handleAddBoardModal}
-      >
+      <Overlay onClick={handleAddBoardModal} />
+      <Modal onCloseModal={handleAddBoardModal}>
         <AddBoardForm
           handleModal={handleAddBoardModal}
           submitAction={addBoardRequest}
