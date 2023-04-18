@@ -1,28 +1,36 @@
+import {
+  ADD_BOARD_FORM,
+  ADD_TASK_FORM,
+  ADD_TRACK_FORM,
+  EDIT_BOARD_FORM,
+  EDIT_TRACK_FORM,
+} from "../utils/constants";
+
 export const validateFieldsOfForm = (values, formId) => {
   const errors = {};
 
   switch (formId) {
-    case "addBoard":
+    case ADD_BOARD_FORM:
       if (!values?.boardName?.trim()) {
         errors.boardName = "Board name is required";
       }
       break;
-    case "editBoard":
+    case EDIT_BOARD_FORM:
       if (!values?.boardName?.trim()) {
         errors.boardName = "Board name is required";
       }
       break;
-    case "addTrack":
+    case ADD_TRACK_FORM:
       if (!values?.trackName?.trim()) {
         errors.trackName = "Track name is required";
       }
       break;
-    case "editTrack":
+    case EDIT_TRACK_FORM:
       if (!values?.trackName?.trim()) {
         errors.trackName = "Track name is required";
       }
       break;
-    case "addTask":
+    case ADD_TASK_FORM:
       if (!values?.taskTitle?.trim()) {
         errors.taskTitle = "Task title is required";
       }

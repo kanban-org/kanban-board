@@ -12,6 +12,7 @@ import {
 import { useActions } from "../../hooks/useActions";
 import withModalForm from "../HOC/withModalForm";
 import ModalForm from "../ModalForm";
+import { EDIT_BOARD_FORM } from "../../utils/constants";
 
 function Header(props) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -44,7 +45,7 @@ function Header(props) {
         <EditBoardForm
           handleModal={handleEditBoardModal}
           submitAction={editBoardRequest}
-          formId="editBoard"
+          formId={EDIT_BOARD_FORM}
         />
       </Modal>
     </>

@@ -9,6 +9,7 @@ import { useActions } from "../../../hooks/useActions";
 import { useSelector } from "react-redux";
 import { selectBoardCount } from "../../../state/reducers/selectors/board";
 import { useCallback } from "react";
+import { ADD_BOARD_FORM } from "../../../utils/constants";
 
 function SideNav() {
   const { addBoardRequest, toggleCreateBoardModal } = useActions();
@@ -28,7 +29,7 @@ function SideNav() {
         <AddBoardForm
           handleModal={handleAddBoardModal}
           submitAction={addBoardRequest}
-          formId="addBoard"
+          formId={ADD_BOARD_FORM}
         />
       </Modal>
     </>

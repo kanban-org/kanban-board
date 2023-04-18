@@ -11,6 +11,7 @@ import ModalForm from "../../../ModalForm";
 import { useSelector } from "react-redux";
 import { selectTasksCountOfTrack } from "../../../../state/reducers/selectors/task";
 import Tooltip from "../../../UI/Tooltip";
+import { ADD_TASK_FORM, EDIT_TRACK_FORM } from "../../../../utils/constants";
 
 function TrackStatusBar({ colorCode, trackId, trackName, addShadowBottom }) {
   const [editTrack, setEditTrack] = useState(false);
@@ -52,7 +53,7 @@ function TrackStatusBar({ colorCode, trackId, trackName, addShadowBottom }) {
           showColorPicker={true}
           submitAction={editTrackRequest}
           trackId={trackId}
-          formId="editTrack"
+          formId={EDIT_TRACK_FORM}
         />
       </Modal>
     </>
@@ -67,7 +68,7 @@ function TrackStatusBar({ colorCode, trackId, trackName, addShadowBottom }) {
           submitAction={addNewTaskRequest}
           taskForm={true}
           trackId={trackId}
-          formId="addTask"
+          formId={ADD_TASK_FORM}
         />
       </Modal>
     </>

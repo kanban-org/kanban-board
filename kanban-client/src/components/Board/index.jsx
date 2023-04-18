@@ -11,6 +11,7 @@ import withModalForm from "../HOC/withModalForm";
 import ModalForm from "../ModalForm";
 import { useActions } from "../../hooks/useActions";
 import EmptyBoard from "./EmptyBoard";
+import { ADD_TRACK_FORM } from "../../utils/constants";
 
 function Board() {
   const [addTrackModal, setAddTrackModal] = useState(false);
@@ -49,7 +50,7 @@ function Board() {
           handleModal={handleAddTrackModal}
           showColorPicker
           submitAction={addNewTrackRequest}
-          formId="addTrack"
+          formId={ADD_TRACK_FORM}
         />
       </Modal>
     </>
