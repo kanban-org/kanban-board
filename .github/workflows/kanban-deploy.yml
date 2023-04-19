@@ -35,7 +35,6 @@ jobs:
       - name: Install dependencies and build frontend + backend app
         run: |
           echo "path::" ${PWD}
-          cd kanban-board
           npm install
           npm run build:client
           npm run build:server
