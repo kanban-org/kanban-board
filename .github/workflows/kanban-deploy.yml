@@ -35,8 +35,8 @@ jobs:
       - name: Install dependencies and build frontend + backend app
         run: |
           npm install
-          npm run build:client
-          npm run build:server
+          CI=false npm run build:client
+          CI=false npm run build:server
 
       # Start the server using PM2
       - name: Start server with PM2
