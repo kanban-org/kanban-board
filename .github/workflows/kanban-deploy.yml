@@ -34,7 +34,6 @@ jobs:
       # Install dependencies and build the app
       - name: Install dependencies and build frontend + backend app
         run: |
-          echo "path::" ${PWD}
           npm install
           npm run build:client
           npm run build:server
