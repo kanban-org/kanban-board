@@ -2,9 +2,9 @@ name: Deploy to Production
 
 on:
   push:
-    branches: [main]
+    branches: [pre-prod]
   pull_request:
-    branches: [main]
+    branches: [pre-prod]
 
 jobs:
   build:
@@ -34,7 +34,7 @@ jobs:
       # Install dependencies and build the app
       - name: Install dependencies and build frontend + backend app
         run: |
-          echo ${PWD}
+          echo "path::" ${PWD}
           cd kanban-board
           npm install
           npm run build:client
