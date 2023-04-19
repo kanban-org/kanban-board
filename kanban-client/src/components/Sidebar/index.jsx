@@ -7,7 +7,6 @@ import classes from "./Sidebar.module.scss";
 import { useSelector } from "react-redux";
 import { selectDisplayTheme } from "../../state/reducers/selectors/display";
 import { useCallback, useEffect } from "react";
-import Tooltip from "../UI/Tooltip";
 
 function Sidebar() {
   const { changeTheme } = useActions();

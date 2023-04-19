@@ -25,12 +25,13 @@ function Board() {
     setAddTrackModal(!addTrackModal);
   }, [setAddTrackModal, addTrackModal]);
 
-  const onDragEnd = useCallback((result) => {
-    const { source, destination, draggableId } = result;
-    if (!destination || !source) return;
-    // moveTask({ source, destination, draggableId });
-    moveTaskRequest({ source, destination, draggableId });
-    /* 
+  const onDragEnd = useCallback(
+    (result) => {
+      const { source, destination, draggableId } = result;
+      if (!destination || !source) return;
+      // moveTask({ source, destination, draggableId });
+      moveTaskRequest({ source, destination, draggableId });
+      /* 
       we want the array from the order object, corresponding to the source.droppableId
       and remove the draggableId from that array
       also we want to add the draggableId to the destination.droppableId array
@@ -38,7 +39,9 @@ function Board() {
       we can do this by creating an action creator that takes in the source and destination params
       action creator: moveTask (type: MOVE_TASK, payload: { source, destination })
     */
-  }, []);
+    },
+    [moveTaskRequest]
+  );
 
   const AddNewTrack = withModalForm(ModalForm);
 
