@@ -10,16 +10,19 @@ jobs:
   steps:
     - name: Checkout code
       uses: actions/checkout@v2
+
     - name: "uses node.js with version ${{ secrets.NODE_VERSION }}"
       uses: actions/setup-node@v1
       with:
         node-version: "${{ secrets.NODE_VERSION }}"
+
     - name: Install dependencies and build frontend + backend app
       run: |
         cd kanban-board
         npm install
         npm run build:client
         npm run build:server
+
     - name: Set environment variables
       run: |
         export DB_PROD_USERNAME=${{secrets.DB_PROD_USERNAME}}
