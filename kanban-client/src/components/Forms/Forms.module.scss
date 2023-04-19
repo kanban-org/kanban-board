@@ -2,20 +2,20 @@
 //   display: flex;
 //   flex-direction: column;
 //   flex: 1;
-// 
+//
 //   &__group {
 //     display: flex;
 //     flex-direction: column;
 //     margin-bottom: var(--space-xs);
 //   }
-// 
+//
 //   &__label {
 //     font-size: 1.2rem;
 //     font-weight: 500;
 //     color: var(--color-text);
 //     margin-bottom: var(--space-xxs);
 //   }
-// 
+//
 //   &__input {
 //     padding: 0.5rem .75rem;
 //     font: 300 1.2rem var(--font-primary);
@@ -27,21 +27,21 @@
 //     border: 1.5px solid var(--color-grey-light);
 //     border-radius: var(--border-radius);
 //     width: 100%;
-// 
+//
 //     &:focus {
 //       border: 1.5px solid var(--color-grey);
 //     }
-// 
+//
 //     &::placeholder {
 //       font-style: italic;
 //       color: var(--color-grey);
 //     }
-// 
+//
 //     &:not(:last-of-type) {
 //       margin-bottom: var(--space-xxs);
 //     }
 //   }
-// 
+//
 // }
 
 .form {
@@ -69,7 +69,7 @@
   }
 
   &__input {
-    padding: 0.5rem .75rem;
+    padding: 0.5rem 0.75rem;
     font: 300 1.2rem var(--font-primary);
     color: var(--color-text);
     line-height: 1.6;
@@ -93,8 +93,6 @@
       margin-bottom: var(--space-xxs);
     }
   }
-
-
 
   &__input__group {
     display: flex;
