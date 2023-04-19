@@ -1,21 +1,23 @@
 name: Deploy to Production
-"on":
+on:
   push:
-    branches:
-      - master
-    pull-request:
-      - master
+    branches: [main]
+    pull-request: [main]
+
 jobs:
   runs-on: self-hosted
+
   steps:
+    # Clone the repository
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: "uses node.js with version ${{ secrets.NODE_VERSION }}"
+    - name: uses node.js with version ${{ secrets.NODE_VERSION }}
       uses: actions/setup-node@v1
       with:
-        node-version: "${{ secrets.NODE_VERSION }}"
+        node-version: ${{ secrets.NODE_VERSION }}
 
+    # Install dependencies and build the app
     - name: Install dependencies and build frontend + backend app
       run: |
         cd kanban-board
@@ -23,6 +25,7 @@ jobs:
         npm run build:client
         npm run build:server
 
+    # Set environment variables
     - name: Set environment variables
       run: |
         export DB_PROD_USERNAME=${{secrets.DB_PROD_USERNAME}}
@@ -33,14 +36,14 @@ jobs:
         export DB_PROD_PORT=${{secrets.DB_PROD_PORT}}
         export NODE_ENV=production
 
+    # Start the server using PM2
     - name: Start server with PM2
       run: |
         sudo apt-get update
         npm install -g pm2
         pm2 start npm --name kanban-server -- run start --workspace=kanban-server
-        pm2 startup
-        pm2 save
 
+    # Configure Nginx
     - name: Configure Nginx
       run: |
         sudo apt-get install nginx
@@ -48,6 +51,7 @@ jobs:
         sudo ln -s /etc/nginx/sites-available/kanban.live /etc/nginx/sites-enabled/
         sudo systemctl restart nginx
 
+    # Clean up
     - name: Clean up
       run: |
         rm -rf kanban-board
