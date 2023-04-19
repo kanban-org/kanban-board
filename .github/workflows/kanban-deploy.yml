@@ -11,22 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Clone the repository
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: uses node.js with version ${{ secrets.NODE_VERSION }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ secrets.NODE_VERSION }}
-
-      # Install dependencies and build the app
-      - name: Install dependencies and build frontend + backend app
-        run: |
-          cd kanban-board
-          npm install
-          npm run build:client
-          npm run build:server
 
       # Set environment variables
       - name: Set environment variables
@@ -38,6 +26,18 @@ jobs:
           export DB_PROD_DATABASE=${{secrets.DB_PROD_DATABASE}}
           export DB_PROD_PORT=${{secrets.DB_PROD_PORT}}
           export NODE_ENV=production
+
+      # Clone the repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Install dependencies and build the app
+      - name: Install dependencies and build frontend + backend app
+        run: |
+          cd kanban-board
+          npm install
+          npm run build:client
+          npm run build:server
 
       # Start the server using PM2
       - name: Start server with PM2
