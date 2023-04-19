@@ -49,11 +49,12 @@ jobs:
       - name: Configure Nginx
         run: |
           sudo apt-get install nginx
-          sudo cp kanban-board/kanban.live.conf /etc/nginx/sites-available/kanban.live
+          sudo cp kanban.live.conf /etc/nginx/sites-available/kanban.live
           sudo ln -s /etc/nginx/sites-available/kanban.live /etc/nginx/sites-enabled/
           sudo systemctl restart nginx
 
       # Clean up
       - name: Clean up
         run: |
+          cd ../..
           rm -rf kanban-board
