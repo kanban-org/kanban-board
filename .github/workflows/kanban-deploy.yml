@@ -43,7 +43,7 @@ jobs:
         run: |
           sudo apt-get update
           npm install -g pm2
-          sudo pm2 start npm --name kanban-server -- run start --workspace=kanban-server
+          pm2 start npm --name kanban-server -- run start --workspace=kanban-server
 
       # Configure Nginx
       - name: Configure Nginx
