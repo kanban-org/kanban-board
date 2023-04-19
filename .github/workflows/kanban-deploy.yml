@@ -43,7 +43,7 @@ jobs:
         run: |
           sudo apt-get update
           npm install -g pm2
-          pm2 start npm --name kanban-server -- run start --workspace=kanban-server
+          sudo pm2 start npm --name kanban-server -- run start --workspace=kanban-server
 
       # Configure Nginx
       - name: Configure Nginx
@@ -54,8 +54,12 @@ jobs:
           echo "path-2:: ${PWD}"
           sudo ln -s /etc/nginx/sites-available/kanban.live /etc/nginx/sites-enabled/
           echo "path-3:: ${PWD}"
-          sudo systemctl restart nginx
+
+      - name: Restart Nginx
+        run: |
           echo "path-4:: ${PWD}"
+          sudo systemctl restart nginx
+          echo "path-5:: ${PWD}"
 
       # Clean up
       - name: Clean up
