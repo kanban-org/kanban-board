@@ -54,7 +54,7 @@ jobs:
           echo "path-2:: ${PWD}"
           sudo ln -s /etc/nginx/sites-available/kanban.live /etc/nginx/sites-enabled/
           echo "path-3:: ${PWD}"
-          sudo systemctl restart nginx
+          sudo /usr/sbin/service nginx restart
           echo "path-4:: ${PWD}"
 
       # Clean up
