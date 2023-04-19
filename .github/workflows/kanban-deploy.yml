@@ -34,7 +34,6 @@ jobs:
       # Install dependencies and build the app
       - name: Install dependencies and build frontend + backend app
         run: |
-          echo "path:: $PWD"
           npm install
           CI=false npm run build:client
           CI=false npm run build:server
@@ -49,10 +48,14 @@ jobs:
       # Configure Nginx
       - name: Configure Nginx
         run: |
+          echo "path-1:: ${PWD}"
           sudo apt-get install nginx
-          sudo cp /kanban.live.conf /etc/nginx/sites-available/kanban.live
+          sudo cp kanban.live.conf /etc/nginx/sites-available/kanban.live
+          echo "path-2:: ${PWD}"
           sudo ln -s /etc/nginx/sites-available/kanban.live /etc/nginx/sites-enabled/
+          echo "path-3:: ${PWD}"
           sudo systemctl restart nginx
+          echo "path-4:: ${PWD}"
 
       # Clean up
       - name: Clean up
