@@ -55,10 +55,10 @@ jobs:
           sudo ln -s /etc/nginx/sites-available/kanban.live /etc/nginx/sites-enabled/
           echo "path-3:: ${PWD}"
 
-      - name: Restart Nginx
+      - name: Reload Nginx
         run: |
           echo "path-4:: ${PWD}"
-          sudo systemctl restart nginx
+          sudo systemctl reload nginx
           echo "path-5:: ${PWD}"
 
       # Clean up
