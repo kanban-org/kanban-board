@@ -46,6 +46,7 @@ jobs:
         run: |
           sudo apt-get update
           npm install -g pm2
+          sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u kanban --hp /home/kanban
           pm2 start npm --name kanban-server -- run start --workspace=kanban-server
           pm2 save
           pm2 startup
