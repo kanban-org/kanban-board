@@ -66,7 +66,6 @@ jobs:
 
           sudo cp /home/runner/work/kanban-board/kanban-board/kanban.live.conf /etc/nginx/sites-available/kanban.live
           sudo ln -s /etc/nginx/sites-available/kanban.live /etc/nginx/sites-enabled/
-
       - name: Restart Nginx
         run: |
           sudo systemctl restart nginx
