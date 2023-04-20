@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: uses node.js with version ${{ secrets.NODE_VERSION }}
@@ -48,18 +48,14 @@ jobs:
       # Configure Nginx
       - name: Configure Nginx
         run: |
-          echo "path-1:: ${PWD}"
           sudo apt-get install nginx
           sudo cp kanban.live.conf /etc/nginx/sites-available/kanban.live
-          echo "path-2:: ${PWD}"
           sudo ln -s /etc/nginx/sites-available/kanban.live /etc/nginx/sites-enabled/
-          echo "path-3:: ${PWD}"
 
       - name: Restart Nginx
         run: |
           echo "path-4:: ${PWD}"
           sudo systemctl restart nginx
-          echo "path-5:: ${PWD}"
 
       # Clean up
       - name: Clean up
