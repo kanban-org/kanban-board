@@ -39,11 +39,12 @@ jobs:
           CI=false npm run build:server
 
       # Start the server using PM2
+      # check if any process running found delete them
+      # start the server
       - name: Start server with PM2
         run: |
           sudo apt-get update
           npm install -g pm2
-          pm2 delete all
           pm2 start npm --name kanban-server -- run start --workspace=kanban-server
           pm2 save
           pm2 startup
