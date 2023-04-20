@@ -57,9 +57,3 @@ jobs:
           echo "path-4:: ${PWD}"
           sudo systemctl restart nginx
           echo "path-5:: ${PWD}"
-
-      # Clean up
-      # - name: Clean up
-      #   run: |
-      #     cd ../..
-      #     rm -rf kanban-board
