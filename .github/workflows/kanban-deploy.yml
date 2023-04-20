@@ -41,6 +41,7 @@ jobs:
       # Start the server using PM2
       # check if any process running found delete them
       # start the server
+      # added the Startup Script to the system
       - name: Start server with PM2
         run: |
           sudo apt-get update
