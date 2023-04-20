@@ -43,17 +43,30 @@ jobs:
         run: |
           sudo apt-get update
           npm install -g pm2
+          pm2 delete all
           pm2 start npm --name kanban-server -- run start --workspace=kanban-server
+          pm2 save
+          pm2 startup
 
       # Configure Nginx
       - name: Configure Nginx
         run: |
+          cd~
+          echo "path-1:: ${PWD}"
+          echo "path-2:: $GITHUB_WORKSPACE"
           sudo apt-get install nginx
-          sudo cp kanban.live.conf /etc/nginx/sites-available/kanban.live
+
+          if [ -f /etc/nginx/sites-available/kanban.live ]; then
+          sudo rm /etc/nginx/sites-available/kanban.live; fi
+
+          if [ -f /etc/nginx/sites-enabled/kanban.live ]; 
+          then sudo rm /etc/nginx/sites-enabled/kanban.live; fi
+
+          sudo systemctl enable nginx
+
+          sudo cp /home/runner/work/kanban-board/kanban-board/kanban.live.conf /etc/nginx/sites-available/kanban.live
           sudo ln -s /etc/nginx/sites-available/kanban.live /etc/nginx/sites-enabled/
 
       - name: Restart Nginx
         run: |
-          echo "path-4:: ${PWD}"
           sudo systemctl restart nginx
-          echo "path-5:: ${PWD}"
