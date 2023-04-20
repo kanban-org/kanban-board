@@ -59,7 +59,7 @@ jobs:
           echo "path-5:: ${PWD}"
 
       # Clean up
-      - name: Clean up
-        run: |
-          cd ../..
-          rm -rf kanban-board
+      # - name: Clean up
+      #   run: |
+      #     cd ../..
+      #     rm -rf kanban-board
