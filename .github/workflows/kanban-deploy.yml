@@ -62,7 +62,7 @@ jobs:
       # Configure Nginx
       - name: Configure Nginx
         run: |
-          cd~
+          cd ~
           sudo apt-get install nginx
 
           if [ -f /etc/nginx/sites-available/kanban.live ]; then
@@ -73,7 +73,7 @@ jobs:
 
           sudo systemctl enable nginx
 
-          sudo cp /home/runner/work/kanban-board/kanban-board/kanban.live.conf /etc/nginx/sites-available/kanban.live
+          sudo cp /home/kanban/_work/kanban-board/kanban-board/kanban.live.conf /etc/nginx/sites-available/kanban.live
           sudo ln -s /etc/nginx/sites-available/kanban.live /etc/nginx/sites-enabled/
 
       - name: Restart Nginx
