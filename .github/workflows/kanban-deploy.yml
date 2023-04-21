@@ -65,8 +65,8 @@ jobs:
           cd ~
           sudo apt-get install nginx
 
-          rm -f -- /etc/nginx/sites-available/kanban.live
-          rm -f -- /etc/nginx/sites-enabled/kanban.live
+          sudo rm -f -- /etc/nginx/sites-available/kanban.live
+          sudo rm -f -- /etc/nginx/sites-enabled/kanban.live
 
           sudo systemctl enable nginx
 
