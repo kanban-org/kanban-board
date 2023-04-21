@@ -53,16 +53,18 @@ jobs:
       # start the server
       - name: Start the server
         run: |
+          echo "path-1:: ${PWD}"
           pm2 start npm --name kanban-server -- run start --workspace=kanban-server
+          echo "path-2:: $GITHUB_WORKSPACE"
           pm2 save
+          echo "path-3:: $GITHUB_WORKSPACE"
           pm2 startup
+          echo "path-4:: $GITHUB_WORKSPACE"
 
       # Configure Nginx
       - name: Configure Nginx
         run: |
           cd~
-          echo "path-1:: ${PWD}"
-          echo "path-2:: $GITHUB_WORKSPACE"
           sudo apt-get install nginx
 
           if [ -f /etc/nginx/sites-available/kanban.live ]; then
