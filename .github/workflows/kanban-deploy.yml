@@ -58,8 +58,6 @@ jobs:
           echo "path-2:: $GITHUB_WORKSPACE"
           pm2 save
           echo "path-3:: $GITHUB_WORKSPACE"
-          pm2 startup
-          echo "path-4:: $GITHUB_WORKSPACE"
 
       # Configure Nginx
       - name: Configure Nginx
