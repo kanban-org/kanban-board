@@ -29,7 +29,7 @@ jobs:
 
       # Clone the repository
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Install dependencies and build the app
       - name: Install dependencies and build frontend + backend app
@@ -40,7 +40,7 @@ jobs:
 
       # Start the server using PM2
       # check if any process running found delete them
-      - name: Start server with PM2
+      - name: Install PM2
         run: |
           sudo apt-get update
           npm install -g pm2
@@ -72,6 +72,9 @@ jobs:
 
           sudo cp /home/kanban/_work/kanban-board/kanban-board/kanban.live.conf /etc/nginx/sites-available/kanban.live
           sudo ln -s /etc/nginx/sites-available/kanban.live /etc/nginx/sites-enabled/
+
+      - name: Print env test
+        run: echo $DB_PROD_USERNAME
 
       - name: Restart Nginx
         run: |
