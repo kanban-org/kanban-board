@@ -23,6 +23,8 @@ jobs:
       # Install dependencies and build the app
       - name: Install dependencies and build frontend + backend app
         run: |
+          echo "path-1:: $GITHUB_WORKSPACE"
+          echo "path-2:: $PWD"
           npm install
           CI=false npm run build:client
           CI=false npm run build:server
@@ -33,7 +35,6 @@ jobs:
 
     steps:
       - name: Create .env file
-        # Creates an '.env' file with environment variables
         run: |
           touch .env
           echo DB_PROD_USERNAME=${{ secrets.DB_PROD_USERNAME }} >> .env
