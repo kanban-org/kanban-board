@@ -52,7 +52,7 @@ jobs:
     steps:
       - name: Add sudo password
         run: |
-          export PASSWORD={{ secrets.SUDO_PASSWORD }}
+          export PASSWORD=${{ secrets.SUDO_PASSWORD }}
           export SUDO_ASKPASS=/home/kanbanuser/askpass.sh
 
       # Start the server using PM2
