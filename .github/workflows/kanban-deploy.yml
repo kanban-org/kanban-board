@@ -16,17 +16,6 @@ jobs:
         with:
           node-version: ${{ secrets.NODE_VERSION }}
 
-      # Set environment variables
-      - name: Set environment variables
-        run: |
-          export DB_PROD_USERNAME=${{secrets.DB_PROD_USERNAME}}
-          export DB_PROD_DIALECT=${{secrets.DB_PROD_DIALECT}}
-          export DB_PROD_HOST=${{secrets.DB_PROD_HOST}}
-          export DB_PROD_PASSWORD=${{secrets.DB_PROD_PASSWORD}}
-          export DB_PROD_DATABASE=${{secrets.DB_PROD_DATABASE}}
-          export DB_PROD_PORT=${{secrets.DB_PROD_PORT}}
-          export NODE_ENV=production
-
       # Clone the repository
       - name: Checkout code
         uses: actions/checkout@v3
@@ -38,6 +27,28 @@ jobs:
           CI=false npm run build:client
           CI=false npm run build:server
 
+  create-envfile:
+    runs-on: self-hosted
+    needs: build # Run only after the 'build' job is completed
+
+    steps:
+      - name: Create .env file
+        # Creates an '.env' file with environment variables
+        run: |
+          touch .env
+          echo DB_PROD_USERNAME=${{ DB_PROD_USERNAME }} >> .env
+          echo DB_PROD_DIALECT=${{ secrets.DB_PROD_DIALECT }} >> .env
+          echo DB_PROD_DIALECT=${{ secrets.DB_PROD_DIALECT }} >> .env
+          echo DB_PROD_PASSWORD=${{ secrets.DB_PROD_PASSWORD }} >> .env
+          echo DB_PROD_DATABASE=${{ secrets.DB_PROD_DATABASE }} >> .env
+          echo DB_PROD_PORT=${{ secrets.DB_PROD_PORT }} >> .env
+          echo NODE_ENV="production" >> .env
+
+  deploy:
+    runs-on: self-hosted
+    needs: create-envfile
+
+    steps:
       # Start the server using PM2
       # check if any process running found delete them
       - name: Install PM2
