@@ -46,7 +46,7 @@ jobs:
 
   deploy:
     runs-on: self-hosted
-    needs: create-envfile
+    needs: [build, create-envfile]
 
     steps:
       # Start the server using PM2
@@ -59,7 +59,7 @@ jobs:
       # added the Startup Script to the system
       - name: Add Startup Script
         run: |
-          sudo env PATH=$PATH:/home/kanban/_work/_tool/node/18.16.0/x64/bin /home/kanban/_work/_tool/node/18.16.0/x64/lib/node_modules/pm2/bin/pm2 startup systemd -u kanban --hp /home/kanban
+          sudo env PATH=$PATH:/home/kanbanuser/_work/_tool/node/18.16.0/x64/bin /home/kanbanuser/_work/_tool/node/18.16.0/x64/lib/node_modules/pm2/bin/pm2 startup systemd -u kanbanuser --hp /home/kanbanuser
 
       # start the server
       - name: Start the server
