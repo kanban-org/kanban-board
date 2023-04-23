@@ -50,16 +50,10 @@ jobs:
     needs: [build, create-envfile]
 
     steps:
-      - name: Add sudo password
-        run: |
-          export PASSWORD=${{ secrets.SUDO_PASSWORD }}
-          export SUDO_ASKPASS=/home/kanbanuser/askpass.sh
-
       # Start the server using PM2
       # check if any process running found delete them
       - name: Install PM2
         run: |
-          echo "$PASSWORD" | sudo apt-get update
           npm install -g pm2
 
       # added the Startup Script to the system
