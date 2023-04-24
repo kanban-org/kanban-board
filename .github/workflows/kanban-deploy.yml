@@ -50,6 +50,21 @@ jobs:
     needs: [build, create-envfile]
 
     steps:
+      - name: Create askpass helper script
+        run: |
+          echo '#!/bin/bash' | sudo tee /usr/local/bin/askpass.sh
+          echo "echo \$PASSWORD" | sudo tee -a /usr/local/bin/askpass.sh
+          sudo chmod +x /usr/local/bin/askpass.sh
+
+      - name: Set environment variables
+        run: |
+          echo "export SUDO_ASKPASS=/usr/local/bin/askpass.sh" >> $GITHUB_ENV
+          echo "export PASSWORD=${{ secrets.SUDO_PASSWORD }}" >> $GITHUB_ENV
+
+      - name: Install pm2 with sudo
+        run: |
+          sudo -A npm install -g pm2
+
       # added the Startup Script to the system
       - name: Add Startup Script
         run: |
