@@ -29,11 +29,6 @@ jobs:
           CI=false npm run build:client
           CI=false npm run build:server
 
-  create-envfile:
-    runs-on: self-hosted
-    needs: build # Run only after the 'build' job is completed
-
-    steps:
       - name: Create .env file
         run: |
           touch .env
@@ -45,11 +40,6 @@ jobs:
           echo DB_PROD_PORT=${{ secrets.DB_PROD_PORT }} >> .env
           echo NODE_ENV="production" >> .env
 
-  deploy:
-    runs-on: self-hosted
-    needs: [build, create-envfile]
-
-    steps:
       - name: Create askpass helper script
         run: |
           echo '#!/bin/bash' | sudo tee /usr/local/bin/askpass.sh
@@ -63,7 +53,7 @@ jobs:
 
       - name: Install pm2 with sudo
         run: |
-          sudo -A npm install -g pm2
+          npm install -g pm2
 
       # added the Startup Script to the system
       - name: Add Startup Script
