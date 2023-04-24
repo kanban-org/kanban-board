@@ -49,6 +49,7 @@ jobs:
     runs-on: self-hosted
     needs: [build, create-envfile]
 
+    steps:
       # Start the server using PM2
       # check if any process running found delete them
       - name: Install PM2
