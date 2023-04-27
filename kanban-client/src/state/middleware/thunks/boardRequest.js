@@ -55,7 +55,7 @@ export const addBoardRequest = (boardInfo) => async (dispatch) => {
 
 export const deleteBoardRequest = (boardId) => async (dispatch, getState) => {
   try {
-    const { data } = await remove(`board/delete/${boardId}`);
+    await remove(`board/delete/${boardId}`);
 
     dispatch(deleteBoard(boardId));
 

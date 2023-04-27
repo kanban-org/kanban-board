@@ -65,6 +65,7 @@ export const moveTaskRequest =
         prevTaskId,
         nextTaskId,
       };
+      // eslint-disable-next-line no-unused-vars
       const { data } = await post(`task/moveTask`, configData);
     } catch (error) {
       throw new Error(error);
