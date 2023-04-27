@@ -34,6 +34,12 @@ export const validateFieldsOfForm = (values, formId) => {
       if (!values?.taskTitle?.trim()) {
         errors.taskTitle = "Task title is required";
       }
+      // const isEmptySubtask = values?.subtasks?.some(
+      //   (subtask) => !subtask?.subtaskValue?.trim()
+      // );
+      // if (isEmptySubtask) {
+      //   errors.subtasks = "Subtask value is required";
+      // }
       break;
     default:
       break;

@@ -9,10 +9,10 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.changeColumn('Tasks', 'trackId', {
+    await queryInterface.changeColumn('Subtasks', 'taskId', {
       type: Sequelize.UUIDV4,
       references: {
-        model: 'Tracks',
+        model: 'Tasks',
         key: 'id',
       },
       onUpdate: 'CASCADE',
@@ -27,10 +27,10 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.changeColumn('Tasks', 'trackId', {
+    await queryInterface.changeColumn('Subtasks', 'taskId', {
       type: Sequelize.UUIDV4,
       references: {
-        model: 'Tracks',
+        model: 'Tasks',
         key: 'id',
       },
       onUpdate: 'CASCADE',

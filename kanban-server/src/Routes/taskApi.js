@@ -38,4 +38,10 @@ TaskApiRouter.post('/task/moveTask', (req, res) => {
   taskController.moveTask(req);
 });
 
+// all subtasks of a task
+TaskApiRouter.get('/task/getAllSubtasks/:taskId', (req, res) => {
+  const taskController = new TaskController(res);
+  taskController.getAllSubtasksOfTask(req);
+});
+
 export default TaskApiRouter;

@@ -69,6 +69,8 @@
   }
 
   &__input {
+    display: flex;
+    row-gap: 1rem;
     padding: 0.5rem 0.75rem;
     font: 300 1.2rem var(--font-primary);
     color: var(--color-text);
@@ -99,12 +101,32 @@
     flex-direction: column;
     margin-bottom: var(--space-xs);
     overflow-y: auto;
-    padding: 0 var(--space-xxs);
   }
 
   textarea {
     height: 8rem;
     max-height: 8rem;
     resize: none;
+  }
+}
+
+.subtask__heading {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  justify-items: center;
+  padding-bottom: var(--space-xxs);
+}
+
+.subtask__input {
+  display: flex;
+  flex: auto;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+
+  &:not(:last-of-type) {
+    margin-bottom: var(--space-xxs);
   }
 }

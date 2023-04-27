@@ -28,11 +28,22 @@ export const fetchTasksOfBoard = () => async (dispatch, getState) => {
 export const addNewTaskRequest = (taskInfo) => async (dispatch) => {
   dispatch(tasksLoading());
   try {
+    const validSubtasks = taskInfo.subtasks
+      .filter((subtask) => subtask.subtaskValue !== "")
+      .map((subtask) => {
+        return {
+          subtaskValue: subtask.subtaskValue,
+        };
+      });
+
+    console.log("VALID_SUBTASKS::", validSubtasks);
+
     const taskData = {
       taskTitle: taskInfo.taskTitle,
       taskDesc: taskInfo.taskDescription,
       trackId: taskInfo.trackId,
       dueDate: taskInfo.dueDate || null,
+      subtasks: validSubtasks,
     };
 
     const { data } = await post(`task/create`, taskData);

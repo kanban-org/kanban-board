@@ -1,4 +1,4 @@
-const { Task, sequelize } = require('../../models');
+const { Task, Subtask, sequelize } = require('../../models');
 
 export default class TaskRepository {
   async createTask(data) {
@@ -123,5 +123,31 @@ export default class TaskRepository {
     });
 
     return [prevTask, nextTask];
+  }
+
+  async createSubtask({ subtask, taskId }) {
+    const task = await this.getTaskById(taskId);
+    console.log('task', task);
+    const newSubtask = await Subtask.create({
+      subtaskDesc: subtask,
+    });
+    console.log('newSubtask', newSubtask);
+    await task.addSubtask(newSubtask);
+
+    return newSubtask;
+  }
+
+  async getAllSubtasksOfTask(taskId) {
+    const subtasks = await Subtask.findAll({
+      where: {
+        taskId: taskId,
+      },
+    });
+
+    if (!subtasks) {
+      throw new Error('Error in getting subtasks');
+    }
+
+    return subtasks;
   }
 }

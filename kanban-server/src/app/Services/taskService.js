@@ -13,7 +13,7 @@ export default class TaskService {
    * Method to create a task
    */
   async createTask(data) {
-    const { taskTitle, taskDesc, dueDate, trackId, rank } = data;
+    const { taskTitle, taskDesc, dueDate, trackId, rank, subtasks } = data;
     try {
       const track = await this.trackRepository.getTrackById(trackId);
 
@@ -35,6 +35,24 @@ export default class TaskService {
         rank,
       });
       task.trackId = trackId;
+
+      // create subtasks
+      // I have linked subtasks to the task in the database
+      // there is a foriegn key in the subtask table that references the task table
+      console.log('subtasks_request', subtasks);
+
+      if (subtasks && subtasks.length > 0) {
+        // one by by link all the subtasks to the task
+        for (let i = 0; i < subtasks.length; i++) {
+          const subtask = subtasks[i];
+          const subtaskRes = await this.taskRepository.createSubtask({
+            subtask: subtask.subtaskValue,
+            taskId: task.id,
+          });
+
+          console.log('subtaskRes', subtaskRes);
+        }
+      }
 
       return task;
     } catch (error) {
@@ -139,6 +157,25 @@ export default class TaskService {
         success: true,
         message: 'Task deleted successfully',
       };
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
+  /**
+   * Method to get all subtasks of a task
+   */
+  async getAllSubtasksOfTask(taskId) {
+    try {
+      const task = await this.taskRepository.getTaskById(taskId);
+
+      if (!task) {
+        throw new Exceptions.NotFoundException('Task not found, cannot get subtasks');
+      }
+
+      const subtasks = await this.taskRepository.getAllSubtasksOfTask(taskId);
+
+      return subtasks;
     } catch (error) {
       throw new Error(error);
     }

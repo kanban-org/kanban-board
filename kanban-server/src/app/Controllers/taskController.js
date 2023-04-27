@@ -126,4 +126,24 @@ export default class TaskController extends Controller {
       this.handleException(error);
     }
   }
+
+  /**
+   * get all subtasks of a task
+   * @param {Object} request - {`taskId`}
+   * @return {Object} - Array of subtasks
+   */
+  async getAllSubtasksOfTask(request) {
+    const { taskId } = request.params;
+    try {
+      const resSubtasks = await this.taskService.getAllSubtasksOfTask(taskId);
+
+      if (!resSubtasks) {
+        throw new Exceptions.NotFoundException('Subtasks not found');
+      }
+
+      this.sendResponse(resSubtasks);
+    } catch (error) {
+      this.handleException(error);
+    }
+  }
 }

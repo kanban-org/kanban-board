@@ -24,7 +24,7 @@
     "jsonwebtoken": "^8.5.1",
     "lexorank": "^1.0.5",
     "nodemon": "^2.0.15",
-    "pg": "^8.7.1",
+    "pg": "^8.10.0",
     "sequelize": "^6.13.0"
   },
   "devDependencies": {

@@ -109,7 +109,7 @@ function TrackStatusBar({ colorCode, trackId, trackName, addShadowBottom }) {
             <use href={icons + "#icon-horizontal-dots"}></use>
           </svg>
         </button>
-        {isMenuOpen && <Overlay onClickAction={handleMenuChange} />}
+        {isMenuOpen && <Overlay onClick={handleMenuChange} />}
         {isMenuOpen && (
           <DotMenu
             onDeleteAction={onDeleteTrack}

@@ -31,8 +31,39 @@ export const FORM_CONSTANTS = {
     heading: "Add task",
     buttonTitle: "Add new task",
     label: "Task Title",
+    subtasks: [
+      {
+        id: "ygh74e",
+        subtaskValue: "",
+        placeholder: "e.g Shard data",
+      },
+    ],
   },
 };
+
+export const SUBTASK_THUMBNAILS = [
+  "e.g Shard data",
+  "e.g Split data",
+  "e.g Add input field",
+  "e.g POC",
+  "e.g Add new feature",
+  "e.g Create a Migration file",
+  "e.g Seperate Model",
+  "e.g Create a controller",
+  "e.g Create a Notification Service",
+  "e.g Create a Mail Service",
+  "e.g Create a Payment Service",
+  "e.g Create a Subscription Service",
+  "e.g Create a Billing Service",
+  "e.g Create a Queue Service",
+  "e.g Create a Cache Service",
+  "e.g Create a Search Service",
+  "e.g Create a Test Service",
+  "e.g Create a Deployment Service",
+  "e.g Create a Continous Integration Service",
+  "e.g Create a Continous Deployment Service",
+  "e.g Create a Continous Integration/Deployment Service",
+];
 
 export const ADD_BOARD_FORM = "addBoardForm";
 export const EDIT_BOARD_FORM = "editBoardForm";

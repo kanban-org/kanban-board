@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 
       // many-to-one relationship between subtask and task
       this.belongsTo(models.Task, {
+        onDelete: 'cascade',
         foreignKey: 'taskId',
       });
     }
