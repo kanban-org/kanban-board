@@ -1,11 +1,10 @@
 import Checkbox from "../../Forms/Checkbox";
-import FormSelect from "../../Forms/FormSelect";
 import classes from "./ViewTaskModal.module.scss";
 
 function ViewTaskModal({
   id,
-  title,
-  description,
+  taskTitle,
+  taskDesc,
   subtasks,
   totalSubtasks,
   comepletedSubtasks,
@@ -14,10 +13,10 @@ function ViewTaskModal({
 }) {
   return (
     <div className={classes.container}>
-      <h3 className="heading--3 mb-sm">{title}</h3>
-      <p className="heading--6 mb-sm">{description}</p>
+      <h3 className="heading--3 mb-sm">{taskTitle}</h3>
+      <p className="heading--6 mb-sm">{taskDesc}</p>
       <h5 className="heading--5 mb-xs">
-        Subtasks ({comepletedSubtasks} of {totalSubtasks})
+        Subtasks ({2} of {3})
       </h5>
       <div className={classes.inputContainer + " scrollbar"}>
         {subtasks.map((subtask) => {
@@ -31,9 +30,6 @@ function ViewTaskModal({
           );
         })}
       </div>
-
-      <h5 className="heading--5 mb-xxs">status</h5>
-      <FormSelect />
     </div>
   );
 }

@@ -10,6 +10,10 @@ import Tooltip from "../../UI/Tooltip";
 
 function TaskBox({ task, currentTrack, index, isDraggingOver }) {
   const [viewTask, setViewTask] = useState(false);
+
+  const handleViewTaskModal = useCallback(() => {
+    setViewTask(!viewTask);
+  }, [viewTask]);
   // const task = useSelector((state) => selectTaskById(state, taskId));
   // console.log(task);
   // const subtasks = task.subtasks;
@@ -21,20 +25,33 @@ function TaskBox({ task, currentTrack, index, isDraggingOver }) {
   //   if (subtask.completed === true) comepletedSubtasks++;
   // });
 
-  const onViewTask = useCallback(() => {
-    setViewTask(true);
-  }, [setViewTask]);
+  let subtasks = [
+    {
+      id: 1,
+      description: "subtask 1",
+      completed: true,
+    },
+    {
+      id: 2,
+      description: "subtask 2",
+      completed: true,
+    },
+    {
+      id: 3,
+      description: "subtask 3",
+      completed: false,
+    },
+  ];
 
   const taskDetailModal = (
     <>
-      <Overlay />
-      <Modal onCloseModal={() => setViewTask(false)}>
+      <Overlay onClick={handleViewTaskModal} />
+      <Modal onCloseModal={handleViewTaskModal}>
         <ViewTaskModal
           {...task}
+          subtasks={subtasks}
           // totalSubtasks={totalSubtasks}
           // comepletedSubtasks={comepletedSubtasks}
-          // allColumnNames={allColumnNames}
-          // currentColumn={currentColumn}
         />
       </Modal>
     </>
@@ -51,7 +68,7 @@ function TaskBox({ task, currentTrack, index, isDraggingOver }) {
               (isDraggingOver ? classes.taskDragging : "")
             }
             key={task.id}
-            // onClick={() => onViewTask()}
+            onClick={handleViewTaskModal}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             ref={provided.innerRef}

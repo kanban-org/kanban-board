@@ -37,6 +37,11 @@ export const FORM_CONSTANTS = {
         subtaskValue: "",
         placeholder: "e.g Shard data",
       },
+      {
+        id: "w355yf",
+        subtaskValue: "",
+        placeholder: "e.g Create a Migration file",
+      },
     ],
   },
 };

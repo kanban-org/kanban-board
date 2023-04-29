@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import Overlay from "../UI/Overlay";
 import DotMenu from "../DotMenu";
 import classes from "./Header.module.scss";
@@ -24,19 +24,19 @@ function Header(props) {
 
   const EditBoardForm = withModalForm(ModalForm);
 
-  const handleMenuChange = () => {
+  const handleMenuChange = useCallback(() => {
     setIsMenuOpen(!isMenuOpen);
-  };
+  }, [isMenuOpen]);
 
-  const handleEditBoardModal = () => {
+  const handleEditBoardModal = useCallback(() => {
     setEditboard(!editBoard);
-  };
+  }, [editBoard]);
 
-  const onDeleteBoard = () => {
+  const onDeleteBoard = useCallback(() => {
     deleteBoardRequest(currentBoardId);
     tracksDelete(currentBoardId);
     handleMenuChange();
-  };
+  }, [deleteBoardRequest, currentBoardId, tracksDelete, handleMenuChange]);
 
   const editBoardModal = (
     <>
@@ -60,7 +60,7 @@ function Header(props) {
             <use href={icons + "#icon-menu"}></use>
           </svg>
         </button>
-        {isMenuOpen && <Overlay onClickAction={handleMenuChange} />}
+        {isMenuOpen && <Overlay onClick={handleMenuChange} />}
         {isMenuOpen && (
           <DotMenu
             onDeleteAction={onDeleteBoard}

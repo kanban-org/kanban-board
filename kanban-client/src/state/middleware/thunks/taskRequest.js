@@ -36,8 +36,6 @@ export const addNewTaskRequest = (taskInfo) => async (dispatch) => {
         };
       });
 
-    console.log("VALID_SUBTASKS::", validSubtasks);
-
     const taskData = {
       taskTitle: taskInfo.taskTitle,
       taskDesc: taskInfo.taskDescription,
