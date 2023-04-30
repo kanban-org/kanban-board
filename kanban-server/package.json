@@ -8,7 +8,7 @@
     "dev": "nodemon --exec babel-node ./src/server.js",
     "start": "npm run build && node ./build/server.js",
     "build-babel": "babel -d ./build ./src -s",
-    "build": "npm run clean && npm run build-babel"
+    "build": "npm i && npm run clean && npm run build-babel"
   },
   "keywords": [],
   "author": "",
