@@ -60,17 +60,14 @@ jobs:
       - name: Configure Nginx
         run: |
           cd ~
-          echo kanban@1234 | sudo -S rm -f -- /etc/nginx/sites-available/kanban.live
-          echo kanban@1234 | sudo -S rm -f -- /etc/nginx/sites-enabled/kanban.live
+          echo ${{ secrets.SUDO_PASSWORD }} | sudo -S rm -f -- /etc/nginx/sites-available/kanban.live
+          echo ${{ secrets.SUDO_PASSWORD }} | sudo -S rm -f -- /etc/nginx/sites-enabled/kanban.live
 
           sudo systemctl enable nginx
 
           sudo cp /home/kanbanuser/app/_work/kanban-board/kanban-board/kanban.live.conf /etc/nginx/sites-available/kanban.live
           sudo ln -s /etc/nginx/sites-available/kanban.live /etc/nginx/sites-enabled/
 
-      - name: Print env test
-        run: echo $DB_PROD_USERNAME
-
       - name: Restart Nginx
         run: |
-          echo kanban@1234 | sudo -S systemctl restart nginx
+          echo ${{ secrets.SUDO_PASSWORD }} | sudo -S systemctl restart nginx
