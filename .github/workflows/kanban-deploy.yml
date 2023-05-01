@@ -44,9 +44,9 @@ jobs:
           npm install -g pm2
 
       # added the Startup Script to the system
-      - name: Add Startup Script
-        run: |
-          sudo env PATH=$PATH:/home/kanbanuser/app/_work/_tool/node/18.16.0/x64/bin /home/kanbanuser/app/_work/_tool/node/18.16.0/x64/lib/node_modules/pm2/bin/pm2 startup systemd -u kanbanuser --hp /home/kanbanuser
+      # - name: Add Startup Script
+      #   run: |
+      #     sudo env PATH=$PATH:/home/kanbanuser/app/_work/_tool/node/18.16.0/x64/bin /home/kanbanuser/app/_work/_tool/node/18.16.0/x64/lib/node_modules/pm2/bin/pm2 startup systemd -u kanbanuser --hp /home/kanbanuser
 
       # start the server
       - name: Start the server
