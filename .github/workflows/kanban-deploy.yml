@@ -60,8 +60,8 @@ jobs:
       - name: Configure Nginx
         run: |
           cd ~
-          sudo rm -f -- /etc/nginx/sites-available/kanban.live
-          sudo rm -f -- /etc/nginx/sites-enabled/kanban.live
+          echo kanban@1234 | sudo -S rm -f -- /etc/nginx/sites-available/kanban.live
+          echo kanban@1234 | sudo -S rm -f -- /etc/nginx/sites-enabled/kanban.live
 
           sudo systemctl enable nginx
 
