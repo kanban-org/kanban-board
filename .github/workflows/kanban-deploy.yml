@@ -24,7 +24,6 @@ jobs:
       - name: Install dependencies and build frontend + backend app
         run: |
           echo "path-1:: $GITHUB_WORKSPACE"
-          echo "path-2:: $PWD"
           npm install
           CI=false npm run build:client
           CI=false npm run build:server
