@@ -3,3 +3,9 @@
   display: flex;
   flex-direction: column;
 }
+
+@media (max-width: 540px) {
+  .track {
+    min-width: 100%;
+  }
+}
