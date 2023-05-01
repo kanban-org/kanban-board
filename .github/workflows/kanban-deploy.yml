@@ -2,9 +2,9 @@ name: Deploy to Production
 
 on:
   push:
-    branches: [pre-prod]
+    branches: [deploy]
   pull_request:
-    branches: [pre-prod]
+    branches: [deploy]
 
 jobs:
   build:
@@ -24,7 +24,6 @@ jobs:
       - name: Install dependencies and build frontend + backend app
         run: |
           echo "path-1:: $GITHUB_WORKSPACE"
-          echo "path-2:: $PWD"
           npm install
           CI=false npm run build:client
           CI=false npm run build:server
@@ -40,15 +39,14 @@ jobs:
           echo DB_PROD_PORT=${{ secrets.DB_PROD_PORT }} >> .env
           echo NODE_ENV="production" >> .env
 
-      - name: Install pm2 with sudo
+      - name: Install pm2
         run: |
-          echo "sudo_password::" ${{ secrets.SUDO_PASSWORD }}
-          echo "${{ secrets.SUDO_PASSWORD }}" | sudo -S npm install -g pm2
+          npm install -g pm2
 
       # added the Startup Script to the system
       - name: Add Startup Script
         run: |
-          sudo env PATH=$PATH:/home/kanbanuser/actions-runner/_work/_tool/node/18.16.0/x64/bin /home/kanbanuser/actions-runner/_work/_tool/node/18.16.0/x64/lib/node_modules/pm2/bin/pm2 startup systemd -u kanbanuser --hp /home/kanbanuser
+          sudo env PATH=$PATH:/home/kanbanuser/app/_work/_tool/node/18.16.0/x64/bin /home/kanbanuser/app/_work/_tool/node/18.16.0/x64/lib/node_modules/pm2/bin/pm2 startup systemd -u kanbanuser --hp /home/kanbanuser
 
       # start the server
       - name: Start the server
@@ -62,14 +60,12 @@ jobs:
       - name: Configure Nginx
         run: |
           cd ~
-          sudo apt-get install nginx
-
           sudo rm -f -- /etc/nginx/sites-available/kanban.live
           sudo rm -f -- /etc/nginx/sites-enabled/kanban.live
 
           sudo systemctl enable nginx
 
-          sudo cp /home/kanbanuser/actions-runner/_work/kanban-board/kanban-board/kanban.live.conf /etc/nginx/sites-available/kanban.live
+          sudo cp /home/kanbanuser/app/_work/kanban-board/kanban-board/kanban.live.conf /etc/nginx/sites-available/kanban.live
           sudo ln -s /etc/nginx/sites-available/kanban.live /etc/nginx/sites-enabled/
 
       - name: Print env test
