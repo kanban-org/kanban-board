@@ -26,8 +26,21 @@ export const fetchBoards = () => async (dispatch) => {
 
     const initalBoardId = data[0].id || "";
 
-    const currentBoardId =
-      JSON.parse(localStorage.getItem("currentBoardId")) || initalBoardId;
+    const checkBoardPresentInData = () => {
+      if (!localStorage.getItem("currentBoardId")) return null;
+      return data.find(
+        (board) =>
+          board.id === JSON.parse(localStorage.getItem("currentBoardId"))
+      );
+    };
+
+    let currentBoardId = "";
+
+    if (!checkBoardPresentInData()) {
+      currentBoardId = initalBoardId;
+    } else {
+      currentBoardId = checkBoardPresentInData().id;
+    }
 
     dispatch(changeCurrentBoard(currentBoardId));
     dispatch(fetchTracksOfBoard(currentBoardId));
@@ -60,6 +73,13 @@ export const deleteBoardRequest = (boardId) => async (dispatch, getState) => {
     dispatch(deleteBoard(boardId));
 
     const firstBoard = Object.keys(getState().boards.entities)[0];
+
+    // if no boards left, remove currentBoardId from localStorage
+    if (!firstBoard) {
+      localStorage.removeItem("currentBoardId");
+      return;
+    }
+
     dispatch(changeCurrentBoard(firstBoard));
     dispatch(fetchTracksOfBoard(firstBoard));
   } catch (error) {
