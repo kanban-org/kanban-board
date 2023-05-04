@@ -13,6 +13,7 @@
   display: flex;
   flex-direction: column;
   animation: modalOpen 0.1s ease-in-out;
+  backdrop-filter: blur(20px) saturate(190%) contrast(70%) brightness(80%);
 }
 
 @keyframes modalOpen {

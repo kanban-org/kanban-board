@@ -35,3 +35,18 @@ export const selectTasksCountOfTrack = createSelector(
   selectTaskIdsOfTrack,
   (taskIds) => taskIds.length
 );
+
+// Selectors for subtasks
+
+export const selectCountOfCompletedSubtasks = createSelector(
+  (_, taskId) => taskId,
+  selectTaskEntities,
+  (taskId, entities) => {
+    const subtasks = entities[taskId]?.Subtasks;
+    if (subtasks === undefined) return 0;
+    return subtasks.reduce((acc, subtask) => {
+      if (subtask.status === true) return acc + 1;
+      else return acc;
+    }, 0);
+  }
+);

@@ -44,4 +44,10 @@ TaskApiRouter.get('/task/getAllSubtasks/:taskId', (req, res) => {
   taskController.getAllSubtasksOfTask(req);
 });
 
+// update subtasks of a task
+TaskApiRouter.patch('/task/updateSubtasks/:taskId', (req, res) => {
+  const taskController = new TaskController(res);
+  taskController.updateSubtasksOfTask(req);
+});
+
 export default TaskApiRouter;

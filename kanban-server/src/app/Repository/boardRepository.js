@@ -1,4 +1,4 @@
-const { Board, Track, Task, sequelize } = require('../../models');
+const { Board, Track, Task, Subtask, sequelize } = require('../../models');
 
 export default class BoardRepository {
   async addBoard(boardName) {
@@ -145,6 +145,10 @@ export default class BoardRepository {
           model: Track,
           where: { boardId: boardId },
           attributes: [],
+        },
+        {
+          model: Subtask,
+          attributes: ['id', 'subtaskDesc', 'status'],
         },
       ],
     });

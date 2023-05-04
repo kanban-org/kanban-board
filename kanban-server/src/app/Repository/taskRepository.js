@@ -3,7 +3,6 @@ const { Task, Subtask, sequelize } = require('../../models');
 export default class TaskRepository {
   async createTask(data) {
     const { taskTitle, taskDesc, dueDate, track, rank } = data;
-    console.log(taskDesc);
     const task = await Task.create({
       taskTitle,
       taskDesc,
@@ -127,11 +126,9 @@ export default class TaskRepository {
 
   async createSubtask({ subtask, taskId }) {
     const task = await this.getTaskById(taskId);
-    console.log('task', task);
     const newSubtask = await Subtask.create({
       subtaskDesc: subtask,
     });
-    console.log('newSubtask', newSubtask);
     await task.addSubtask(newSubtask);
 
     return newSubtask;

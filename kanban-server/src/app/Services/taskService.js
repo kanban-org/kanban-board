@@ -39,8 +39,6 @@ export default class TaskService {
       // create subtasks
       // I have linked subtasks to the task in the database
       // there is a foriegn key in the subtask table that references the task table
-      console.log('subtasks_request', subtasks);
-
       if (subtasks && subtasks.length > 0) {
         // one by by link all the subtasks to the task
         for (let i = 0; i < subtasks.length; i++) {
@@ -49,8 +47,6 @@ export default class TaskService {
             subtask: subtask.subtaskValue,
             taskId: task.id,
           });
-
-          console.log('subtaskRes', subtaskRes);
         }
       }
 

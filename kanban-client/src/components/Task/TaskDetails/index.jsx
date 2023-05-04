@@ -1,9 +1,9 @@
-function Task({ id, title, totalSubtasks, comepletedSubtasks }) {
+function Task({ id, title, totalSubtasks, completedSubtasks }) {
   return (
     <>
       <h3 className="heading--4 bold">{title}</h3>
       <h6 className="heading--6">
-        {comepletedSubtasks} of {totalSubtasks} subtasks
+        {completedSubtasks} of {totalSubtasks} subtasks
       </h6>
     </>
   );

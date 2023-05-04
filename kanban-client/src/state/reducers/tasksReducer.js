@@ -86,6 +86,34 @@ export default function tasksReducer(state = initialState, action) {
         order: updatedOrder,
       };
     }
+    case ACTION_TYPE.UPDATE_TASK: {
+      const task = action.payload;
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          [task.id]: task,
+        },
+      };
+    }
+    case ACTION_TYPE.UPDATE_SUBTASKS: {
+      const { taskId, subtasks } = action.payload;
+
+      const task = state.entities[taskId];
+
+      const updatedTask = {
+        ...task,
+        subtasks: subtasks,
+      };
+
+      return {
+        ...state,
+        entities: {
+          ...state.entities,
+          [taskId]: updatedTask,
+        },
+      };
+    }
     case ACTION_TYPE.REMOVE_TASKS: {
       return {
         ...state,

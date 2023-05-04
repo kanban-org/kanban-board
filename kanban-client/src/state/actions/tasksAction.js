@@ -19,9 +19,19 @@ export const removeTasks = () => ({
   type: ACTION_TYPE.REMOVE_TASKS,
 });
 
-export const addNewtask = (task) => ({
+export const addNewTask = (task) => ({
   type: ACTION_TYPE.ADD_NEW_TASK,
   payload: task,
+});
+
+export const updateTask = (task) => ({
+  type: ACTION_TYPE.UPDATE_TASK,
+  payload: task,
+});
+
+export const updateSubtasks = ({ taskId, subtasks }) => ({
+  type: ACTION_TYPE.UPDATE_SUBTASKS,
+  payload: { taskId, subtasks },
 });
 
 export const moveTask = ({ source, destination, draggableId }) => ({

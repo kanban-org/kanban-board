@@ -53,3 +53,14 @@ export function getRandomNumber(min, max) {
 
 export const getRandomSubtaskThumbnails = () =>
   SUBTASK_THUMBNAILS[Math.floor(getRandomNumber(0, SUBTASK_THUMBNAILS.length))];
+
+export const getStatusCountOfSubtasks = (subtasks) => {
+  const totalSubtasks = subtasks.length;
+  // count the number of subtasks with status completed using .reduce
+  const completedSubtasks = subtasks.reduce((acc, subtask) => {
+    if (subtask.status === true) return acc + 1;
+    else return acc;
+  }, 0);
+
+  return { completedSubtasks, totalSubtasks };
+};

@@ -1,10 +1,13 @@
+import { update } from "../../../API";
 import { get, post } from "../../../API";
 import {
-  addNewtask,
+  addNewTask,
   tasksLoadError,
   tasksLoaded,
   tasksLoading,
   moveTask,
+  updateTask,
+  updateSubtasks,
 } from "../../actions/tasksAction";
 
 export const fetchTasksOfBoard = () => async (dispatch, getState) => {
@@ -46,7 +49,7 @@ export const addNewTaskRequest = (taskInfo) => async (dispatch) => {
 
     const { data } = await post(`task/create`, taskData);
 
-    dispatch(addNewtask(data));
+    dispatch(addNewTask(data));
   } catch (error) {
     dispatch(tasksLoadError(error));
   }
@@ -77,6 +80,34 @@ export const moveTaskRequest =
       // eslint-disable-next-line no-unused-vars
       const { data } = await post(`task/moveTask`, configData);
     } catch (error) {
+      throw new Error(error);
+    }
+  };
+
+export const editTaskRequest = (taskInfo) => async (dispatch) => {
+  dispatch(tasksLoading());
+  try {
+    const { data } = await update(`task/update/${taskInfo.id}`, taskInfo);
+    dispatch(updateTask(data));
+  } catch (error) {
+    dispatch(tasksLoadError(error));
+  }
+};
+
+export const editSubtaskRequest =
+  ({ taskId, subtasks }) =>
+  async (dispatch) => {
+    dispatch(tasksLoading());
+    try {
+      const subtasksData = { subtasks };
+      const { data } = await update(
+        `task/updateSubtasks/${taskId}`,
+        subtasksData
+      );
+
+      dispatch(updateSubtasks({ taskId, subtasks: data }));
+    } catch (error) {
+      dispatch(tasksLoadError(error));
       throw new Error(error);
     }
   };

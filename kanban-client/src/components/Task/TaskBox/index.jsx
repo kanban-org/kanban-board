@@ -7,6 +7,8 @@ import classes from "./TaskBox.module.scss";
 import { Draggable } from "react-beautiful-dnd";
 import icons from "../../../img/symbol-defs.svg";
 import Tooltip from "../../UI/Tooltip";
+import { useSelector } from "react-redux";
+import { selectCountOfCompletedSubtasks } from "../../../state/reducers/selectors/task";
 
 function TaskBox({ task, currentTrack, index, isDraggingOver }) {
   const [viewTask, setViewTask] = useState(false);
@@ -14,44 +16,29 @@ function TaskBox({ task, currentTrack, index, isDraggingOver }) {
   const handleViewTaskModal = useCallback(() => {
     setViewTask(!viewTask);
   }, [viewTask]);
-  // const task = useSelector((state) => selectTaskById(state, taskId));
-  // console.log(task);
-  // const subtasks = task.subtasks;
 
-  // let comepletedSubtasks = 0;
-  // const totalSubtasks = subtasks.length;
+  const subtasks = task.Subtasks || task.subtasks || [];
 
-  // subtasks.forEach((subtask) => {
-  //   if (subtask.completed === true) comepletedSubtasks++;
-  // });
+  const completedSubtasks = useSelector((state) =>
+    selectCountOfCompletedSubtasks(state, task.id)
+  );
 
-  let subtasks = [
-    {
-      id: 1,
-      description: "subtask 1",
-      completed: true,
-    },
-    {
-      id: 2,
-      description: "subtask 2",
-      completed: true,
-    },
-    {
-      id: 3,
-      description: "subtask 3",
-      completed: false,
-    },
-  ];
+  const totalSubtasks = subtasks.length;
 
   const taskDetailModal = (
     <>
       <Overlay onClick={handleViewTaskModal} />
-      <Modal onCloseModal={handleViewTaskModal}>
+      <Modal
+        onCloseModal={handleViewTaskModal}
+        styles={{
+          width: "50rem",
+        }}
+      >
         <ViewTaskModal
           {...task}
           subtasks={subtasks}
-          // totalSubtasks={totalSubtasks}
-          // comepletedSubtasks={comepletedSubtasks}
+          totalSubtasks={totalSubtasks}
+          completedSubtasks={completedSubtasks}
         />
       </Modal>
     </>
@@ -76,8 +63,8 @@ function TaskBox({ task, currentTrack, index, isDraggingOver }) {
             <TaskDetails
               id={task.id}
               title={task.taskTitle}
-              // totalSubtasks={totalSubtasks}
-              // comepletedSubtasks={comepletedSubtasks}
+              completedSubtasks={completedSubtasks}
+              totalSubtasks={totalSubtasks}
             />
             <div
               className={classes.priority + " margin-top-0_5 margin-left-0_5"}

@@ -1,11 +1,13 @@
 import Controller from './controller';
 import * as Exceptions from '../Exceptions/Exceptions';
 import TaskService from '../Services/taskService';
+import SubtaskService from '../Services/subtaskService';
 
 export default class TaskController extends Controller {
   constructor(response) {
     super(response);
     this.taskService = new TaskService();
+    this.subtaskService = new SubtaskService();
   }
 
   /**
@@ -69,18 +71,23 @@ export default class TaskController extends Controller {
 
   /**
    * Update task by id
-   * @param {Object} request - { `taskId`, `taskTitle`, `taskDesc`, `dueDate` }
+   * @param {Object} request - { `taskId`, `taskTitle`, `taskDesc`, `dueDate`, `subtasks` }
    * @returns {Object} - Task object
    */
   async updateTaskById(request) {
     const { taskId } = request.params;
-    const { taskTitle, taskDesc, dueDate } = request.body;
+    const { taskTitle, taskDesc, dueDate, subtasks } = request.body;
     try {
       const resTask = await this.taskService.updateTaskById(taskId, taskTitle, taskDesc, dueDate);
+
+      const resSubtasks = await this.subtaskService.updateSubtasks(taskId, subtasks);
 
       if (!resTask) {
         throw new Exceptions.NotFoundException('Task not found');
       }
+
+      const updatedTask = resTask.dataValues;
+      updatedTask.subtasks = resSubtasks;
 
       this.sendResponse(resTask);
     } catch (error) {
@@ -139,6 +146,26 @@ export default class TaskController extends Controller {
 
       if (!resSubtasks) {
         throw new Exceptions.NotFoundException('Subtasks not found');
+      }
+
+      this.sendResponse(resSubtasks);
+    } catch (error) {
+      this.handleException(error);
+    }
+  }
+
+  /**
+   * update subtasks of a task
+   * @param {Object} request - {`taskId`, `subtasks`}
+   * @return {Object} - Array of subtasks
+   */
+  async updateSubtasksOfTask(request) {
+    const { taskId } = request.params;
+    const { subtasks } = request.body;
+    try {
+      const resSubtasks = await this.subtaskService.updateSubtasks(taskId, subtasks);
+      if (!resSubtasks) {
+        throw new Exceptions.NotFoundException('Subtasks not updated');
       }
 
       this.sendResponse(resSubtasks);

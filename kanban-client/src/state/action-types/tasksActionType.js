@@ -5,4 +5,6 @@ export const tasksActionType = {
   TASKS_LOAD_ERROR: "tasks/tasksLoadError",
   REMOVE_TASKS: "tasks/removeTasks",
   MOVE_TASK: "tasks/moveTask",
+  UPDATE_TASK: "tasks/updateTask",
+  UPDATE_SUBTASKS: "tasks/updateSubtasks",
 };
