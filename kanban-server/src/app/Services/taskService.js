@@ -36,21 +36,16 @@ export default class TaskService {
       });
       task.trackId = trackId;
 
-      // create subtasks
-      // I have linked subtasks to the task in the database
-      // there is a foriegn key in the subtask table that references the task table
+      // bulk create subtasks and attach them to the task
+      let subtaskRes = [];
       if (subtasks && subtasks.length > 0) {
-        // one by by link all the subtasks to the task
-        for (let i = 0; i < subtasks.length; i++) {
-          const subtask = subtasks[i];
-          const subtaskRes = await this.taskRepository.createSubtask({
-            subtask: subtask.subtaskValue,
-            taskId: task.id,
-          });
-        }
+        subtaskRes = await this.taskRepository.createSubtasks({ taskId: task.id, subtasks });
       }
 
-      return task;
+      const updatedTask = task.dataValues;
+      updatedTask.subtasks = subtaskRes;
+
+      return updatedTask;
     } catch (error) {
       throw new Error(error);
     }

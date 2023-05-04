@@ -134,6 +134,19 @@ export default class TaskRepository {
     return newSubtask;
   }
 
+  async createSubtasks({ taskId, subtasks }) {
+    const task = await this.getTaskById(taskId);
+    const newSubtasks = await Subtask.bulkCreate(
+      subtasks.map((subtask) => ({
+        subtaskDesc: subtask.subtaskValue,
+        taskId: taskId,
+      }))
+    );
+
+    await task.addSubtasks(newSubtasks);
+    return newSubtasks;
+  }
+
   async getAllSubtasksOfTask(taskId) {
     const subtasks = await Subtask.findAll({
       where: {
