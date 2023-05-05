@@ -46,6 +46,7 @@ function ViewTaskModal({
       Object.assign(formik.values, { id: id });
       editTaskRequest(formik.values);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [editTaskRequest, formik.dirty, formik.values, isInputBlurred]);
 
   return (

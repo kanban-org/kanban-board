@@ -45,8 +45,8 @@ jobs:
       # start the server
       - name: Start the server
         run: |
-          pm2 delete kanban-server || true
-          pm2 start npm --name kanban-backend -- run start --workspace=kanban-server
+          pm2 delete -s kanban-server || :
+          pm2 start npm --name kanban-server -- run start --workspace=kanban-server
           pm2 save
 
       # Configure Nginx
