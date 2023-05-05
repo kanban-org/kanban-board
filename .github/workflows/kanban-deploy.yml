@@ -27,6 +27,7 @@ jobs:
           CI=false npm run build:client
           CI=false npm run build:server
 
+      # Create .env file
       - name: Create .env file
         run: |
           touch .env
@@ -38,6 +39,7 @@ jobs:
           echo DB_PROD_PORT=${{ secrets.DB_PROD_PORT }} >> .env
           echo NODE_ENV="production" >> .env
 
+      # Install pm2
       - name: Install pm2
         run: |
           npm install -g pm2
