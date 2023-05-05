@@ -45,7 +45,7 @@ jobs:
       # start the server
       - name: Start the server
         run: |
-          pm2 delete all
+          pm2 delete kanban-server || true
           pm2 start npm --name kanban-server -- run start --workspace=kanban-server
           pm2 save
 
