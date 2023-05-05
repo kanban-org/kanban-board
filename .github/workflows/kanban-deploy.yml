@@ -23,7 +23,6 @@ jobs:
       # Install dependencies and build the app
       - name: Install dependencies and build frontend + backend app
         run: |
-          echo "path-1:: $GITHUB_WORKSPACE"
           npm install
           CI=false npm run build:client
           CI=false npm run build:server
@@ -43,17 +42,11 @@ jobs:
         run: |
           npm install -g pm2
 
-      # added the Startup Script to the system
-      # - name: Add Startup Script
-      #   run: |
-      #     sudo env PATH=$PATH:/home/kanbanuser/app/_work/_tool/node/18.16.0/x64/bin /home/kanbanuser/app/_work/_tool/node/18.16.0/x64/lib/node_modules/pm2/bin/pm2 startup systemd -u kanbanuser --hp /home/kanbanuser
-
       # start the server
       - name: Start the server
         run: |
-          cd $GITHUB_WORKSPACE
+          pm2 delete all
           pm2 start npm --name kanban-server -- run start --workspace=kanban-server
-          echo "path-2:: $GITHUB_WORKSPACE"
           pm2 save
 
       # Configure Nginx
