@@ -4,6 +4,40 @@
 
 ---
 
+## Steps to run the project
+
+### Install backend dependencies
+
+- Install [postgresql](https://www.enterprisedb.com/downloads/postgres-postgresql-downloads) and create a database named `kanban`
+- Install [node.js](https://nodejs.org/en/download/)
+
+### Clone the repository
+
+```bash
+git clone https://github.com/kanban-org/kanban-board.git
+```
+
+### Install dependencies
+
+```bash
+cd kanban-board
+npm install
+```
+
+### Create `.env` file in `kanban-server` directory
+- Add the environment variables as mentioned in `.env.example` file to `.env` file.
+`(Note: Add your own values to the environment variables)`
+- Do the same for `kanban-client` directory
+
+
+
+### Run the project
+
+```bash
+npm run start
+```
+
+
 ## Tech stacks used
 
 - React.js
@@ -11,7 +45,3 @@
 - Express.js
 - PostgreSQL
 - Sequelize ORM
-
-## Deployment
-
-Deployed on digital ocean.
